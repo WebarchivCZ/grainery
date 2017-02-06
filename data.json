@@ -5,7 +5,7 @@
 		"name": "exName",
 		"size": "exSize",
 		"method": "exMethod",
-		"MIMETYPE": "application_X-warc",
+		"mimimetype": "application_X-warc",
 		"seq": 1,
 		"dateOfOrigin": "exDateOfOrigin",
 		"server": "exServer",
