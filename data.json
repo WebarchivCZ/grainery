@@ -4,45 +4,64 @@
   "warc":{
     "name":"exName",
     "size":"exSize",
-    "type":"arc/warc",
+    "MIMETYPE":"application/X-warc",
+    "seq": .1,
+    "size": .10000000,
     "dateOfOrigin":"exDateOfOrigin",
     "server":"exServer",
     "operator": "exOperator"
-    "harvest":{
-      "harvestType":"exHarvestType",
-      "harvestName_JOB":"exHarvesName_JOB",
-      "harvestDate":"exHarvestDate",
-      "harvestLogs:
-       {
-        "logs": true,
-          {
-          "frontierRecover": true,
-          "harvestLogs": ["exAlerts","exCrawl", "exNonfatal-errors", "progress-statistics", "runtime-errors", "uri-errors", "exFrontierRC"],
-          },
-        "reports": true,
-        "harvestLogsPath": ["",""]
-        "actions-done": true,
-        "harvestLogsPath": ["",""]
-      },
-    },
-    "path":{
+    "path":
+      {
       "drive":"exdrive",
       "pathToJob":"expathToJob",
       "warcEndPath":"exwarcEndPath",
       "LTP":
-       {
-        "status": "exstatus",
-        "pathToLTP":"expathToLTP",
+          {
+          "status": "exstatus",
+          "pathToLTP":"expathToLTP",
+          },
         },
-    },
-    "Md5":{
+    "Md5":
+      {
       "dateOfValidation":"exDateOfValidation",
       "statusOfValidation":"exStatusOfValidation",
       "nextLastDateOfValidation":"exnextLastDateOfValidation",
       "hash":[
         "exhashOfOriginal",
         "exlastHash"
-      ]
-    }
-  }
+        ],
+      },
+    "harvest":
+      {
+      "harvestType":"exHarvestType",
+      "harvestName_JOB":"exHarvesName_JOB",
+      "harvestDate":"exHarvestDate",
+      "harvestCDX":
+        {
+         "exists": true,
+         "path": "exCDXPath"
+        },
+      "harvestDMDSec":
+        {
+         "exists": true,
+         "path": "exCDXPath",
+         "numberOfItems": .4,
+         "LTP-ready": true,
+        },
+      "harvestCrawl:
+        {
+        "logs": true,
+        "server": "exNameOfServer",
+        "logsData": 
+          {
+          "frontierRecover": true,
+          "harvestLogs": ["exAlerts","exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"],
+          },
+        "reports": true,
+        "harvestReports": ["exCrawl-report","exHosts-report", "exSeeds-report"],
+        "actions-done": true,
+        "harvestActionsDone": ["exActionsDone","exActionsDone2"],
+      },
+    },
+  },
 }
