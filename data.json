@@ -7,7 +7,7 @@
     "dateOfOrigin":"exdateOfOrigin",
     "harvest":{
       "harvestType":"exHarvestType",
-      "harvestName":"exHarvesName",
+      "harvestName_JOB":"exHarvesName_JOB",
       "harvestDate":"exHarvesDate",
       "harvestLogsPath":"exharvestLogsPath"
     },
@@ -15,7 +15,11 @@
       "drive":"exdrive",
       "pathToJob":"expathToJob",
       "warcEndPath":"exwarcEndPath",
-      "pathToLTP":"expathToLTP"
+      "LTP":
+       {
+        "status": "exstatus",
+        "pathToLTP":"expathToLTP",
+        }
     },
     "Md5":{
       "dateOfValidation":"exDateOfValidation",
