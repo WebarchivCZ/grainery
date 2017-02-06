@@ -3,10 +3,12 @@
 	"_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
 	"warc": {
 		"name": "exName",
+		"description": "exDesc",
 		"size": "exSize",
-		"method": "exMethod",
+		"method": "defined-standard-LTP",
 		"mimimetype": "application_X-warc",
 		"seq": 1,
+		"timestamp":"...",
 		"dateOfOrigin": "exDateOfOrigin",
 		"server": "exServer",
 		"operator": "exOperator",
