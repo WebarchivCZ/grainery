@@ -1,0 +1,30 @@
+{
+  "_id": "708ae78bd79fa9802c827e03d30030a5",
+  "_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
+  "warc":{
+    "name":"exName",
+    "size":"exSize",
+    "dateOfOrigin":"exdateOfOrigin",
+    "harvest":{
+      "harvestType":"exHarvestType",
+      "harvestName":"exHarvesName",
+      "harvestDate":"exHarvesDate",
+      "harvestLogsPath":"exharvestLogsPath"
+    },
+    "path":{
+      "drive":"exdrive",
+      "pathToJob":"expathToJob",
+      "warcEndPath":"exwarcEndPath",
+      "pathToLTP":"expathToLTP"
+    },
+    "Md5":{
+      "dateOfValidation":"exDateOfValidation",
+      "statusOfValidation":"exStatusOfValidation",
+      "nextLastDateOfValidation":"exnextLastDateOfValidation",
+      "hash":[
+        "exhashOfOriginal",
+        "exlastHash"
+      ]
+    }
+  }
+}
