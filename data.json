@@ -1,67 +1,59 @@
 {
-  "_id": "708ae78bd79fa9802c827e03d30030a5",
-  "_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
-  "warc":{
-    "name":"exName",
-    "size":"exSize",
-    "MIMETYPE":"application/X-warc",
-    "seq": .1,
-    "size": .10000000,
-    "dateOfOrigin":"exDateOfOrigin",
-    "server":"exServer",
-    "operator": "exOperator"
-    "path":
-      {
-      "drive":"exdrive",
-      "pathToJob":"expathToJob",
-      "warcEndPath":"exwarcEndPath",
-      "LTP":
-          {
-          "status": "exstatus",
-          "pathToLTP":"expathToLTP",
-          },
-        },
-    "Md5":
-      {
-      "dateOfValidation":"exDateOfValidation",
-      "statusOfValidation":"exStatusOfValidation",
-      "nextLastDateOfValidation":"exnextLastDateOfValidation",
-      "hash":[
-        "exhashOfOriginal",
-        "exlastHash"
-        ],
-      },
-    "harvest":
-      {
-      "harvestType":"exHarvestType",
-      "harvestName_JOB":"exHarvesName_JOB",
-      "harvestDate":"exHarvestDate",
-      "harvestCDX":
-        {
-         "exists": true,
-         "path": "exCDXPath"
-        },
-      "harvestDMDSec":
-        {
-         "exists": true,
-         "path": "exCDXPath",
-         "numberOfItems": .4,
-         "LTP-ready": true,
-        },
-      "harvestCrawl:
-        {
-        "logs": true,
-        "server": "exNameOfServer",
-        "logsData": 
-          {
-          "frontierRecover": true,
-          "harvestLogs": ["exAlerts","exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"],
-          },
-        "reports": true,
-        "harvestReports": ["exCrawl-report","exHosts-report", "exSeeds-report"],
-        "actions-done": true,
-        "harvestActionsDone": ["exActionsDone","exActionsDone2"],
-      },
-    },
-  },
+	"_id": "708ae78bd79fa9802c827e03d30030a5",
+	"_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
+	"warc": {
+		"name": "exName",
+		"size": "exSize",
+		"method": "exMethod",
+		"MIMETYPE": "application_X-warc",
+		"seq": 1,
+		"dateOfOrigin": "exDateOfOrigin",
+		"server": "exServer",
+		"operator": "exOperator",
+		"path": {
+			"drive": "exdrive",
+			"pathToJob": "expathToJob",
+			"warcEndPath": "exwarcEndPath",
+			"LTP": {
+				"status": "exstatus",
+				"pathToLTP": "expathToLTP"
+			}
+		},
+		"Md5": {
+			"dateOfValidation": "exDateOfValidation",
+			"statusOfValidation": "exStatusOfValidation",
+			"nextLastDateOfValidation": "exnextLastDateOfValidation",
+			"hash": [
+				"exhashOfOriginal",
+				"exlastHash"
+			]
+		},
+		"harvest": {
+			"harvestType": "exHarvestType",
+			"harvestName_JOB": "exHarvesName_JOB",
+			"harvestDate": "exHarvestDate",
+			"harvestCDX": {
+				"exists": true,
+				"path": "exCDXPath"
+			},
+			"harvestDMDSec": {
+				"exists": true,
+				"LTP-ready": true,
+				"path": "exCDXPath",
+				"numberOfItems": 4
+			},
+			"harvestCrawl": {
+				"logs": true,
+				"server": "exNameOfServer",
+				"logsData": {
+					"frontierRecover": true,
+					"harvestLogs": ["exAlerts", "exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"]
+				},
+				"reports": true,
+				"harvestReports": ["exCrawl-report", "exHosts-report", "exSeeds-report"],
+				"actions-done": true,
+				"harvestActionsDone": ["exActionsDone", "exActionsDone2"]
+			}
+		}
+	}
 }
