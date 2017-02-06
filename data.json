@@ -4,12 +4,26 @@
   "warc":{
     "name":"exName",
     "size":"exSize",
-    "dateOfOrigin":"exdateOfOrigin",
+    "type":"arc/warc",
+    "dateOfOrigin":"exDateOfOrigin",
+    "server":"exServer",
+    "operator": "exOperator"
     "harvest":{
       "harvestType":"exHarvestType",
       "harvestName_JOB":"exHarvesName_JOB",
-      "harvestDate":"exHarvesDate",
-      "harvestLogsPath":"exharvestLogsPath"
+      "harvestDate":"exHarvestDate",
+      "harvestLogs:
+       {
+        "logs": true,
+          {
+          "frontierRecover": true,
+          "harvestLogs": ["exAlerts","exCrawl", "exNonfatal-errors", "progress-statistics", "runtime-errors", "uri-errors", "exFrontierRC"],
+          },
+        "reports": true,
+        "harvestLogsPath": ["",""]
+        "actions-done": true,
+        "harvestLogsPath": ["",""]
+      },
     },
     "path":{
       "drive":"exdrive",
@@ -19,7 +33,7 @@
        {
         "status": "exstatus",
         "pathToLTP":"expathToLTP",
-        }
+        },
     },
     "Md5":{
       "dateOfValidation":"exDateOfValidation",
