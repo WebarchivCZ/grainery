@@ -14,9 +14,8 @@
 		"server": "exServer",
 		"operator": "exOperator",
 		"path": {
-			"drive": "exdrive",
-			"pathToJob": "expathToJob",
-			"warcEndPath": "exwarcEndPath",
+			"mount": "exdrive",
+			"pathToHarvest": "expathToHarvest",
 			"LTP": {
 				"status": "exstatus",
 				"pathToLTP": "expathToLTP"
