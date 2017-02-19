@@ -1,0 +1,52 @@
+{
+	  "_id": "708ae78bd79fa9802c827e03d30030a5",
+	  "_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
+    "type": "harvest",
+			"HarvestIsPartOf": "Serials 2013-07-1M_ArchiveIt",
+			"description": "Pravidelná sklizeň semínek s měsíční frekvencí a archivace semínek s nízkou frekvencí přidaných v květnu.",
+			"operator": "Rudolf Kreibich",
+			"publisher": "National Library of the Czech Republic",
+			"audience": "WebArchiv.cz Users",
+			"robots": "ignore",
+			"http-header-user-agent": "Mozilla/5.0 (compatible; heritrix/3.1.2-SNAPSHOT-20130207.001528 +http://webarchiv.cz/kontakty/)",
+			"http-header-from": "webarchiv@nkp.cz",
+			"harvestType": "1M_ArchiveIt",
+			"harvestDuration": "undefined", //idealne od do, presne data
+			"hosts": {
+				"names":["TODO Names1", "TODO Names1","TODO Names1"],
+				"number": 3
+				},
+			"harvestDMDSec": {
+				"exists": true,
+				"LTP-ready": "undefined",
+				"path": "./logs/dmdsec",
+				"numberOfItems": "452"
+				},
+			"harvestCrawl": {
+				"logs": true,
+				"path": "logs/crawl",
+				"filename": ["Serials-2013-07-1M_ArchiveIt-crawler00.tar.gz", "Serials-2013-07-1M_ArchiveIt-crawler01.tar.gz", "Serials-2013-07-1M_ArchiveIt-crawler02.tar.gz"],
+				"logsData": {
+					"frontierRecover": ["NA", "NA", "NA"], //bool
+					"harvestLogs": { 
+						"1": ["NA"], //["exAlerts", "exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"]
+						"2": ["NA"],
+						"3": ["NA"]
+						}
+					},
+				"reports": "NA", //bool
+				"harvestReports": {
+					"1": ["exCrawl-report", "Host-Report", "Seeds-report"], //["exCrawl-report", "exHosts-report", "exSeeds-report"],
+					"2": ["exCrawl-report", "Host-Report", "Seeds-report"],
+					"3": ["exCrawl-report", "Host-Report", "Seeds-report"]
+					},
+				"actions-done": "NA", //bool
+				"harvestActionsDone": {
+					"1": ["exActionsDone", "exActionsDone2"],
+					"2": ["exActionsDone", "exActionsDone2"],
+					"3": ["exActionsDone", "exActionsDone2"]
+					}
+				}
+			}	
+      
+}
