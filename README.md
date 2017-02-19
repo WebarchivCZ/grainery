@@ -4,24 +4,24 @@ Keeping knowledge about harvested ARC/WARCs and related files such as logs, CDX 
 
 <b> 1.Vyhodene: </b>
 
-?, "originalMimetype": "original_application_X-warc",
-sekvencia z harvestu:  "seq": 1,
-"dateOfOrigin": "exDateOfOrigin",
+?, "originalMimetype": "original_application_X-warc", <br>
+sekvencia z harvestu:  "seq": 1, <br>
+"dateOfOrigin": "exDateOfOrigin", <br>
 
 <b> 2.Zamena </b>
-Server ("server": "exServer",) = hostname crawlera vytvarajuceho warc
-HARVESTDATE - HARVESTDURATION
-ISPARTOF-HARVESTISPARTOF a HARVESTNAME - HARVESTISPARTOF , duplikacia odstranena
+Server ("server": "exServer",) = hostname crawlera vytvarajuceho warc <br>
+HARVESTDATE - HARVESTDURATION <br>
+ISPARTOF-HARVESTISPARTOF a HARVESTNAME - HARVESTISPARTOF , duplikacia odstranena <br>
 
-# 3.Presun </b>
-OPERATOR ("operator": "exOperator") a DESCRIPTION z warcu do harvestu
-CDX z harvestu do warcu, rozsierenie o md5, pociet linii a velkost
-STORAGE z containeru do PATH
+<b>3.Presun </b>
+OPERATOR ("operator": "exOperator") a DESCRIPTION z warcu do harvestu <br>
+CDX z harvestu do warcu, rozsierenie o md5, pociet linii a velkost <br>
+STORAGE z containeru do PATH <br>
 
-# 4.Posun </b>
+<b> 4.Posun </b>
 
-HARVESTISPARTOF v Harvest posunuto na #0CR
+HARVESTISPARTOF v Harvest posunuto na #0CR <br>
 
-# 5.Pridane</b>
+<b> 5.Pridane</b>
 
-Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl
+Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl <br>
