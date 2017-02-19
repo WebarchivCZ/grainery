@@ -2,6 +2,8 @@
 Keeping knowledge about harvested ARC/WARCs and related files such as logs, CDX files etc.
 
 
+Zavedena podvojna struktura pre skladovanie dat v Grainary DB, json for container a json for harvest samotny. Extrakcia pomocou propriety type a mappingu, idem parovanie. Issue, automaticke dovodenie (rsp aj. nacitanie) logu z harvestov na viacerych strojoch.
+
 <b> 1.Vyhodene: </b>
 
 ?, "originalMimetype": "original_application_X-warc", <br>
