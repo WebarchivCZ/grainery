@@ -2,60 +2,96 @@
 	"_id": "708ae78bd79fa9802c827e03d30030a5",
 	"_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
 	"container": {
-		"name": "exName",
-		"description": "exDesc",
-		"size": "exSize",
-		"method": "defined-standard-LTP",
-		"mimimetype": "application_X-warc",
-		"originalMimetype": "original_application_X-warc",
-		"seq": 1,
-		"timestamp":"...",
-		"dateOfOrigin": "exDateOfOrigin",
-		"server": "exServer",
-		"operator": "exOperator",
-		"path": {
-			"mount": "exdrive",
-			"pathToHarvest": "expathToHarvest",
-			"LTP": {
-				"status": "exstatus",
-				"pathToLTP": "expathToLTP"
-			}
-		},
-		"Md5": {
-			"dateOfValidation": "exDateOfValidation",
-			"statusOfValidation": "exStatusOfValidation",
-			"nextLastDateOfValidation": "exnextLastDateOfValidation",
-			"hash": [
-				"exhashOfOriginal",
-				"exlastHash"
-			]
-		},
-		"harvest": {
-			"harvestType": "exHarvestType",
-			"harvestName_JOB": "exHarvesName_JOB",
-			"harvestDate": "exHarvestDate",
-			"harvestCDX": {
-				"exists": true,
-				"path": "exCDXPath"
+		"filename": "Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz",
+		"recordID": "urn:uuid:3d1ee065-1ae5-469f-bc02-1a8b3bcbe6b2",
+		"hostname": "crawler00.webarchiv.cz",
+		"software": "Heritrix/3.1.2-SNAPSHOT-20130207.001528 http://crawler.archive.org",
+		"dateOfOrigin": "2013-07-22T15:00:02Z",
+		"timestamp":"TODO...",
+		"method": "TODOundefined-defined-standard-LTP",
+		"size": "1034766557",				
+		"cdx": {
+			"exists": "true",
+			"path": "./logs/index/Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz.cdx",
+			"md5": "0dbad33d9cfb2a6e9023501365aa4f23",
+			"size": "28818264",
+			"lines": "93371"
 			},
+		"type": {
+			"format": "WARC File Format 1.0",
+			"conformsTo": "http://bibnum.bnf.fr/WARC/WARC_ISO_28500_version1_latestdraft.pdf",
+			"mimimetypeXML": "TODO?application_X-warc"
+			},
+		"path": {
+			"storage": {
+				"HNAS1": "10.10.0.41:/webarchiv/archive13",
+				"HNAS2": "10.10.0.42:/webarchiv/archive13",
+				"HNAS3": "10.10.0.43:/webarchiv/archive13"
+				   },
+			"mount": "/mnt/archive/13",
+			"pathToHarvest": "./serials/Serials-2013-07-1M_ArchiveIt",
+			"LTP": {
+				"status": "undefined",
+				"pathToLTP": "undefined"
+				}
+			},
+		"Md5": {
+			"dateOfValidation": "2017-02-17T15:06:44Z",
+			"statusOfValidation": "NA",
+			"nextLastDateOfValidation": "2019-02-17T15:06:44Z",
+			"hash": { //Moze byt urobene aj ako pole, [hash1, hash2]
+				"exhashOfOriginal": "3d16d052bf32939c58c4155f897f1e20",
+				"exlastHash": "undefined"
+				}
+			},
+						
+		"harvest": {
+			"HarvestIsPartOf": "Serials 2013-07-1M_ArchiveIt",
+			"description": "Pravidelná sklizeň semínek s měsíční frekvencí a archivace semínek s nízkou frekvencí přidaných v květnu.",
+			"operator": "Rudolf Kreibich",
+			"publisher": "National Library of the Czech Republic",
+			"audience": "WebArchiv.cz Users",
+			"robots": "ignore",
+			"http-header-user-agent": "Mozilla/5.0 (compatible; heritrix/3.1.2-SNAPSHOT-20130207.001528 +http://webarchiv.cz/kontakty/)",
+			"http-header-from": "webarchiv@nkp.cz",
+			"harvestType": "1M_ArchiveIt",
+			"harvestDuration": "undefined", //idealne od do, presne data
+			"hosts": {
+				"names":["TODO Names1", "TODO Names1","TODO Names1"],
+				"number": 3
+				},
 			"harvestDMDSec": {
 				"exists": true,
-				"LTP-ready": true,
-				"path": "exCDXPath",
-				"numberOfItems": 4
-			},
+				"LTP-ready": "undefined",
+				"path": "./logs/dmdsec",
+				"numberOfItems": "452"
+				},
 			"harvestCrawl": {
 				"logs": true,
-				"server": "exNameOfServer",
+				"path": "logs/crawl",
+				"filename": ["Serials-2013-07-1M_ArchiveIt-crawler00.tar.gz", "Serials-2013-07-1M_ArchiveIt-crawler01.tar.gz", "Serials-2013-07-1M_ArchiveIt-crawler02.tar.gz"],
 				"logsData": {
-					"frontierRecover": true,
-					"harvestLogs": ["exAlerts", "exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"]
-				},
-				"reports": true,
-				"harvestReports": ["exCrawl-report", "exHosts-report", "exSeeds-report"],
-				"actions-done": true,
-				"harvestActionsDone": ["exActionsDone", "exActionsDone2"]
-			}
-		}
+					"frontierRecover": ["NA", "NA", "NA"], //bool
+					"harvestLogs": { 
+						"1": ["NA"], //["exAlerts", "exCrawl", "exNonfatal-errors", "exProgress-statistics", "exRuntime-errors", "exUri-errors", "exFrontierRC"]
+						"2": ["NA"],
+						"3": ["NA"]
+						}
+					},
+				"reports": "NA", //bool
+				"harvestReports": {
+					"1": ["exCrawl-report", "Host-Report", "Seeds-report"], //["exCrawl-report", "exHosts-report", "exSeeds-report"],
+					"2": ["exCrawl-report", "Host-Report", "Seeds-report"],
+					"3": ["exCrawl-report", "Host-Report", "Seeds-report"]
+					},
+				"actions-done": "NA", //bool
+				"harvestActionsDone": {
+					"1": ["exActionsDone", "exActionsDone2"],
+					"2": ["exActionsDone", "exActionsDone2"],
+					"3": ["exActionsDone", "exActionsDone2"]
+					}
+				}
+			}		
+		
 	}
 }
