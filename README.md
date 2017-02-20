@@ -29,7 +29,7 @@ HARVESTISPARTOF v Harvest posunuto na #0CR <br>
 
 Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl <br>
 <ul>Deklarativne zlozky
-<li>author</li>
-<li>date</li>
-<li>standart</li>
-<li>type</li></ul>
+<li><b>author</b>: autor ci skript, ktory vklada dokument</li>
+<li><b>date</b>: moment zapisu</li>
+<li><b>standart</b>: štandard pre formátovanie JSONU - k príp. updatom</li>
+<li><b>type</b>: typ dokumentu, tj. harvest alebo jeho container</li></ul>
