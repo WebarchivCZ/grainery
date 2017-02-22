@@ -43,11 +43,14 @@ Pridávanie nových štruktúr do existujúcich dokumentov, je veľmi jednoduch�
 
 <i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}
 
-<h2>Views:</h2>
+<h2>B.2 Views:</h2>
+
 1. Typologie
+
 Pristup k naprogramovanym views cez curl
 
 <i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie
+
 <i>CouchDB:</i> {"total_rows":5,"offset":0,"rows":[ <br>
 {"id":"67f80e4db8ab23f8fb247e1a4d007ed7","key":"2013/07/15 15:52:20","value":{"Type":"container","Author":"Jan Testerovic"}},<br>
 {"id":"67f80e4db8ab23f8fb247e1a4d009f3c","key":"2013/07/15 15:52:20","value":{"Type":"harvest","Author":"Jan Testerovic"}},<br>
