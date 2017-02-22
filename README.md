@@ -39,7 +39,7 @@ Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturo
 Pridávanie nových štruktúr do existujúcich dokumentov, je veľmi jednoduché pomocou práce s objektami v json a príkaze zo shellu pomocou curl. Pri prepisovaní sa prepíše stávajúce pole, nová štruktúra, napr. pri upgrade standardu sa vytvorí rovnakým spôsobom. Dôležité je ale poznať <b>_id</b> a <b>_rev</b> dokumentu
 
 
-<i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:vino@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}'
+<i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:XXXXXX@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}'
 
 <i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}
 
@@ -61,7 +61,7 @@ Pristup k naprogramovanym views cez curl
 
 <b>Respektíve pomocou -o moznosti sa nam priamo stiahne:</b>
 
-<i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie -o ResponseTest.json
+<i>Prikaz:</i> curl -X GET http://zdenko:XXXXXX@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie -o ResponseTest.json
 
 <i>CouchDB:</i>  
 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
