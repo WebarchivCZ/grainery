@@ -42,3 +42,16 @@ Pridávanie nových štruktúr do existujúcich dokumentov, je veľmi jednoduch�
 <i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:vino@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}'
 
 <i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}
+
+<h2>Views:</h2>
+1. Typologie
+Pristup k naprogramovanym views cez curl
+
+<i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie
+<i>CouchDB:</i> {"total_rows":5,"offset":0,"rows":[ <br>
+{"id":"67f80e4db8ab23f8fb247e1a4d007ed7","key":"2013/07/15 15:52:20","value":{"Type":"container","Author":"Jan Testerovic"}},<br>
+{"id":"67f80e4db8ab23f8fb247e1a4d009f3c","key":"2013/07/15 15:52:20","value":{"Type":"harvest","Author":"Jan Testerovic"}},<br>
+{"id":"67f80e4db8ab23f8fb247e1a4d008597","key":"2014/05/15 15:52:20","value":{"Type":"container","Author":"Rudolf Rudolfovic"}},<br>
+{"id":"67f80e4db8ab23f8fb247e1a4d0089f3","key":"2014/05/15 15:52:20","value":{"Type":"container","Author":"Rudolf Rudolfovic"}},<br>
+{"id":"67f80e4db8ab23f8fb247e1a4d0096a5","key":"2014/05/15 15:52:20","value":{"Type":"harvest","Author":"Rudolf Rudolfovic"}}
+]}<br>
