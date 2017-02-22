@@ -58,3 +58,12 @@ Pristup k naprogramovanym views cez curl
 {"id":"67f80e4db8ab23f8fb247e1a4d0089f3","key":"2014/05/15 15:52:20","value":{"Type":"container","Author":"Rudolf Rudolfovic"}},<br>
 {"id":"67f80e4db8ab23f8fb247e1a4d0096a5","key":"2014/05/15 15:52:20","value":{"Type":"harvest","Author":"Rudolf Rudolfovic"}}
 ]}<br>
+
+<b>Respektíve pomocou -o moznosti sa nam priamo stiahne:</b>
+
+<i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie -o ResponseTest.json
+
+<i>CouchDB:</i>  
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed</br>
+100   679    0   679    0     0   226k      0 --:--:-- --:--:-- --:--:--  331k
