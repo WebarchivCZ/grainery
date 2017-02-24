@@ -54,6 +54,15 @@ Na špeciálne dotazovanie zas slúži PUT request:
 
 http://zdenko:XXXX@127.0.0.1:10000/<my_database>/_design/<my_designdoc>/_update/in-place-query/<mydocId>?field=title&value=test
 
+Priklad: 
+
+<i>Prikaz:</i> curl -X PUT http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_update/in-place-query/?field=type&value=harvest
+
+<i>CouchDB</i> 
+[2] 28677
+[1]   Done 
+
+
 <h2>B.2 Views:</h2>
 
 1. Typologie
