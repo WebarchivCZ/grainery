@@ -28,6 +28,7 @@ HARVESTISPARTOF v Harvest posunuto na #0CR <br>
 <b> 5.Pridane</b><br>
 
 Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl <br>
+Do HARVEST: SIZE, tj. celková velikosť zberu (vrátane, alebo bez logov?) <br>
 <ul>Deklarativne zlozky
 <li><b>author</b>: autor ci skript, ktory vklada dokument</li>
 <li><b>date</b>: moment zapisu</li>
