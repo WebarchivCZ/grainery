@@ -30,6 +30,7 @@ HARVESTISPARTOF v Harvest posunuto na #0CR <br>
 Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl <br>
 Do HARVEST: SIZE, tj. celková velikosť zberu (vrátane, alebo bez logov?) <br>
 Do HARVEST: STATUS, stav integrity zberu vrátane dát
+Do HARVEST: dateOfValidation A nextLastDateOfValidation
 <ul> Stavy
 <li>NonValidated</li>
 <li>OK</li>
