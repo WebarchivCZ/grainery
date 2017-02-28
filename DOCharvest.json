@@ -6,7 +6,8 @@
           "standart": "Grainery 0.25",
    	  "type": "harvest",
           "harvest": {
-			"harvestName": "Serials 2013-07-1M_ArchiveIt",
+			"status": "NonValidated",
+		  	"harvestName": "Serials 2013-07-1M_ArchiveIt",
 			"description": "Pravidelná sklizeň semínek s měsíční frekvencí a archivace semínek s nízkou frekvencí přidaných v květnu.",
 			"operator": "Rudolf Kreibich",
 			"publisher": "National Library of the Czech Republic",
