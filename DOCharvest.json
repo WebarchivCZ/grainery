@@ -1,7 +1,10 @@
 {
 	  "_id": "708ae78bd79fa9802c827e03d30030a5",
 	  "_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
-    	  "type": "harvest",
+          "author": "Rudolf Rudolfovic",
+          "date": "2014/05/15 15:52:20",
+          "standart": "Grainery 0.25",
+   	  "type": "harvest",
           "harvest": {
 			"harvestName": "Serials 2013-07-1M_ArchiveIt",
 			"description": "Pravidelná sklizeň semínek s měsíční frekvencí a archivace semínek s nízkou frekvencí přidaných v květnu.",
@@ -13,6 +16,7 @@
 			"http-header-from": "webarchiv@nkp.cz",
 			"harvestType": "1M_ArchiveIt",
 			"harvestDuration": "undefined", //idealne od do, presne data
+		  	"size": 239821,
 			"hosts": {
 				"names":["TODO Names1", "TODO Names1","TODO Names1"],
 				"number": 3
