@@ -29,6 +29,15 @@ HARVESTISPARTOF v Harvest posunuto na #0CR <br>
 
 Do HARVEST:  HOSTS - NUMBER + NAME /aby sme mohli operovat s potrojnou strukturou v harvestCrawl <br>
 Do HARVEST: SIZE, tj. celková velikosť zberu (vrátane, alebo bez logov?) <br>
+Do HARVEST: STATUS, stav integrity zberu vrátane dát
+<ul> Stavy
+<li>NonValidated</li>
+<li>OK</li>
+<li>Corrupted</li>
+<li>Lost</li>
+<li></li>
+</ul>
+
 <ul>Deklarativne zlozky
 <li><b>author</b>: autor ci skript, ktory vklada dokument</li>
 <li><b>date</b>: moment zapisu</li>
