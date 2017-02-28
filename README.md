@@ -85,5 +85,9 @@ Pristup k naprogramovanym views cez curl
 
 <i>CouchDB:</i>  
 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed</br>
+                                 Dload  Upload   Total   Spent    Left  Speed<br>
 100   679    0   679    0     0   226k      0 --:--:-- --:--:-- --:--:--  331k
+
+2. Upload nových views skrz SSH
+
+<i>Príkaz:</i> curl -X PUT http://zdenko:XXXXXX127.0.0.1:10000/contacts/_design/more_views -d @more_views.json
