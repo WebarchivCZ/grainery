@@ -4,6 +4,7 @@
 	"type": "container",
 	"author": "Jan Testerovic",
    	"date": "2015/01/15 15:52:20",
+	"standart": "Grainery 0.25",
 	"container": {
 		"filename": "Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz",
 		"recordID": "urn:uuid:3d1ee065-1ae5-469f-bc02-1a8b3bcbe6b2",
