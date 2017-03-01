@@ -14,7 +14,8 @@ sekvencia z harvestu:  "seq": 1, <br>
 Server ("server": "exServer",) = hostname crawlera vytvarajuceho warc <br>
 HARVESTDATE - HARVESTDURATION <br>
 ISPARTOF-HARVESTISPARTOF a HARVESTNAME - HARVESTISPARTOF , duplikacia odstranena je <b>harvestName</b> <br>
-HARVEST:HARVESTDMDSEC:LTP-READY na LTPready
+HARVEST:HARVESTDMDSEC:LTP-READY na LTPready <br>
+HARVEST:HARVESTCRAWL:ACTIONS-DONE na actionsDone <br>
 
 <b>3.Presun </b><br>
 OPERATOR ("operator": "exOperator") a DESCRIPTION z warcu do harvestu <br>
