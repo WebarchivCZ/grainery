@@ -101,4 +101,4 @@ Pristup k naprogramovanym views cez curl
 
 2. Upload nových views skrz SSH
 
-<i>Príkaz:</i> curl -X PUT http://zdenko:XXXXXX127.0.0.1:10000/contacts/_design/more_views -d @more_views.json
+<i>Príkaz:</i> curl -X PUT http://zdenko:XXXXX@127.0.0.1:10000/grainary/_design/grainary -d @more_views.json
