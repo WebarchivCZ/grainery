@@ -16,6 +16,8 @@ HARVESTDATE - HARVESTDURATION <br>
 ISPARTOF-HARVESTISPARTOF a HARVESTNAME - HARVESTISPARTOF , duplikacia odstranena je <b>harvestName</b> <br>
 HARVEST:HARVESTDMDSEC:LTP-READY na LTPready <br>
 HARVEST:HARVESTCRAWL:ACTIONS-DONE na actionsDone <br>
+HARVEST: HTTP-USER-AGENT na httpHeaderUserAgent<br>
+HARVEST: HTTP-HEADER-FROM na httpHeaderFrom <br>
 
 <b>3.Presun </b><br>
 OPERATOR ("operator": "exOperator") a DESCRIPTION z warcu do harvestu <br>
