@@ -13,8 +13,8 @@
 			"publisher": "National Library of the Czech Republic",
 			"audience": "WebArchiv.cz Users",
 			"robots": "ignore",
-			"http-header-user-agent": "Mozilla/5.0 (compatible; heritrix/3.1.2-SNAPSHOT-20130207.001528 +http://webarchiv.cz/kontakty/)",
-			"http-header-from": "webarchiv@nkp.cz",
+			"httpHeaderUserAgent": "Mozilla/5.0 (compatible; heritrix/3.1.2-SNAPSHOT-20130207.001528 +http://webarchiv.cz/kontakty/)",
+			"httpHeaderFrom": "webarchiv@nkp.cz",
 			"harvestType": "1M_ArchiveIt",
 			"harvestDuration": "undefined", //idealne od do, presne data
 		  	"size": 239821,
@@ -26,7 +26,7 @@
 				},
 			"harvestDMDSec": {
 				"exists": true,
-				"LTP-ready": "undefined",
+				"LTPready": "undefined",
 				"path": "./logs/dmdsec",
 				"numberOfItems": "452"
 				},
@@ -48,7 +48,7 @@
 					"2": ["exCrawl-report", "Host-Report", "Seeds-report"],
 					"3": ["exCrawl-report", "Host-Report", "Seeds-report"]
 					},
-				"actions-done": "NA", //bool
+				"actionsDone": "NA", //bool
 				"harvestActionsDone": {
 					"1": ["exActionsDone", "exActionsDone2"],
 					"2": ["exActionsDone", "exActionsDone2"],
