@@ -53,7 +53,7 @@ Do HARVEST: dateOfValidation A nextLastDateOfValidation
 
 Pridávanie nových štruktúr do existujúcich dokumentov, je veľmi jednoduché pomocou práce s objektami v json a príkaze zo shellu pomocou curl. Pri prepisovaní sa prepíše stávajúce pole KOMPLETNE, nová štruktúra, napr. pri upgrade standardu sa vytvorí rovnakým spôsobom. Dôležité je ale poznať <b>_id</b> a <b>_rev</b> dokumentu, inak sa vytvori novy document s vlastným ID. 
 
-<i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:XXXXXX@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}'
+<pre><i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:XXXXXX@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}' </pre>
 
 <i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}
 
