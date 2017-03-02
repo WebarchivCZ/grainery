@@ -106,3 +106,9 @@ Pristup k naprogramovanym views cez curl
 2. Upload nových views skrz SSH
 
 <i>Príkaz:</i> curl -X PUT http://zdenko:XXXXX@127.0.0.1:10000/grainary/_design/grainary -d @more_views.json
+
+
+<h4>XML a HTML</h4>
+Skrze fcie ulozene v designovom codumente u show a list sa da cely vyskladat.
+
+http://10.3.0.50:10000/_utils/document.html?grainary/_design/harvestKompl/_show/xhtml/67f80e4db8ab23f8fb247e1a4d009f3c
