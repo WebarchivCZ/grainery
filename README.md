@@ -53,9 +53,9 @@ Do HARVEST: dateOfValidation A nextLastDateOfValidation
 
 Pridávanie nových štruktúr do existujúcich dokumentov, je veľmi jednoduché pomocou práce s objektami v json a príkaze zo shellu pomocou curl. Pri prepisovaní sa prepíše stávajúce pole KOMPLETNE, nová štruktúra, napr. pri upgrade standardu sa vytvorí rovnakým spôsobom. Dôležité je ale poznať <b>_id</b> a <b>_rev</b> dokumentu, inak sa vytvori novy document s vlastným ID. 
 
-<pre><i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:XXXXXX@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}' </pre>
+<pre><i>Príkaz:</i> root@localhost ~]# curl -X PUT http://zdenko:XXXXXX@127.0.0.1:10000/grainary/67f80e4db8ab23f8fb247e1a4d008597 -d '{"_rev":"2-eb8febb1d0d811391214eaf23b38f0b5", "container.storage.HNAS4":"24"}' 
 
-<i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}
+<i>CouchDB:</i> {"ok":true,"id":"67f80e4db8ab23f8fb247e1a4d008597","rev":"3-60a369de508fa82479d14179f9469e43"}</pre>
 
 <h4>Rozšírená práca s update handlermy</h4>
 
@@ -71,11 +71,11 @@ http://zdenko:XXXX@127.0.0.1:10000/<my_database>/_design/<my_designdoc>/_update/
 
 Priklad: 
 
-<i>Prikaz:</i> curl -X PUT http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_update/in-place-query/?field=type&value=harvest
+<pre><i>Prikaz:</i> curl -X PUT http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_update/in-place-query/?field=type&value=harvest
 
 <i>CouchDB</i> 
 [2] 28677
-[1]   Done 
+[1]   Done </pre>
 
 
 <h2>B.2 Views:</h2>
@@ -84,7 +84,7 @@ Priklad:
 
 Pristup k naprogramovanym views cez curl
 
-<i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie
+<pre><i>Prikaz:</i> curl -X GET http://zdenko:vino@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie
 
 <i>CouchDB:</i> {"total_rows":5,"offset":0,"rows":[ <br>
 {"id":"67f80e4db8ab23f8fb247e1a4d007ed7","key":"2013/07/15 15:52:20","value":{"Type":"container","Author":"Jan Testerovic"}},<br>
@@ -92,20 +92,20 @@ Pristup k naprogramovanym views cez curl
 {"id":"67f80e4db8ab23f8fb247e1a4d008597","key":"2014/05/15 15:52:20","value":{"Type":"container","Author":"Rudolf Rudolfovic"}},<br>
 {"id":"67f80e4db8ab23f8fb247e1a4d0089f3","key":"2014/05/15 15:52:20","value":{"Type":"container","Author":"Rudolf Rudolfovic"}},<br>
 {"id":"67f80e4db8ab23f8fb247e1a4d0096a5","key":"2014/05/15 15:52:20","value":{"Type":"harvest","Author":"Rudolf Rudolfovic"}}
-]}<br>
+]}</pre><br>
 
 <b>Respektíve pomocou -o moznosti sa nam priamo stiahne:</b>
 
-<i>Prikaz:</i> curl -X GET http://zdenko:XXXXXX@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie -o ResponseTest.json
+<pre><i>Prikaz:</i> curl -X GET http://zdenko:XXXXXX@127.0.0.1:10000/grainary/_design/Typologie/_view/Typologie -o ResponseTest.json
 
 <i>CouchDB:</i>  
 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed<br>
-100   679    0   679    0     0   226k      0 --:--:-- --:--:-- --:--:--  331k
+100   679    0   679    0     0   226k      0 --:--:-- --:--:-- --:--:--  331k</pre>
 
 2. Upload nových views skrz SSH
 
-<i>Príkaz:</i> curl -X PUT http://zdenko:XXXXX@127.0.0.1:10000/grainary/_design/grainary -d @more_views.json
+<pre><i>Príkaz:</i> curl -X PUT http://zdenko:XXXXX@127.0.0.1:10000/grainary/_design/grainary -d @more_views.json</pre>
 
 
 <h4>XML a HTML</h4>
