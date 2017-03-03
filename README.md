@@ -111,5 +111,6 @@ Pristup k naprogramovanym views cez curl
 <h4>XML a HTML</h4>
 Skrze fcie ulozene v designovom codumente u show a list sa da cely vyskladat.
 
+<pre>curl -Xv GET http://zdenko:XXXXX@10.3.0.50:10000/grainary/_design/harvestKompl/_show/xhtml/67f80e4db8ab23f8fb247e1a4d0096a5?format=xml&details=true</pre>
 
 http://10.3.0.50:10000/grainary/_design/harvestKompl/_show/xhtml/67f80e4db8ab23f8fb247e1a4d0096a5?format=xml&details=true
