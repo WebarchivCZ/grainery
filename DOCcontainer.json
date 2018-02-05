@@ -8,12 +8,13 @@
 	"container": {
 		"filename": "Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz",
 		"recordID": "urn:uuid:3d1ee065-1ae5-469f-bc02-1a8b3bcbe6b2",
+		"harvestID": "urn:uuid:621f785e-9401-4be2-bb48-1039960748fc",
 		"hostname": "crawler00.webarchiv.cz",
 		"software": "Heritrix/3.1.2-SNAPSHOT-20130207.001528 http://crawler.archive.org",
 		"dateOfOrigin": "2013-07-22T15:00:02Z",
 		"timestamp":"TODO...",
 		"method": "TODOundefined-defined-standard-LTP",
-		"size": "1034766557",				
+		"size": "1034766557",
 		"cdx": {
 			"exists": "true",
 			"path": "./logs/index/Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz.cdx",
@@ -48,6 +49,6 @@
 				"exlastHash": "undefined"
 				}
 			}
-	}						
-		
+	}
+
 }

@@ -8,6 +8,7 @@
           "harvest": {
             "status": "NonValidated",
             "harvestName": "Serials 2013-07-1M_ArchiveIt",
+            "harvestID": "urn:uuid:621f785e-9401-4be2-bb48-1039960748fc",
             "description": "Pravidelná sklizeň semínek s měsíční frekvencí a archivace semínek s nízkou frekvencí přidaných v květnu.",
             "operator": "Rudolf Kreibich",
             "publisher": "National Library of the Czech Republic",
