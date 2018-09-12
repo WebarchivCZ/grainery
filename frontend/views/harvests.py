@@ -12,7 +12,7 @@ def harvests():
                                        'harvest.operator': True
                                        }
                                   )
-    return render_template('harvests_list.html', harvs=harvs)
+    return render_template('harvests.html', harvs=harvs)
 
 
 @mod.route('/harvest/<id>')
