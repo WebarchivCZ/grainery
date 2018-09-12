@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Grainery" />
+    <meta name="author" content="Jaroslav Kvasnica" />
+
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+     <link rel="stylesheet" href="{{ url_for('static', filename='icons/font/css/open-iconic-bootstrap.css') }}" />
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
+  </head>
+  <body>
+
+  <header>
+      <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Grainery</a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="">Sign in</a>
+            </li>
+          </ul>
+      </nav>
+  </header>
+
+<div class="container-fluid">
+  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a id="home" class="nav-link {{ 'active' if active_page == 'home' else '' }}" href=""><span class="oi oi-dashboard"></span> Dashboard</a></li>
+        <li class="nav-item"><a id="harvests" class="nav-link {{ 'active' if active_page == 'harvests.harvests' else '' }}" href="{{ url_for('harvests.harvests') }}" > <span class="oi oi-excerpt"></span> Harvests</a></li>
+        <li class="nav-item"><a id="wats" class="nav-link {{ 'active' if active_page == 'wats.wats' else '' }}" href="" ><span class="oi oi-list-rich"></span> WATS</a></li>
+        <li class="nav-item"><a id="about" class="nav-link {{ 'active' if active_page == 'about' else '' }}" href=""><span class="oi oi-browser"></span></span> About</a></li>
+      </ul>
+
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"><span>Other</span></h6>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item"><a class="nav-link" href=""><span class="oi oi-wrench"></span>Settings</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <br>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <nav class="navbar navbar-light container">
+        <span>Powered by <a href="https://www.webarchiv.cz/"><span class="wa-logo-style" style="font-size: 110%">Webarchiv</span></a></span>
+        <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="wa-logo-style"><strong>CC</strong> BY/NC/ND</a>
+      </nav>
+  </footer>
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

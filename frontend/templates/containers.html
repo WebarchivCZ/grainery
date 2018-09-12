@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+{% set active_page = "harvests" %}
+{% block title %}List of containers{% endblock %}
+{% block content %}
+<div class='container'>
+    <h1>List of containers</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+             <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+        </thead>
+        <tbody>
+            {% for x in containers %}
+                <tr>
+                    <td><a href="{{ url_for('harvests.container', id=x._id) }}">{{ x.container.filename }}</td>
+                    <td>{{x.container.dateOfOrigin}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+</div>
+{% endblock %}
