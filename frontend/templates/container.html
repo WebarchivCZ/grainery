@@ -1,10 +1,15 @@
 {% extends "layouts/main.html" %}
 {% set active_page = "harvests" %}
 {% block title %}Container full view{% endblock %}
+{% block header %}{{container.container.filename}}{% endblock %}
+{% block buttons %}
+    <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=container.container.harvestID) }}">Back</a>
+    </div>
+{% endblock %}
 {% block content %}
 <div class='container'>
      <div class="navbar" style="background-color: #FFF;">
-        <h2>{{container.container.filename}}</h2>
     <table class="table table-bordered table-sm">
         <tbody>
             {% for a, b in container.items() %}

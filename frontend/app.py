@@ -3,7 +3,7 @@ from flask import Flask, render_template, send_from_directory
 import config.config as cfg
 from views.harvests import mod
 
-# create objekt with configuration DevelopmentConfig x
+# create object with configuration
 # Configuration = cfg.ProductionConfig
 Configuration = cfg.DevelopmentConfig
 

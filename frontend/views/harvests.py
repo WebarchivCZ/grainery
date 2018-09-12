@@ -6,7 +6,7 @@ mod = Blueprint('harvests', __name__)
 
 @mod.route('/harvests/')
 def harvests():
-    harvs = mongo.db.harvest.find({}, {'_id': True,
+    harvs = mongo.db.harvest.find({}, {'harvest.harvestID': True,
                                        'harvest.harvestName': True,
                                        'harvest.dateOfValidation': True,
                                        'harvest.operator': True
@@ -17,7 +17,7 @@ def harvests():
 
 @mod.route('/harvest/<id>')
 def harvest(id):
-    harv = mongo.db.harvest.find_one({'_id': id})
+    harv = mongo.db.harvest.find_one({'harvest.harvestID': id})
     return render_template('harvest.html', harv=harv)
 
 
@@ -28,15 +28,18 @@ def containers(harvestID):
             'container.harvestID': harvestID
         },
         {
-            '_id': True,
+            'container.recordID': True,
             'container.filename': True,
             'container.dateOfOrigin': True
         }
     )
-    return render_template('containers.html', containers=containers)
+    return render_template('containers.html',
+                           containers=containers,
+                           id=harvestID
+                           )
 
 
 @mod.route('/container/<id>')
 def container(id):
-    container = mongo.db.container.find_one({'_id': id})
+    container = mongo.db.container.find_one({'container.recordID': id})
     return render_template('container.html', container=container)
