@@ -7,6 +7,9 @@ class Config(object):
     # basic security settings
     DEBUG = False
 
+    # app settings
+    ROW_LIMIT = 50
+
     # mongodb connection settings
     DBNAME = ''
     HOST = ''
