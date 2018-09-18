@@ -4,7 +4,7 @@
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests') }}">Browse</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse</a>
     </div>
 {% endblock %}
 {% block content %}

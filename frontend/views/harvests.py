@@ -1,18 +1,19 @@
 from flask import Blueprint, render_template
-from config.config import mongo
+from views.functions import paginationQuery
+from config.config import mongo, Config
 
 mod = Blueprint('harvests', __name__)
 
 
-@mod.route('/harvests/')
-def harvests():
-    harvs = mongo.db.harvest.find({}, {'harvest.harvestID': True,
-                                       'harvest.harvestName': True,
-                                       'harvest.dateOfValidation': True,
-                                       'harvest.operator': True
-                                       }
-                                  )
-    return render_template('harvests.html', harvs=harvs)
+@mod.route('/harvests/<page>')
+def harvests(page):
+    harvs = paginationQuery(mongo.db.harvest, int(page)-1)
+
+    return render_template('harvests.html',
+                           harvs=harvs[0],
+                           limit=Config.ROW_LIMIT,
+                           page=int(page),
+                           max=harvs[1])
 
 
 @mod.route('/harvest/<id>')

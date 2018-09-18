@@ -5,7 +5,7 @@
 {% block buttons %}
     <div class="btn-group mr-2">
         <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harv.harvest.harvestID) }}">Get list of containers</a>
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests') }}">Back</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Back</a>
     </div>
 {% endblock %}
 {% block content %}
