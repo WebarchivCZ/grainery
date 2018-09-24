@@ -2,6 +2,7 @@ from os import path
 from flask import Flask, render_template, send_from_directory
 import config.config as cfg
 from views.harvests import mod
+from views.search import smod
 
 # create object with configuration
 # Configuration = cfg.ProductionConfig
@@ -18,6 +19,7 @@ cfg.mongo.init_app(app)
 
 # blueprints register
 app.register_blueprint(mod)
+app.register_blueprint(smod)
 
 
 @app.route('/')
