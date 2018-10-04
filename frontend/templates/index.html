@@ -8,135 +8,61 @@
     </div>
 {% endblock %}
 {% block content %}
-      <div class="container">
-          <h2>Section title</h2>
-            <div class="table-responsive">
-              <table class="table table-striped table-sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1,001</td>
-                    <td>Lorem</td>
-                    <td>ipsum</td>
-                    <td>dolor</td>
-                    <td>sit</td>
-                  </tr>
-                  <tr>
-                    <td>1,002</td>
-                    <td>amet</td>
-                    <td>consectetur</td>
-                    <td>adipiscing</td>
-                    <td>elit</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>Integer</td>
-                    <td>nec</td>
-                    <td>odio</td>
-                    <td>Praesent</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>libero</td>
-                    <td>Sed</td>
-                    <td>cursus</td>
-                    <td>ante</td>
-                  </tr>
-                  <tr>
-                    <td>1,004</td>
-                    <td>dapibus</td>
-                    <td>diam</td>
-                    <td>Sed</td>
-                    <td>nisi</td>
-                  </tr>
-                  <tr>
-                    <td>1,005</td>
-                    <td>Nulla</td>
-                    <td>quis</td>
-                    <td>sem</td>
-                    <td>at</td>
-                  </tr>
-                  <tr>
-                    <td>1,006</td>
-                    <td>nibh</td>
-                    <td>elementum</td>
-                    <td>imperdiet</td>
-                    <td>Duis</td>
-                  </tr>
-                  <tr>
-                    <td>1,007</td>
-                    <td>sagittis</td>
-                    <td>ipsum</td>
-                    <td>Praesent</td>
-                    <td>mauris</td>
-                  </tr>
-                  <tr>
-                    <td>1,008</td>
-                    <td>Fusce</td>
-                    <td>nec</td>
-                    <td>tellus</td>
-                    <td>sed</td>
-                  </tr>
-                  <tr>
-                    <td>1,009</td>
-                    <td>augue</td>
-                    <td>semper</td>
-                    <td>porta</td>
-                    <td>Mauris</td>
-                  </tr>
-                  <tr>
-                    <td>1,010</td>
-                    <td>massa</td>
-                    <td>Vestibulum</td>
-                    <td>lacinia</td>
-                    <td>arcu</td>
-                  </tr>
-                  <tr>
-                    <td>1,011</td>
-                    <td>eget</td>
-                    <td>nulla</td>
-                    <td>Class</td>
-                    <td>aptent</td>
-                  </tr>
-                  <tr>
-                    <td>1,012</td>
-                    <td>taciti</td>
-                    <td>sociosqu</td>
-                    <td>ad</td>
-                    <td>litora</td>
-                  </tr>
-                  <tr>
-                    <td>1,013</td>
-                    <td>torquent</td>
-                    <td>per</td>
-                    <td>conubia</td>
-                    <td>nostra</td>
-                  </tr>
-                  <tr>
-                    <td>1,014</td>
-                    <td>per</td>
-                    <td>inceptos</td>
-                    <td>himenaeos</td>
-                    <td>Curabitur</td>
-                  </tr>
-                  <tr>
-                    <td>1,015</td>
-                    <td>sodales</td>
-                    <td>ligula</td>
-                    <td>in</td>
-                    <td>libero</td>
-                  </tr>
-                </tbody>
-              </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <table class="table">
+                    <h3>Last added harvest</h3>
+                    <tbody>
+                        <tr>
+                            <td scope="row"> datum </td>
+                            <td> 2017-02-17T15:06:44Z </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> velikost </td>
+                            <td> 2384923 MB </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> typ </td>
+                            <td> 1M_ArchiveIt </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> name </td>
+                            <td> volby2018 </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> UUID </td>
+                            <td> uuid23IQ390U4Q034 </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> robots </td>
+                            <td> ignore </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> operator </td>
+                            <td> Rudolf Kreibich </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> standard </td>
+                            <td> Grainery 0.25 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-md-8">
+            <h3>Harvests</h3>
+            <img width="700" src="{{ url_for('static', filename='test/0.png') }}" />
             </div>
         </div>
-      </div>
+
+        <div class="row">
+            <div class="col-6"><h3>Graph 1</h3><img width="400" src="{{ url_for('static', filename='test/1.gif') }}" /></div>
+            <div class="col-6"><h3>Graph 2</h3><img width="400" src="{{ url_for('static', filename='test/2.jpg') }}" /></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6"><h3>Another Graph</h3><img width="400" src="{{ url_for('static', filename='test/3.jpg') }}" /></div>
+            <div class="col-6"><h3>Last Graph</h3><img width="400" src="{{ url_for('static', filename='test/4.png') }}" /></div>
+        </div>
+    </div>
 {% endblock %}
