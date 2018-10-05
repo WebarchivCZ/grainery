@@ -2,10 +2,10 @@ from flask import Blueprint, render_template
 from views.functions import paginationQuery
 from config.config import mongo, Config
 
-mod = Blueprint('harvests', __name__)
+hmod = Blueprint('harvests', __name__)
 
 
-@mod.route('/harvests/<page>')
+@hmod.route('/harvests/<page>')
 def harvests(page):
     harvs = paginationQuery(mongo.db.harvest, int(page)-1)
 
@@ -16,13 +16,13 @@ def harvests(page):
                            max=harvs[1])
 
 
-@mod.route('/harvest/<id>')
+@hmod.route('/harvest/<id>')
 def harvest(id):
     harv = mongo.db.harvest.find_one({'harvest.harvestID': id})
     return render_template('harvest.html', harv=harv)
 
 
-@mod.route('/containers/<harvestID>')
+@hmod.route('/containers/<harvestID>')
 def containers(harvestID):
     containers = mongo.db.container.find(
         {
@@ -40,7 +40,7 @@ def containers(harvestID):
                            )
 
 
-@mod.route('/container/<id>')
+@hmod.route('/container/<id>')
 def container(id):
     container = mongo.db.container.find_one({'container.recordID': id})
     return render_template('container.html', container=container)

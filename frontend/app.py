@@ -1,8 +1,9 @@
 from os import path
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, send_from_directory
 import config.config as cfg
-from views.harvests import mod
+from views.harvests import hmod
 from views.search import smod
+from views.dashboard import dmod
 
 # create object with configuration
 # Configuration = cfg.ProductionConfig
@@ -18,13 +19,9 @@ app.config.from_object(Configuration)
 cfg.mongo.init_app(app)
 
 # blueprints register
-app.register_blueprint(mod)
+app.register_blueprint(hmod)
 app.register_blueprint(smod)
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+app.register_blueprint(dmod)
 
 
 @app.route('/favicon.ico')
