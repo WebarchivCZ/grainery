@@ -1,130 +1,156 @@
-from datetime import datetime
-import random
-import uuid
 from pymongo import MongoClient
+from datetime import datetime, timedelta
+from random import randint, choice
+from uuid import uuid4
 from hashlib import md5
 
-# vytvoření mongo klienta
 mongo = MongoClient()
 
-# název databáze, kolekce pro sklizně a kolekce pro kontejnery
 db = mongo.grainery
-collection_harvest = db.hareasy
-collection = db.coneasy
+collection_harvest = db.harvest
+collection_container = db.container
 
-#
 # Vygenerování sklizně
-#
-for i in range(random.randint(10, 20)):
+for i in range(randint(10, 20)):
+    year = randint(2015, 2018)
+    month = randint(1, 12)
+    day = randint(1, 27)
+    hour = randint(1, 23)
+    minute = randint(1, 59)
+    second = randint(1, 59)
 
-    # náhodně vygeneuji datum
-    year = random.randint(2015, 2018)
-    month = random.randint(1, 12)
-    day = random.randint(1, 30)
-    hour = random.randint(1, 23)
-    minute = random.randint(1, 59)
-    second = random.randint(1, 59)
-
-    # seznam možných typů sklizní
-    types = ['1M_archiveit', '2M_archiveit',
-             '12M_archiveit', 'domain', 'topic']
+    types = ['V1M', 'V2M', 'V6M', 'V12M', 'V-1' 'CZ', 'T']
 
     # hlavička grainery
     grainery_type = 'harvest'
-    grainery_author = 'Rudolf'
-    grainery_date = str(datetime.now())
+    grainery_author = 'NKCR'
+    grainery_date = datetime.now()
     grainery_standard = 'Grainery 1.0'
 
-    #
-    # začátek generování sklizně
-    #
-
-    # náhodně vyberu jeden typ sklizně
-    harvest_type = random.choice(types)
-
-    # datum sklizně
+    # harvest
+    harvest_type = choice(types)
+    harvest_name = harvest_type + "_" + str(datetime(year, month, day).date())
     harvest_date = datetime(year, month, day, hour, minute, 0)
+    harvest_ID = str(uuid4())
+    harvest_size = randint(100000, 10000000)
+    harvest_dateOfValidation = datetime.now() \
+        + timedelta(days=randint(1, 20))
+    harvest_nextValidation = harvest_dateOfValidation + timedelta(days=730)
 
-    # složím název sklizně z data a typu
-    harvest_name = harvest_type + "_" + str(harvest_date.date())
+    # harvestCrawl
+    harvest_logs = True
+    harvest_path = 'logs/crawl'
+    harvest_file = ['crawler00.tar.gz', 'crawler01.tar.gz', 'crawler03.tar.gz']
 
-    # generuji uuid, velikost a jestli má nebo nemá sklizeň logy
-    harvest_ID = str(uuid.uuid4())
-    harvest_size = random.randint(100000, 10000000)
-    harvest_logs = random.choices([True, False])
+    # commentaries
+    harvest_exists = False
+    harvest_commentaries = ''
 
-    # vytvořím dictionary pro mongo
-    h = {"type": grainery_type, "author": grainery_author,
-         "date": grainery_date, "standard": grainery_standard,
-         "harvest_name": harvest_name, "harvest_date": harvest_date,
-         "harvest_ID": harvest_ID, "harvest_type": harvest_type,
-         "harvest_size": harvest_size, "harvest_logs": harvest_logs}
+    # vložení sklizně do databáze
+    h = {
+        "type": grainery_type,
+        "author": grainery_author,
+        "date": grainery_date,
+        "standard": grainery_standard,
+        "harvest": {
+            "harvestName": harvest_name,
+            "date": harvest_date,
+            "harvestID": harvest_ID,
+            "harvestType": harvest_type,
+            "size": harvest_size,
+            "dateOfValidation": harvest_dateOfValidation,
+            "nextValidation": harvest_nextValidation
+        },
+        "harvestCrawl": {
+            "logs": harvest_logs,
+            "path": harvest_path,
+            "filename": harvest_file
+        },
+        "commentaries": {
+            "exists": harvest_exists,
+            "text": harvest_commentaries
+        }
+    }
 
-    # vložím do mongodb
     collection_harvest.insert_one(h)
 
-    #
-    # začátek generování kontejneru
-    #
+    # Vygenerování kontejneru
+    for i in range(randint(10000, 30000)):
 
-    # deklarace seznamu (list) kontejerů
-    new_posts = []
+        hour = randint(1, 23)
+        minute = randint(1, 59)
+        second = randint(1, 59)
+        date = datetime(year, month, day, hour, minute, second)
 
-    for i in range(random.randint(10000, 30000)):
-        # znovu generuji časy, aby byly rozdílné pro každý kontejner
-        hour = random.randint(1, 23)
-        minute = random.randint(1, 59)
-        second = random.randint(1, 59)
+        # hlavička grainery
+        grainery_container_type = 'container'
+        grainery_container_author = 'NKCR'
+        grainery_container_date = datetime.now()
+        grainery_container_standard = 'Grainery 1.0'
 
-        # datum pro filename
-        container_date = datetime(year, month, day,
-                                  hour, minute, second).date()
-        # filename složím z typu sklizně, data a statické přípony
-        container_filename = harvest_type + "_" + str(container_date) \
-            + "-crawler00.webarchiv.cz-warc.gz"
-
-        # harvest id je stejné jako u mateřské sklizně
+        # container
+        container_filename = harvest_type + "_" \
+            + str(date.date()) + "-crawler00.webarchiv.cz-warc.gz"
+        container_recordID = str(uuid4())
         container_harvestID = harvest_ID
+        container_dateOfOrigin = date
+        container_size = randint(900, 1200)
 
-        # generuji nové uuid pro kontejner a velikost
-        container_ID = str(uuid.uuid4())
-        container_size = random.randint(90000, 1200000)
-
-        # cdx vžddy existuje, generuji mu md5, velikost, počet sloupců a řádků
-        container_cdx = True
+        # cdx
+        container_cdx_exists = True
+        container_cdx_path = './logs/index/' + container_filename \
+            + "-crawler00.webarchiv.cz-warc.gz.cdx"
         container_cdx_md5 = md5(container_filename.encode('utf-8')).hexdigest()
         container_cdx_size = round(container_size*0.15)
-        container_cdx_columns = random.randint(9, 11)
-        container_cdx_lines = random.randint(100000, 999999)
+        container_cdx_columns = randint(9, 11)
+        container_cdx_lines = randint(100000, 999999)
 
-        # md5 pro kontejner
-        container_md5 = md5(container_ID.encode('utf-8')).hexdigest()
-
-        # staticky info k formátu kontejneru
+        # format
         container_format = 'WARC File Format 1.0'
-        container_format_to = 'https://iipc.github.io/warc-specifications/ \
-                               specifications/warc-format/warc-1.0/'
-        container_format_mime = 'application/warc'
+        container_conformsTo = 'https://iipc.github.io/warc-specifications/' \
+            + 'specifications/warc-format/warc-1.0/'
+        container_mimetype = 'application/warc'
 
-        new_posts.append({
-            "type": grainery_type, "author": grainery_author,
-            "date": grainery_date, "standard": grainery_standard,
-            "container_filename": container_filename,
-            "container_ID": container_ID,
-            "container_harvestID": container_harvestID,
-            "container_size": container_size,
-            "container_cdx": container_cdx,
-            "container_cdx_md5": container_cdx_md5,
-            "container_cdx_size": container_cdx_size,
-            "container_cdx_columns": container_cdx_columns,
-            "container_cdx_lines": container_cdx_lines,
-            "container_md5": container_md5,
-            "container_format": container_format,
-            "container_format_to": container_format_to,
-            "container_format_mime": container_format_mime
-        })
+        # md5
+        container_dateOfValidation = datetime.now() \
+            + timedelta(days=randint(1, 20))
+        container_statusOfValidation = True
+        container_nextValidation = container_dateOfValidation \
+            + timedelta(days=730)
+        container_hash = md5(container_recordID.encode('utf-8')).hexdigest()
 
+        c = {
+            "type": grainery_container_type,
+            "author": grainery_container_author,
+            "date": grainery_container_date,
+            "standard": grainery_container_standard,
+            "container": {
+                "filename": container_filename,
+                "recordID": container_recordID,
+                "harvestID": container_harvestID,
+                "dateOfOrigin": container_dateOfOrigin,
+                "size": container_size
+            },
+            "cdx": {
+                "exists": container_cdx_exists,
+                "path": container_cdx_path,
+                "md5": container_cdx_md5,
+                "size": container_cdx_size,
+                "columns": container_cdx_columns,
+                "lines": container_cdx_lines
+            },
+            "format": {
+                "format": container_format,
+                "conformsTo": container_conformsTo,
+                "mimeType": container_mimetype
+            },
+            "md5": {
+                "dateOfValidation": container_dateOfValidation,
+                "statusOfValidation": container_statusOfValidation,
+                "nextValidation": container_nextValidation,
+                "hash": container_hash
+            }
 
-# po ukončení cyklu vložím list záznamů do databáze
-# to je hlavně z důvodů, abych si vyzkpoušel oběd metody insert_one (many)
-result = collection.insert_many(new_posts)
+        }
+
+    collection_container.insert_one(c)
