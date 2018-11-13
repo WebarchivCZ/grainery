@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+{% set active_page = "home" %}
+{% block title %}Webarchiv.cz - grainery{% endblock %}
+{% block header %}Dashboard{% endblock %}
+{% block buttons %}
+    <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="{{ url_for('dashboard.index') }}" role="tab" aria-controls="home" aria-selected="true">Harvests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="{{ url_for('dashboard.cdash') }}" role="tab" aria-controls="profile" aria-selected="false">Containers</a>
+                </li>
+            </ul><br>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <table class="table">
+                    <h3>Last added harvest</h3>
+                    <tbody>
+                        <tr>
+                            <td scope="row"> datum </td>
+                            <td> 2017-02-17T15:06:44Z </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> velikost </td>
+                            <td> 2384923 MB </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> typ </td>
+                            <td> 1M_ArchiveIt </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> name </td>
+                            <td> volby2018 </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> UUID </td>
+                            <td> uuid23IQ390U4Q034 </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> robots </td>
+                            <td> ignore </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> operator </td>
+                            <td> Rudolf Kreibich </td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> standard </td>
+                            <td> Grainery 0.25 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-md-8">
+            <h3>Harvests</h3>
+            <img width="700" src="{{ url_for('static', filename='test/0.png') }}" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6"><h3>Graph 1</h3><img width="400" src="{{ url_for('static', filename='test/1.gif') }}" /></div>
+            <div class="col-6"><h3>Graph 2</h3><img width="400" src="{{ url_for('static', filename='test/2.jpg') }}" /></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6"><h3>Another Graph</h3><img width="400" src="{{ url_for('static', filename='test/3.jpg') }}" /></div>
+            <div class="col-6"><h3>Last Graph</h3><img width="400" src="{{ url_for('static', filename='test/4.png') }}" /></div>
+        </div>
+    </div>
+{% endblock %}
