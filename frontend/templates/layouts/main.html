@@ -12,6 +12,9 @@
      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
      <link rel="stylesheet" href="{{ url_for('static', filename='icons/font/css/open-iconic-bootstrap.css') }}" />
      <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
+
+     {% block custom_links %}{% endblock %}
+
   </head>
   <body>
 
