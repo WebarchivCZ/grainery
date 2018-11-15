@@ -47,32 +47,32 @@ for i in range(randint(10, 20)):
     harvest_commentaries = ''
 
     # vložení sklizně do databáze
-    h = {
-        "type": grainery_type,
-        "author": grainery_author,
-        "date": grainery_date,
-        "standard": grainery_standard,
-        "harvest": {
-            "harvestName": harvest_name,
-            "date": harvest_date,
-            "harvestID": harvest_ID,
-            "harvestType": harvest_type,
-            "size": harvest_size,
-            "dateOfValidation": harvest_dateOfValidation,
-            "nextValidation": harvest_nextValidation
-        },
-        "harvestCrawl": {
-            "logs": harvest_logs,
-            "path": harvest_path,
-            "filename": harvest_file
-        },
-        "commentaries": {
-            "exists": harvest_exists,
-            "text": harvest_commentaries
+    collection_harvest.insert_one(
+        {
+            "type": grainery_type,
+            "author": grainery_author,
+            "date": grainery_date,
+            "standard": grainery_standard,
+            "harvest": {
+                "harvestName": harvest_name,
+                "date": harvest_date,
+                "harvestID": harvest_ID,
+                "harvestType": harvest_type,
+                "size": harvest_size,
+                "dateOfValidation": harvest_dateOfValidation,
+                "nextValidation": harvest_nextValidation
+            },
+            "harvestCrawl": {
+                "logs": harvest_logs,
+                "path": harvest_path,
+                "filename": harvest_file
+            },
+            "commentaries": {
+                "exists": harvest_exists,
+                "text": harvest_commentaries
+            }
         }
-    }
-
-    collection_harvest.insert_one(h)
+    )
 
     # Vygenerování kontejneru
     for i in range(randint(10000, 30000)):
@@ -119,38 +119,37 @@ for i in range(randint(10, 20)):
             + timedelta(days=730)
         container_hash = md5(container_recordID.encode('utf-8')).hexdigest()
 
-        c = {
-            "type": grainery_container_type,
-            "author": grainery_container_author,
-            "date": grainery_container_date,
-            "standard": grainery_container_standard,
-            "container": {
-                "filename": container_filename,
-                "recordID": container_recordID,
-                "harvestID": container_harvestID,
-                "dateOfOrigin": container_dateOfOrigin,
-                "size": container_size
-            },
-            "cdx": {
-                "exists": container_cdx_exists,
-                "path": container_cdx_path,
-                "md5": container_cdx_md5,
-                "size": container_cdx_size,
-                "columns": container_cdx_columns,
-                "lines": container_cdx_lines
-            },
-            "format": {
-                "format": container_format,
-                "conformsTo": container_conformsTo,
-                "mimeType": container_mimetype
-            },
-            "md5": {
-                "dateOfValidation": container_dateOfValidation,
-                "statusOfValidation": container_statusOfValidation,
-                "nextValidation": container_nextValidation,
-                "hash": container_hash
+        collection_container.insert_one(
+            {
+                "type": grainery_container_type,
+                "author": grainery_container_author,
+                "date": grainery_container_date,
+                "standard": grainery_container_standard,
+                "container": {
+                    "filename": container_filename,
+                    "recordID": container_recordID,
+                    "harvestID": container_harvestID,
+                    "dateOfOrigin": container_dateOfOrigin,
+                    "size": container_size
+                },
+                "cdx": {
+                    "exists": container_cdx_exists,
+                    "path": container_cdx_path,
+                    "md5": container_cdx_md5,
+                    "size": container_cdx_size,
+                    "columns": container_cdx_columns,
+                    "lines": container_cdx_lines
+                },
+                "format": {
+                    "format": container_format,
+                    "conformsTo": container_conformsTo,
+                    "mimeType": container_mimetype
+                },
+                "md5": {
+                    "dateOfValidation": container_dateOfValidation,
+                    "statusOfValidation": container_statusOfValidation,
+                    "nextValidation": container_nextValidation,
+                    "hash": container_hash
+                }
             }
-
-        }
-
-    collection_container.insert_one(c)
+        )
