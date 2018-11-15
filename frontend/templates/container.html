@@ -4,7 +4,7 @@
 {% block header %}{{container.container.filename}}{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=container.container.harvestID) }}">Back</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=container.container.harvestID, page=0) }}">Back</a>
     </div>
 {% endblock %}
 {% block content %}
