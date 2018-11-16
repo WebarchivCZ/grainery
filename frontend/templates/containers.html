@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set active_page = "harvests" %}
+{% block title %}List of containers{% endblock %}
+{% block header %}List of containers{% endblock %}
+{% block buttons %}
+    <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvest', id=harvestID) }}">Back</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <table class="table table-bordered table-striped">
+        <thead>
+             <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Record ID</th>
+                </tr>
+              </thead>
+        </thead>
+        <tbody>
+            {% for x in containers %}
+                <tr>
+                    <td><a href="{{ url_for('harvests.container', id=x.container.recordID) }}">{{ x.container.filename }}</td>
+                    <td>{{x.container.dateOfOrigin}}</td>
+                    <td>{{x.container.recordID}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    {% if (page)*limit >= limit %}
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harvestID, page=page-1) }}"> previous </a>
+        </div>
+    {% endif %}
+
+    {% if (page-1)*limit < (max - limit) and max > limit %}
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harvestID, page=page+1) }}"> next </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

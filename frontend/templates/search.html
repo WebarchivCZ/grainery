@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+{% set active_page = "search" %}
+{% block title %}Results{% endblock %}
+{% block header %}Results{% endblock %}
+{% block buttons %}
+    <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('dashboard.index') }}">Back to dashboard</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <table class="table table-bordered table-striped">
+        <thead>
+             <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Operator</th>
+                </tr>
+              </thead>
+        </thead>
+        <tbody>
+            {% for x in results %}
+                <tr>
+                    <td><a href="{{ url_for('harvests.harvest', id=x.harvest.harvestID) }}">{{ x.harvest.harvestName }}</td>
+                    <td>{{ x.harvest.dateOfValidation }}</td>
+                    <td>{{ x.harvest.operator }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+</div>
+{% endblock %}
