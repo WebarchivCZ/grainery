@@ -1,5 +1,6 @@
 from flask_pymongo import pymongo
 from config.config import Config
+import pandas as pd
 
 
 def paginationQuery(collection, page, cond={}, limit=Config.ROW_LIMIT):
@@ -23,3 +24,15 @@ def lastImport(collection):
                                 'harvest': True},
                                sort=[('_id', pymongo.DESCENDING)]
                                )
+
+
+def dataframeFromColumn(cursor, column):
+    """ Vytvoří vlastní dataframe ze sloupce, který obsahuje pouze
+        dictionary  """
+    df = pd.DataFrame(list(cursor))
+    listOfHarvests = []
+
+    for row in df[column]:
+        listOfHarvests.append(row)
+
+    return pd.DataFrame(listOfHarvests)
