@@ -1,5 +1,8 @@
+from math import pi
 from bokeh.embed import components
 from bokeh.plotting import figure
+from bokeh.palettes import Category20c
+from bokeh.transform import cumsum
 
 
 def harvestPerYear(x, y):
@@ -64,5 +67,29 @@ def sizeGrowth(x, y):
 
     # add a line renderer with legend and line thickness
     p.line(x, y, line_width=1, line_color='#0000ff')
+
+    return components(p)
+
+
+def typesPie(types):
+    "vytvoření koláčového grafu pro typy sklizní"
+
+    data = types.reset_index(name='value').rename(columns={'index': 'type'})
+    data['angle'] = data['value']/data['value'].sum() * 2*pi
+    data['color'] = Category20c[len(types)]
+
+    p = figure(plot_height=350, plot_width=400,
+               title="Harvest types", toolbar_location=None,
+               tools="hover", tooltips="@type: @value", x_range=(-0.5, 1.0))
+
+    p.wedge(x=0, y=1, radius=0.4,
+            start_angle=cumsum('angle', include_zero=True),
+            end_angle=cumsum('angle'),
+            line_color="white", fill_color='color',
+            legend='type', source=data)
+
+    p.axis.axis_label = None
+    p.axis.visible = False
+    p.grid.grid_line_color = None
 
     return components(p)

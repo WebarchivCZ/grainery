@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from config.config import mongo
 from views.functions import lastImport, dataframeFromColumn
-from views.figures import harvestPerYear, sizePerYear, sizeGrowth
+from views.figures import harvestPerYear, sizePerYear, sizeGrowth, typesPie
 
 dmod = Blueprint('dashboard', __name__)
 
@@ -34,14 +34,16 @@ def index():
 
     script3, div3 = sizeGrowth(wa_yearsize.index, size)
 
+    # 4th
+    harvest_types = df['harvestType'].value_counts()
+    script4, div4 = typesPie(harvest_types)
+
     return render_template('index.html',
                            last=lastImport(mongo.db.harvest),
-                           script=script,
-                           div=div,
-                           script2=script2,
-                           div2=div2,
-                           script3=script3,
-                           div3=div3,
+                           script=script, div=div,
+                           script2=script2, div2=div2,
+                           script3=script3, div3=div3,
+                           script4=script4, div4=div4,
                            )
 
 
