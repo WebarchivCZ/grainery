@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from config.config import mongo
 from views.functions import lastImport, dataframeFromColumn
-from views.figures import harvestPerYear
+from views.figures import harvestPerYear, sizePerYear, sizeGrowth
 
 dmod = Blueprint('dashboard', __name__)
 
@@ -23,10 +23,25 @@ def index():
     # Embed plot into HTML via Flask Render
     script, div = harvestPerYear(harvest_counts.index, harvest_counts.values)
 
+    # 2nd
+    wa_yearsize = df.groupby('year')['size'].sum()
+    script2, div2 = sizePerYear(wa_yearsize.index, wa_yearsize.values)
+
+    # 3rd
+    size = []
+    for i in wa_yearsize:
+        size.append(i+sum(size))
+
+    script3, div3 = sizeGrowth(wa_yearsize.index, size)
+
     return render_template('index.html',
                            last=lastImport(mongo.db.harvest),
                            script=script,
-                           div=div
+                           div=div,
+                           script2=script2,
+                           div2=div2,
+                           script3=script3,
+                           div3=div3,
                            )
 
 
