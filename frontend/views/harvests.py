@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from views.functions import paginationQuery
-from config.config import mongo, Config
+from config.config import Config, mongo
 
 hmod = Blueprint('harvests', __name__)
 
@@ -41,3 +41,20 @@ def containers(harvestID, page):
 def container(id):
     container = mongo.db.container.find_one({'container.recordID': id})
     return render_template('container.html', container=container)
+
+
+@hmod.route('/cdxs/<page>')
+def cdxs(page):
+    indexes = paginationQuery(mongo.db.cdx, int(page)-1)
+
+    return render_template('cdxs.html',
+                           cdxs=indexes[0],
+                           limit=Config.ROW_LIMIT,
+                           page=int(page),
+                           max=indexes[1])
+
+
+@hmod.route('/cdx/<id>')
+def cdx(id):
+    indx = mongo.db.harvest.find_one({'cdx.md5': id})
+    return render_template('cdx.html', indx=indx)

@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+{% block title %}List of indexes{% endblock %}
+{% block header %}List of cdx files{% endblock %}
+{% block buttons %}
+    <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('dashboard.index') }}">Back to dashboard</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+             <thead>
+                <tr>
+                  <th>{% if max != 0 %}cdx{% else %}There is no metadata for indexes yet.{%endif %}</th>
+                </tr>
+              </thead>
+        </thead>
+        <tbody>
+            {% for x in cdxs %}
+                <tr>
+                    <td><a href="{{ url_for('harvests.cdx', id=x.cdx.md5) }}">{{ x.cdx.path }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    {% if (page)*limit >= limit %}
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', harvestID=harvestID, page=page-1) }}"> previous </a>
+        </div>
+    {% endif %}
+
+    {% if (page-1)*limit < (max - limit) and max > limit %}
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', harvestID=harvestID, page=page+1) }}"> next </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
