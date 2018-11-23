@@ -1,5 +1,4 @@
 {% extends "layouts/main.html" %}
-{% set active_page = "home" %}
 {% block title %}Webarchiv.cz - grainery{% endblock %}
 {% block custom_links %}
 <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.0.1.min.css" rel="stylesheet" type="text/css">
@@ -10,7 +9,8 @@
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse harvests</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', page=0) }}">Browse indexes</a>
     </div>
 {% endblock %}
 {% block content %}
