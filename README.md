@@ -49,6 +49,22 @@ python3 Extarc.py > ExtarcYYYYMMDD-folder.log
 # spojení disparátnich úložišť je otázkou revize
 ```
 
+## Rozběhnutí frontendu
+Frontend je postavený na frameworku Flask a je testovaný na Pythonu 3.7.0
+V MongoDB potřebuje databázi grainery a v ní tři kolekce: harvest, container, cdx
+Dalším krokem je vytvoření indexu pro full textové vyhledávání v kolekci harvest. Vytvoření indexu v Mongo shellu
+
+```
+set db grainery
+
+db.harvest.createIndex( { "harvest.name": "text", "harvest.harvestID": "text" } )
+Připojení aplikace k MongoDB se nastavuje v config souboru frontend/config/config.py (při první instalaci přepište config_default.py na config.py)
+```
+Přesunout config_default.py do config.py a nastavit v něm připojení k mongoDB
+
+Grainery má defaultně nastavenou produkční konfiguraci, v případě potřeby je to možné změnit v souboru app.py, kde se přepíše řádek `Configuration = cfg.ProductionConfig na Configuration = cfg.DevelopmentConfig`
+
+
 ## Verzovaní
 
 ** Grainery 0.3 **
