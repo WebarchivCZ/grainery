@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template
+import pandas as pd
 from config.config import mongo
 from views.functions import lastImport, dataframeFromColumn
-from views.figures import harvestPerYear, sizePerYear, sizeGrowth, typesPie
+from views.figures import harvestPerYear, sizePerYear, sizeGrowth, \
+    typesPie, containerCount
 
 dmod = Blueprint('dashboard', __name__)
 
@@ -49,4 +51,20 @@ def index():
 
 @dmod.route('/dashboard-containers')
 def cdash():
-    return render_template('cdash.html')
+    # 1st
+    # TODO nahradit harvestID za ispartof?
+    agg_containers = [{"$group": {"_id": "$container.harvestID",
+                                  "count": {"$sum": 1}
+                                  }},
+                      {'$sort': {'container.dateOfOrigin': 1}
+                       }]
+
+    cursor_containers = mongo.db.container.aggregate(agg_containers)
+
+    df_containers = pd.DataFrame(list(r for r in cursor_containers))
+
+    script, div = containerCount(df_containers)
+
+    return render_template('cdash.html',
+                           last=lastImport(mongo.db.container, 'container'),
+                           script=script, div=div)

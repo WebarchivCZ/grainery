@@ -22,6 +22,34 @@
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="{{ url_for('dashboard.cdash') }}" role="tab" aria-controls="profile" aria-selected="false">Containers</a>
                 </li>
             </ul><br>
-
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    <table class="table">
+                        <h3>Last added container</h3>
+                        <tbody>
+                            <tr>
+                                <td scope="row"> import date </td>
+                                <td> {{last.date}} </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> standard </td>
+                                <td> {{last.standard}}</td>
+                            </tr>
+                            {% for x in last.container %}
+                            <tr>
+                                <td scope="row">{{x}}</td>
+                                <td> {{last.container[x]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3>Container count</h3>
+                    {{ script|safe }}
+                    {{ div|safe }}
+                    <br>
+                </div>
+                </div>
     </div>
 {% endblock %}
