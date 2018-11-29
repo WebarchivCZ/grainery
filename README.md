@@ -53,14 +53,14 @@ python3 Extarc.py > ExtarcYYYYMMDD-folder.log
 
 ** Grainery 0.3 **
 
-* Webová aplikace:
+* Webová aplikace: 0.3
 * Extarc: 0.3
 * Metadatová specifikace: 0.35 
 
 ## Autoři
 
 * **Zdenko Vozár** -  *back-end app, extraction and specification*
-* **Jirka Kvasnica** - *front-end app, representation, theoretical base*
+* **Jaroslav Kvasnica** - *front-end app, representation, theoretical base*
 
 ## Více
 
