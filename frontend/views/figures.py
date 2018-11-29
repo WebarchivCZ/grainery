@@ -1,6 +1,6 @@
 from math import pi
 from bokeh.embed import components
-from bokeh.plotting import figure
+from bokeh.plotting import figure, ColumnDataSource
 from bokeh.palettes import Category20c
 from bokeh.transform import cumsum
 
@@ -72,7 +72,7 @@ def sizeGrowth(x, y):
 
 
 def typesPie(types):
-    "vytvoření koláčového grafu pro typy sklizní"
+    """vytvoření koláčového grafu pro typy sklizní"""
 
     data = types.reset_index(name='value').rename(columns={'index': 'type'})
     data['angle'] = data['value']/data['value'].sum() * 2*pi
@@ -91,5 +91,29 @@ def typesPie(types):
     p.axis.axis_label = None
     p.axis.visible = False
     p.grid.grid_line_color = None
+
+    return components(p)
+
+
+def containerCount(df):
+    """ vytvoření bodového grafu pro počet kontejnerů na sklizeň"""
+    df['id'] = df['_id'].astype('str').str.slice(0, 8)
+    source = ColumnDataSource(df)
+
+    p = figure(title="Number of containers per harvest",
+               x_range=df['id'],
+               plot_width=700,
+               plot_height=450,
+               x_axis_label='Harvests (ordered by date)',
+               y_axis_label='Containers count',
+               tooltips=[("Harvest ID", "@_id"),
+                         ('Conteiner count', '@count')]
+               )
+
+    p.vbar(x='id', top='count', source=source, width=0.5)
+
+    p.xaxis.major_label_orientation = 1
+    p.y_range.start = 0
+    p.toolbar.autohide = True
 
     return components(p)
