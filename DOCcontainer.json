@@ -1,0 +1,54 @@
+{
+	"_id": "708ae78bd79fa9802c827e03d30030a5",
+	"_rev": "1-c1f3c9b2310f07f2985aa3fa363a281f",
+	"type": "container",
+	"author": "Jan Testerovic",
+   	"date": "2015/01/15 15:52:20",
+	"standart": "Grainery 0.25",
+	"container": {
+		"filename": "Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz",
+		"recordID": "urn:uuid:3d1ee065-1ae5-469f-bc02-1a8b3bcbe6b2",
+		"harvestID": "urn:uuid:621f785e-9401-4be2-bb48-1039960748fc",
+		"hostname": "crawler00.webarchiv.cz",
+		"software": "Heritrix/3.1.2-SNAPSHOT-20130207.001528 http://crawler.archive.org",
+		"dateOfOrigin": "2013-07-22T15:00:02Z",
+		"timestamp":"TODO...",
+		"method": "TODOundefined-defined-standard-LTP",
+		"size": "1034766557",
+		"cdx": {
+			"exists": "true",
+			"path": "./logs/index/Serials-2013-07-1M_ArchiveIt-20130722150002470-00000-5644~crawler00.webarchiv.cz~7778.warc.gz.cdx",
+			"md5": "0dbad33d9cfb2a6e9023501365aa4f23",
+			"size": "28818264",
+			"lines": "93371"
+			},
+		"type": {
+			"format": "WARC File Format 1.0",
+			"conformsTo": "http://bibnum.bnf.fr/WARC/WARC_ISO_28500_version1_latestdraft.pdf",
+			"mimimetypeXML": "TODO?application_X-warc"
+			},
+		"path": {
+			"storage": {
+				"HNAS1": "10.10.0.41:/webarchiv/archive13",
+				"HNAS2": "10.10.0.42:/webarchiv/archive13",
+				"HNAS3": "10.10.0.43:/webarchiv/archive13"
+				   },
+			"mount": "/mnt/archive/13",
+			"pathToHarvest": "./serials/Serials-2013-07-1M_ArchiveIt",
+			"LTP": {
+				"status": "undefined",
+				"pathToLTP": "undefined"
+				}
+			},
+		"Md5": {
+			"dateOfValidation": "2017-02-17T15:06:44Z",
+			"statusOfValidation": "NA",
+			"nextLastDateOfValidation": "2019-02-17T15:06:44Z",
+			"hash": { //Moze byt urobene aj ako pole, [hash1, hash2]
+				"exhashOfOriginal": "3d16d052bf32939c58c4155f897f1e20",
+				"exlastHash": "undefined"
+				}
+			}
+	}
+
+}
