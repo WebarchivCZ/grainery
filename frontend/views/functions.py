@@ -16,12 +16,12 @@ def paginationQuery(collection, page, cond={}, limit=Config.ROW_LIMIT):
     return (rows, rows.count())
 
 
-def lastImport(collection):
+def lastImport(collection, section='harvest'):
     """Vrátí poslední vytvořený záznam v kolekci"""
     return collection.find_one({},
                                {'date': True,
                                 'standard': True,
-                                'harvest': True},
+                                section: True},
                                sort=[('_id', pymongo.DESCENDING)]
                                )
 
