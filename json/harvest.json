@@ -1,29 +1,33 @@
-{
-    "_id": "5bdc3cbb528db527ebd606be",
-    "type": "harvest",
-    "author": "NKCR",
-    "date": "2018-11-02T13:02:03.443Z",
-    "standard": "Grainery 1.0",
-    "harvest": {
-        "harvestName": "V1M_2015-02-01",
-        "date": "2015-02-01T17:56:00.000Z",
-        "harvestID": "6e109e6a-2668-4cb7-8136-3b64d39eb8d5",
-        "harvestType": "V1M",
-        "size": 2252306,
-        "dateOfValidation": "2018-11-14T13:02:03.443Z",
-        "nextValidation": "2020-11-13T13:02:03.443Z"
-    },
-    "harvestCrawl": {
-        "logs": true,
-        "path": "logs/crawl",
-        "filename": [
-            "crawler00.tar.gz",
-            "crawler01.tar.gz",
-            "crawler03.tar.gz"
-        ]
-    },
-    "commentaries": {
-        "exists": false,
-        "text": ""
-    }
-}
+{   "author": "Zdenko Vozár",
+    "commentaries": {"exists": "False", "text": "NA"},
+    "date": "2018-11-29T21:28:19Z",
+    "harvest": {   "audience": "Webarchiv.cz Users",
+                   "date": "2018-03-07T20:36:56Z",
+                   "description": "Výberová sklize? webov",
+                   "harvestDuration": "NA",
+                   "harvestId": "ca9d469a-f26d-536b-a67b-d25a31dbad0f",
+                   "harvestName": "Serials 2018-03-1M_2M_CUNI",
+                   "http-header-from": "webarchiv@nkp.cz",
+                   "http-header-user-agent": "Mozilla/5.0 (compatible; "
+                                             "heritrix/3.2.0 "
+                                             "+http://webarchiv.cz/kontakty/)",
+                   "operator": "Zdenko Vozár",
+                   "publisher": "National Library of the Czech Republic - "
+                                "Webarchiv.cz",
+                   "robots": "ignore",
+                   "size": 574,
+                   "status": "NonValidated"},
+    "harvestCrawl": {"filename": "NA", "logs": "NA", "path": "NonValidated"},
+    "paths": {   "LTP": "NA",
+                 "cdxID": "NA",
+                 "harvestID": "NA",
+                 "mount": "NA",
+                 "pathToHarvest": "NA",
+                 "storage": "NA"},
+    "recType": "harvest",
+    "revision": {   "dateOfValidation": "NA",
+                    "hashLast": "NA",
+                    "hashOrig": "NA",
+                    "nextLastDateOfValidation": "NA",
+                    "statusOfValidation": "NA"},
+    "standard": "Grainery 0.35"}

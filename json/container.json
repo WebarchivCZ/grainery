@@ -1,33 +1,31 @@
-{
-    "_id": "5bdc3cbc528db527ebd606bf",
-    "type": "container",
-    "author": "NKCR",
-    "date": "2018-11-02T13:02:04.187Z",
-    "standard": "Grainery 1.0",
-    "container": {
-        "filename": "V1M_2015-02-01-crawler00.webarchiv.cz-warc.gz",
-        "recordID": "fee14f9e-e242-4b74-b5cd-cc368e709857",
-        "harvestID": "6e109e6a-2668-4cb7-8136-3b64d39eb8d5",
-        "dateOfOrigin": "2015-02-01T10:57:50.000Z",
-        "size": 1179
-    },
-    "cdx": {
-        "exists": true,
-        "path": "./logs/index/V1M_2015-02-01-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
-        "md5": "b6bdedba646223d13bba8b7e340e6edb",
-        "size": 177,
-        "columns": 9,
-        "lines": 377929
-    },
-    "format": {
-        "format": "WARC File Format 1.0",
-        "conformsTo": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/",
-        "mimeType": "application/warc"
-    },
-    "md5": {
-        "dateOfValidation": "2018-11-20T13:02:04.187Z",
-        "statusOfValidation": true,
-        "nextValidation": "2020-11-19T13:02:04.187Z",
-        "hash": "1f55853ca4a8b1ef0ca5c7bbd246b3d0"
-    }
+{   "author": "Zdenko Vozár",
+    "container": {   "contentLength": "1562",
+                     "dateOfOrigin": "2018-03-07T20:36:56Z",
+                     "filename": "Serials-2018-03-1M_2M_CUNI-crawler00_-20180307203656265-00743-28769~crawler00.webarchiv.cz~7778.warc.gz",
+                     "hostname": "crawler00.webarchiv.cz",
+                     "ip": "10.10.0.202",
+                     "isPartOf": "Serials 2018-03-1M_2M_CUNI",
+                     "operator": "Zdenko Vozár",
+                     "robots": "ignore",
+                     "size": 574,
+                     "software": "Heritrix/3.2.0 http://crawler.archive.org",
+                     "warcID": "urn:uuid:1ee94bfa-9591-4e1f-bddd-fba317dac15f"},
+    "date": "2018-11-29T21:28:19Z",
+    "paths": {   "LTP": "NA",
+                 "cdxID": "NA",
+                 "harvestID": "NA",
+                 "mount": "NA",
+                 "pathToHarvest": "/home/lindon/Documents/NKCR/Webarchiv/WARCis/inyFold",
+                 "storage": "NA"},
+    "recType": "container",
+    "revision": {   "dateOfValidation": "2018-11-29T21:28:19Z",
+                    "hashLast": "NA",
+                    "hashOrig": "47d9b5ec17037f6696520ea2393dc1d7",
+                    "nextLastDateOfValidation": "2020-11-28T21:28:19Z",
+                    "statusOfValidation": "FIRST"},
+    "standard": "Grainery 0.35",
+    "type": {   "conformsTo": "http://bibnum.bnf.fr/WARC/WARC_ISO_28500_version1_latestdraft.pdf",
+                "format": "WARC File Format 1.0",
+                "mimetypeXML": "application/warc-fields",
+                "warcType": "warcinfo"}
 }
