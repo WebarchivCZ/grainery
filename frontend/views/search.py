@@ -6,6 +6,10 @@ smod = Blueprint('search', __name__)
 
 @smod.route('/search', methods=['POST'])
 def search():
+    # Pole, ve kterých se prohledává se nastavují přímo v MongoDB
+    # konkrétně v indexu s název 'text' v MongoDB
+    # index 'text' musí být vytvořen alespoň s jedním polem, jinak tato stránka
+    # vrátí err
     query = request.form['mainSearch']
     results = mongo.db.harvest.find(
         {
