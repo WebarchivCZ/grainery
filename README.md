@@ -54,8 +54,8 @@ python3 Extarc.py > ExtarcYYYYMMDD-folder.log
 # ideálně pouštět ako proces na pozadí
 ```
 
-## Rozběhnutí frontendu
-Frontend je postavený na frameworku Flask a je testovaný na Pythonu 3.7.0
+## Rozběhnutí Grainery frontendu
+Grainery frontend je postavený na frameworku Flask a je testovaný na Pythonu 3.7.0
 V MongoDB potřebuje databázi _grainery_ a v ní tři kolekce: _harvest_, _container_, _cdx_
 Dalším krokem je vytvoření indexu pro full textové vyhledávání v kolekci harvest. Vytvoření indexu v Mongo shellu
 
@@ -78,7 +78,7 @@ Grainery má defaultně nastavenou produkční konfiguraci, v případě potřeb
 * Extarc: 0.3
 * Metadatová specifikace: 0.35 
 
-## Autoři
+## Vývoj
 
 * **Zdenko Vozár** -  *back-end app, extraction and specification*
 * **Jaroslav Kvasnica** - *front-end app, representation, theoretical base*
