@@ -12,6 +12,10 @@ Aplikace se skládá ze dvou hlavních částí: pythoní extraktor metadat Exta
 
 # Začíname
 
+Viz podrobňej:
+
+https://github.com/WebarchivCZ/grainery/wiki/Instalace
+
 ## Prerekvizity
 
 * Git
@@ -29,15 +33,15 @@ git clone https://github.com/WebarchivCZ/grainery.git
 
 #Nainstaluj dependencies pre Extarc a Web Applikáciu
 cd grainery
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 
 ```
 
 ## Rozběhnutí Extarcu
 
-*Púštaj nad úložišťom len lokálne vnútry zabezpečenej, alebo izolovanej siete*
+*Pouštěj lokálne, nad úložištěm jen vnitru zabezpečený, anebo izolovaný sítě*
 
-Extarc potřebuje i když je záťěž poňatá minimalisticky, systém s kvalitným a rychlým úložištěm, příjemným pásmovým rozsahem a priměřenou pamětí, ideálne 16 GB RAM, může však běžet i na daleko nižších konfiguracích, eg. 2 GB RAM.
+Extarc potřebuje i když je záťěž poňatá minimalisticky, serverový systém s dostupným a rychlým úložištěm, příjemným pásmovým rozsahem a priměřenou pamětí, ideálne 8-16 GB RAM a osmijádrovým procesorem . Pro domáci testovaní, alebo ako dlouhodobá servica na pozadí může běžet i na daleko nižších konfiguracích, eg. 2 GB RAM.
 
 ```
 #copy extarc to top directory of your archive
@@ -47,6 +51,7 @@ python3 Extarc.py > ExtarcYYYYMMDD-folder.log
 
 # opakuj nad top adresármi obsahujúcimi warc, cdx, crawl logy, linuxfixity
 # spojení disparátnich úložišť je otázkou revize
+# ideálně pouštět ako proces na pozadí
 ```
 
 ## Rozběhnutí frontendu
