@@ -1,6 +1,6 @@
 # GRAINERY 
 
-Aplikace Granery umožňuje pracovat s technickými a administrativními metadaty z webových archivů. Staví na metadatový specifikaci Grainery 0.35 pro webarchivy vychádzejíc zo širších specifikací IIPC. Na tomto základě přispíva k precizaci monitoringu úložišťě webarchivu, jeho správě, bitové a logické ochraně a grafickému přiblížení jeho obsahu pomocí statistik pro nejširší veřejnost. 
+Aplikace Granery umožňuje pracovat s technickými a administrativními metadaty z webových archivů. Staví na metadatové specifikaci Grainery 0.35 pro webové archivy vychádzející z širších specifikací IIPC. Na tomto základě přispívá k precizaci monitoringu úložišťě webarchivu, jeho správě, bitové a logické ochraně a grafickému přiblížení jeho obsahu pomocí statistik pro správce a kurátory, ale také pro nejširší veřejnost. 
 
 Více: https://github.com/WebarchivCZ/grainery/wiki/Popis-aplikace 
 
@@ -8,11 +8,11 @@ Více: https://github.com/WebarchivCZ/grainery/wiki/Popis-aplikace
 
 ## Skladba
  
-Aplikace se skládá ze dvou hlavních částí: pythoní extraktor metadat Extarc a prezentační vrstva. Komunikujú společne cez NoSQL bázi cez formát JSON dále upresněn technickou metadatovou specifikací Grainery.
+Aplikace se skládá ze dvou hlavních částí: python extraktor metadat Extarc a prezentační vrstva (Grainery frontend). Komunikují společně přes NoSQL bázi (MongoDB) přes formát JSON, která je definován technickou metadatovou specifikací Grainery.
 
 # Začíname
 
-Viz podrobňej:
+Podrobněji:
 
 https://github.com/WebarchivCZ/grainery/wiki/Instalace
 
@@ -21,8 +21,8 @@ https://github.com/WebarchivCZ/grainery/wiki/Instalace
 * Git
 * Python 3.5 a 3.7 
 * Pip3 instalátor dependencies
-* Mongo DB - např. cez docker
-* Pre Extarc: shellovú konzolu, Gzip (>=1.6), pracujúce napojenie na storage 
+* Mongo DB - např. přes docker
+* Pro Extarc: shell console, Gzip (>=1.6), funkční připojení na storage 
 
 ## Instalace
 
@@ -56,7 +56,7 @@ python3 Extarc.py > ExtarcYYYYMMDD-folder.log
 
 ## Rozběhnutí frontendu
 Frontend je postavený na frameworku Flask a je testovaný na Pythonu 3.7.0
-V MongoDB potřebuje databázi grainery a v ní tři kolekce: harvest, container, cdx
+V MongoDB potřebuje databázi _grainery_ a v ní tři kolekce: _harvest_, _container_, _cdx_
 Dalším krokem je vytvoření indexu pro full textové vyhledávání v kolekci harvest. Vytvoření indexu v Mongo shellu
 
 ```
@@ -70,10 +70,9 @@ Přesunout config_default.py do config.py a nastavit v něm připojení k mongoD
 
 Grainery má defaultně nastavenou produkční konfiguraci, v případě potřeby je to možné změnit v souboru app.py, kde se přepíše řádek `Configuration = cfg.ProductionConfig na Configuration = cfg.DevelopmentConfig`
 
-
 ## Verzovaní
 
-** Grainery 0.3 **
+**Grainery 0.3**
 
 * Webová aplikace: 0.3
 * Extarc: 0.3
