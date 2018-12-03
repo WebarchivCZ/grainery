@@ -11,14 +11,20 @@ import pprint
 import shlex
 from pymongo import MongoClient
 import uuid
-import extarc_grainary_mod
+import grainery
 from hashlib import md5
 
-## Tools settings
-#sys.stdout.reconfigure(encoding='utf-8')
 
-all_hrv= []
-hrv_ind = dict
+
+## Variables
+
+# Extarc specific variables
+version = 3.5   # Version of Extarc itself
+all_hrv = []    # All harvest dictionary
+hrv_ind = dict  # Helping index of harvests dictionary
+
+# Tools settings
+#sys.stdout.reconfigure(encoding='utf-8')
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -31,7 +37,10 @@ db = mongo.mydb #prod grainery
 collection_harvest = db.harvest
 collection_container = db.container
 
+
+
 ## Def. of processes
+
 def read_warctop(arg): #update also for unfinished warcs
     warcrex = dict()
     r = subprocess.Popen(arg, stdout=subprocess.PIPE, shell=True)  # be aware tu run LOCALLY!!
@@ -55,7 +64,7 @@ def read_warctop(arg): #update also for unfinished warcs
         warcrex2 = {}
     else:
         try:
-            warcrex2 = grainarymod03.switch_wrc(warcrex)  # Updating semantics via dict switch
+            warcrex2 = grainery.switch_wrc(warcrex)  # Updating semantics via dict switch
         except:
             print("Exception in user code:")
             print('-' * 30)
@@ -78,16 +87,19 @@ def create_hash(arg): #update also for unfinished warcs
     return (error, output)
 
 
-##Running main
+##  Running main
+
 if __name__ == "__main__":
-    for (dirname, dirs, files) in os.walk(grainarymod03.root):
-        #setting root
+    print("======== I n i t i a l i z i n g  E X T A R C ", version ,"  ========")
+    print("\n  ++ Standard: ", grainery.g_standard, " ++\n  ++ Module version: ", grainery.version, " ++\n")
+    for (dirname, dirs, files) in os.walk(grainery.root):
+        print("\n ======== W A L K I N G : : : ", dirname, " : : : :  ======== \n")
         for filename in files:
             # os.listdir(directory):
             record = ""
             if filename.endswith(".warc.gz"):  ##TODO acc. also to unfinished warcs
                 thefile = os.path.join(dirname, filename) #prefering absolute paths, cause od diff python pointers
-                grainarymod03.n_wrc_abs+=1
+                grainery.n_wrc_abs+=1
                 warc_name=filename
                 print(filename)
 
@@ -104,13 +116,13 @@ if __name__ == "__main__":
                     size= os.path.getsize(thefile)
                     print(filename, " : ", size)
                     # Init obj
-                    timenow = grainarymod03.timnow(datetime.datetime.now())
+                    timenow = grainery.timnow(datetime.datetime.now())
                     timenow_raw = datetime.datetime.now() # TODO rozmysliet kde umiestnit
-                    obj = grainarymod03.wrc(timenow)
-                    objcon = grainarymod03.container()
-                    objtyp = grainarymod03.type()
-                    objpaths = grainarymod03.paths()
-                    objrev = grainarymod03.revision()
+                    obj = grainery.Wrc(timenow)
+                    objcon = grainery.Container()
+                    objtyp = grainery.Type()
+                    objpaths = grainery.Paths()
+                    objrev = grainery.Revision()
                     #print(obj.__dict__.keys())
                     #print(dir(obj))
                     # este pridat kontrolu ci naozaj obsahuje deklarovany subset, inak try max
@@ -119,49 +131,49 @@ if __name__ == "__main__":
                     # Check harvest dict
                     iPO= warcrec["isPartOf"]
                     iPO= str(iPO)
-                    if iPO not in grainarymod03.d_hrv:
-                        hrv_ind.update({iPO: grainarymod03.n_hrv}) #going from zero ind
-                        grainarymod03.n_hrv+=1
-                        grainarymod03.n_wrc+=1
-                        print("======== N E W : : : ", iPO ," : : : : H A R V E S T ========")
-                        grainarymod03.d_hrv.update({iPO : 1})
-                        grainarymod03.d_hrv_help.update({grainarymod03.n_hrv : iPO})  # Help dict, indices of main hrvobj_hrv list
-                        all_hrv.append(grainarymod03.hrv(timenow)) #vytvor nove sklizne do pola sklizni
-                        hrvobj_hrv = grainarymod03.harvest()       #harvest obj
-                        hrvobj_crw = grainarymod03.harvestCrawl()
-                        hrvobj_comm = grainarymod03.commentaries()
-                        hrvobj_paths = grainarymod03.paths()
-                        hrvobj_rev = grainarymod03.revision()
+                    if iPO not in grainery.d_hrv:
+                        hrv_ind.update({iPO: grainery.n_hrv}) #going from zero ind
+                        grainery.n_hrv+=1
+                        grainery.n_wrc+=1
+                        print("\n ======== N E W : : : ", iPO ," : : : : H A R V E S T ======== \n")
+                        grainery.d_hrv.update({iPO : 1})
+                        grainery.d_hrv_help.update({grainery.n_hrv : iPO})  # Help dict, indices of main hrvobj_hrv list
+                        all_hrv.append(grainery.Hrv(timenow)) #vytvor nove sklizne do pola sklizni
+                        hrvobj_hrv = grainery.Harvest()       #harvest obj
+                        hrvobj_crw = grainery.HarvestCrawl()
+                        hrvobj_comm = grainery.Commentaries()
+                        hrvobj_paths = grainery.Paths()
+                        hrvobj_rev = grainery.Revision()
                         uid_hrv= str(uuid.uuid5(uuid.NAMESPACE_DNS, iPO)) #Dohodit do modu asi
                         hrvobj_hrv.app_rec(iPO, warcrec, size, uid_hrv) # pridavanie k harvest containeru este vyladit, ale kombo mena a DNS
 
                         #List filenames of Warcs a helping dict
                         l_wrc = []
                         l_wrc.insert(1,filename)
-                        grainarymod03.all_hrv_dict.append(grainarymod03.hrv_dict_r(iPO, grainarymod03.n_hrv, l_wrc, uid_hrv))
+                        grainery.all_hrv_dict.append(grainery.hrv_dict_r(iPO, grainery.n_hrv, l_wrc, uid_hrv))
 
                         #Final establshment of object
-                        all_hrv[grainarymod03.n_hrv-1].harvest = hrvobj_hrv
-                        all_hrv[grainarymod03.n_hrv - 1].harvest = hrvobj_hrv
-                        all_hrv[grainarymod03.n_hrv - 1].harvestCrawl = hrvobj_crw
-                        all_hrv[grainarymod03.n_hrv - 1].commentaries = hrvobj_comm
-                        all_hrv[grainarymod03.n_hrv - 1].paths = hrvobj_paths
-                        all_hrv[grainarymod03.n_hrv - 1].revision = hrvobj_rev
-                        pp.pprint(all_hrv[grainarymod03.n_hrv-1].__dict__)
+                        all_hrv[grainery.n_hrv-1].harvest = hrvobj_hrv
+                        all_hrv[grainery.n_hrv - 1].harvest = hrvobj_hrv
+                        all_hrv[grainery.n_hrv - 1].harvestCrawl = hrvobj_crw
+                        all_hrv[grainery.n_hrv - 1].commentaries = hrvobj_comm
+                        all_hrv[grainery.n_hrv - 1].paths = hrvobj_paths
+                        all_hrv[grainery.n_hrv - 1].revision = hrvobj_rev
+                        pp.pprint(all_hrv[grainery.n_hrv-1].__dict__)
                     else:
-                        grainarymod03.n_wrc+=1
-                        grainarymod03.d_hrv[iPO] +=1
-                        pp.pprint(grainarymod03.all_hrv_dict)
+                        grainery.n_wrc+=1
+                        grainery.d_hrv[iPO] +=1
+                        pp.pprint(grainery.all_hrv_dict)
 
                         #Setting from harvest and to harvest rec
-                        print("IPPPPPPPPPPPPPPPPPPPO ", grainarymod03.d_hrv_help)
+                        print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
                         #hrvobj_hrv.upd_size(size) where name is iPO, incrmentovat velkost, presunut definiciu
-                    ###for key, value in grainarymod03.d_hrv_help:
+                    ###for key, value in grainery.d_hrv_help:
                        # if iPO in
-                    objcon  = grainarymod03.container.app_rec(objcon,warcrec, size)
-                    objtyp  = grainarymod03.type.app_rec(objtyp, warcrec)
-                    objpaths = grainarymod03.paths.app_rec(objpaths, dirname)
-                    objrev = grainarymod03.revision.app_rec(objrev,True,timenow_raw,hsh)
+                    objcon  = grainery.Container.app_rec(objcon,warcrec, size)
+                    objtyp  = grainery.Type.app_rec(objtyp, warcrec)
+                    objpaths = grainery.Paths.app_rec(objpaths, dirname)
+                    objrev = grainery.Revision.app_rec(objrev,True,timenow_raw,hsh)
                     obj.container = objcon
                     obj.type = objtyp
                     obj.paths = objpaths
@@ -173,12 +185,12 @@ if __name__ == "__main__":
                 else:
                     print("Bad reading, code : ", error)
 
-print("Harvests count : ", len(grainarymod03.d_hrv_help))
+print("Harvests count : ", len(grainery.d_hrv_help))
 print("Harvest and number of their containers: ")
-for key, value in grainarymod03.d_hrv.items():
+for key, value in grainery.d_hrv.items():
     print(key, " number of warcs: ", value)
-print("Absolute number of warc objects consulted: ", grainarymod03.n_wrc_abs)
-print("Number of warc objects created: ", grainarymod03.n_wrc)
+print("Absolute number of warc objects consulted: ", grainery.n_wrc_abs)
+print("Number of warc objects created: ", grainery.n_wrc)
 #print json.dump(obj, indent=1)
 # TODO dodat do DB sklizne
 #TODO pridat zoznamy vsetkych warcov, vs konzultovanych, diff aka errors a hlasky
