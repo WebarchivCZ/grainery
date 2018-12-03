@@ -6,15 +6,18 @@ import re
 
 ## Variables
 
+version = 3.1                                       # Version of module itself
+
+
 # Definition of specific variables
-operator = "Zdenko Vozár"
-g_standard = "Grainery 0.35"
+operator = "Zdenko Vozár"                           # Operator of script
+g_standard = "Grainery 0.35"                        # Version of standard used here
+root = "/home/lindon/GIT/wa-dev/grainery/extarc"    # Root for your os walk your warcs, possible to change
 
 # Definition of general variables
 DEFAULT = "NA"
 T = "b" == "b"
 F = "a" == "b"
-root = "/home/lindon/Documents/NKCR/Webarchiv/WARCis"
 
 # Counters and dictionaries of objects
 n_wrc = 0
@@ -87,7 +90,7 @@ def switch_wrc(warcdict):
 
 # Type Harvest
 
-class hrv(object):
+class Hrv(object):
     def __init__(self, datetime):
         self.recType = "harvest"
         self.author = operator
@@ -103,7 +106,7 @@ class hrv(object):
 
 # Type Container
 
-class wrc(object):
+class Wrc(object):
     def __init__(self, datetime):
         self.recType = "container"
         self.author = operator
@@ -118,7 +121,7 @@ class wrc(object):
 
 # WARC container
 
-class container(dict):
+class Container(dict):
     def __init__(self):
         self['filename'] = DEFAULT
         self['warcID'] = DEFAULT
@@ -144,7 +147,7 @@ class container(dict):
 
 # Harvest matrix
 
-class harvest(dict):
+class Harvest(dict):
     def __init__(self):   #TODO elements non validated, only through revision of all warc records, step CONSOLIDATION, verify folder, verify childrens, verify logs
         #self['harvestName'] = DEFAULT   #def down
         self['status'] = "NonValidated"
@@ -178,7 +181,7 @@ class harvest(dict):
 
 # More info about logs crawl folder
 
-class harvestCrawl(dict):
+class HarvestCrawl(dict):
     def __init__(self):   #TODO, unzip, parse
         self['logs'] = DEFAULT
         self['path'] = "NonValidated"
@@ -201,7 +204,7 @@ class harvestCrawl(dict):
 
 # Type subclass
 
-class type(dict):
+class Type(dict):
     def __init__(self):
         self['format'] = DEFAULT
         self['conformsTo'] = DEFAULT
@@ -214,7 +217,7 @@ class type(dict):
 
 # Paths subclass
 
-class paths(dict):
+class Paths(dict):
     def __init__(self):
         self['storage'] = DEFAULT
         self['mount'] = DEFAULT
@@ -229,7 +232,7 @@ class paths(dict):
 
 # Revision subclass
 
-class revision(dict):
+class Revision(dict):
     def __init__(self):
         self['dateOfValidation'] = DEFAULT
         self['statusOfValidation'] = DEFAULT #FIRST, FIRST-FAILED, VALIDATED, TOBEVALIDATED, FAILED
@@ -265,7 +268,7 @@ class revision(dict):
 
 # Commentaries subclass
 
-class commentaries(dict):
+class Commentaries(dict):
     def __init__(self):
         self['exists'] = F
         self['text'] = DEFAULT
