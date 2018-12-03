@@ -202,7 +202,7 @@ if __name__ == "__main__":
 
                     #Serialization and injection of containers to Mongo DB
                     # pp.pprint(obj.__dict__)
-                    print(json.dumps(jsonDefault(obj), indent=4))
+                    #print(json.dumps(jsonDefault(obj), indent=4))
                     collection_container.insert_one(obj.__dict__)
                 else:
                     print("Bad reading, code : ", error)
@@ -222,7 +222,5 @@ for key, value in grainery.d_hrv.items():
     print(key, " number of warcs: ", value)
 print("Absolute number of warc objects consulted: ", grainery.n_wrc_abs)
 print("Number of warc objects created: ", grainery.n_wrc)
-#print json.dump(obj, indent=1)
-# TODO dodat do DB sklizne
 #TODO pridat zoznamy vsetkych warcov, vs konzultovanych, diff aka errors a hlasky
 print("FINISHED")

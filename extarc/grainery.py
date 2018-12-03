@@ -11,7 +11,7 @@ version = 3.1                                       # Version of module itself
 
 # Definition of specific variables
 operator = "Zdenko Vozár"                           # Operator of script
-g_standard = "Grainery 0.35"                        # Version of standard used here
+g_standard = "Grainery 0.36"                        # Version of standard used here
 root = "/home/lindon/GIT/wa-dev/grainery/extarc"    # Root for your os walk your warcs, possible to change
 
 # Definition of general variables
@@ -56,7 +56,7 @@ depr_cont = ['http-header-user-agent','description', 'http-header-from']
 depr_hrv = ['dateOfOrigin', 'status', 'date', 'harvestId']
 
 # ToSet
-toset_hrv = ['harvestName','size', 'harvestDuration', 'harvestId', 'date']
+toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestId', 'date']
 
 # Case mapping to Grainary for warc export
 
@@ -161,7 +161,8 @@ class Harvest(dict):
         self['robots'] = DEFAULT
         self['http-header-user-agent'] = DEFAULT
         self['http-header-from'] = DEFAULT
-        #self['harvestType'] = DEFAULT #TODO regex, staci type
+        self['harvestType'] = DEFAULT
+        self['harvestSubtype'] = {}
         #self['harvestDuration'] = DEFAULT
         #self['size'] = DEFAULT  #def down
     def app_rec(self, hrv_name, rec, size, uuid):
@@ -174,6 +175,22 @@ class Harvest(dict):
         self.update({'harvestDuration': DEFAULT})
         self.update({'harvestId' : uuid})
         self.update({'date':rec['dateOfOrigin']})
+        try:
+            a = re.compile("[0-9]{4}").split(hrv_name)
+            b = re.compile("[0-9]{2}").split(a[1])
+            type_coll = a[0].strip()
+            self.update({'harvestType' : type_coll})
+            subtype_coll = []
+            sbt_coll = b[1].split("_")
+            for sbt in sbt_coll:
+                subtype_coll.append(sbt.strip("-"))
+            self.update({'harvestSubtype': subtype_coll})
+
+        except:
+            self.update({'harvestType': traceback.print_exc(file=sys.stdout)})
+            self.update({'harvestSubtype': traceback.print_exc(file=sys.stdout)})
+            pass
+    #(1[A-Z])\w+
         return self
     def upd_size(self, size):
         self['size']+=size
