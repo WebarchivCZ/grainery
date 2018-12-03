@@ -5,6 +5,7 @@ import subprocess
 #from collections import defaultdict
 import re
 #import json
+#from bson import json_util
 import pytz
 import datetime
 import pprint
@@ -19,6 +20,8 @@ import grainery
 ## Variables
 
 # Extarc specific variables
+
+#### TODO harvestType vyroba
 version = 3.5   # Version of Extarc itself
 all_hrv = []    # All harvest dictionary
 hrv_ind = dict  # Helping index of harvests dictionary
@@ -44,6 +47,9 @@ collection_container = db.container
 
 
 ## Def. of processes
+
+def jsonDefault(OrderedDict):
+    return OrderedDict.__dict__
 
 def read_warctop(arg): #update also for unfinished warcs
     warcrex = dict()
@@ -182,9 +188,7 @@ if __name__ == "__main__":
                         #Setting from harvest and to harvest rec
                         print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
                         print("IPPPO rec:", grainery.all_hrv_dict[0])
-                        #hrvobj_hrv.upd_size(size) where name is iPO, incrmentovat velkost, presunut definiciu
-                    ###for key, value in grainery.d_hrv_help:
-                       # if iPO in
+
 
                     #Init warc rec object
                     objcon  = grainery.Container.app_rec(objcon,warcrec, size)
@@ -195,12 +199,19 @@ if __name__ == "__main__":
                     obj.type = objtyp
                     obj.paths = objpaths
                     obj.revision = objrev
-                    pp.pprint(obj.__dict__)
 
-                    #Injection to py DB
-                    # collection_container.insert_one(obj.__dict__)
+                    #Serialization and injection of containers to Mongo DB
+                    # pp.pprint(obj.__dict__)
+                    print(json.dumps(jsonDefault(obj), indent=4))
+                    collection_container.insert_one(obj.__dict__)
                 else:
                     print("Bad reading, code : ", error)
+
+
+## Serialization and injection of harvests to MongoDB
+
+for harvest in all_hrv:
+    collection_harvest.insert_one(harvest.__dict__)
 
 print("Hrv ind ", hrv_ind)
 print("All hrv dict : ", grainery.all_hrv_dict)
