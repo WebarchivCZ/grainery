@@ -12,7 +12,7 @@ import shlex
 from pymongo import MongoClient
 import uuid
 import grainery
-from hashlib import md5
+#from hashlib import md5  # using system, maybe to change
 
 
 
@@ -112,9 +112,11 @@ if __name__ == "__main__":
                 (error_h, hsh) = create_hash(arg)
 
                 if error == 0:
+
                     # Outside measures
                     size= os.path.getsize(thefile)
                     print(filename, " : ", size)
+
                     # Init obj
                     timenow = grainery.timnow(datetime.datetime.now())
                     timenow_raw = datetime.datetime.now() # TODO rozmysliet kde umiestnit
@@ -123,9 +125,6 @@ if __name__ == "__main__":
                     objtyp = grainery.Type()
                     objpaths = grainery.Paths()
                     objrev = grainery.Revision()
-                    #print(obj.__dict__.keys())
-                    #print(dir(obj))
-                    # este pridat kontrolu ci naozaj obsahuje deklarovany subset, inak try max
                     print(warcrec)
 
                     # Check harvest dict
@@ -170,6 +169,8 @@ if __name__ == "__main__":
                         #hrvobj_hrv.upd_size(size) where name is iPO, incrmentovat velkost, presunut definiciu
                     ###for key, value in grainery.d_hrv_help:
                        # if iPO in
+
+                    #Init warc rec object
                     objcon  = grainery.Container.app_rec(objcon,warcrec, size)
                     objtyp  = grainery.Type.app_rec(objtyp, warcrec)
                     objpaths = grainery.Paths.app_rec(objpaths, dirname)
@@ -180,7 +181,7 @@ if __name__ == "__main__":
                     obj.revision = objrev
                     pp.pprint(obj.__dict__)
 
-                    ##Injection
+                    #Injection to py DB
                     # collection_container.insert_one(obj.__dict__)
                 else:
                     print("Bad reading, code : ", error)
