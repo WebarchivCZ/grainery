@@ -34,11 +34,12 @@ all_hrv_dict = []
 
 # To all_hrv
 class hrv_dict_r(dict):
-    def __init__(self, iPO, n_wrc, l_wrc, uri): #TODO priprav na duplicitne cesty
+    def __init__(self, iPO, n_wrc, l_wrc, uri, size): #TODO priprav na duplicitne cesty
         self['name'] = iPO
         self['n_wrc'] = n_wrc
         self['l_wrc'] = l_wrc
         self['uri'] = uri
+        self['size'] = size
 
 
 ## Other functions
@@ -56,7 +57,7 @@ depr_cont = ['http-header-user-agent','description', 'http-header-from']
 depr_hrv = ['dateOfOrigin', 'status', 'date', 'harvestId']
 
 # ToSet
-toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestId', 'date']
+toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestId', 'date', 'warcsNumber']
 
 # Case mapping to Grainary for warc export
 
@@ -164,7 +165,8 @@ class Harvest(dict):
         self['harvestType'] = DEFAULT
         self['harvestSubtype'] = {}
         #self['harvestDuration'] = DEFAULT
-        #self['size'] = DEFAULT  #def down
+        self['size'] = DEFAULT
+        self['warcsNumber'] = DEFAULT
     def app_rec(self, hrv_name, rec, size, uuid):
         notregard = toset_hrv + depr_hrv
         for key, value in self.items():

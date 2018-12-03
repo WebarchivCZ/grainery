@@ -162,7 +162,7 @@ if __name__ == "__main__":
                         #List filenames of Warcs a helping dict
                         l_wrc = []
                         l_wrc.insert(1,filename)
-                        grainery.all_hrv_dict.append(grainery.hrv_dict_r(iPO, grainery.n_hrv, l_wrc, uid_hrv))
+                        grainery.all_hrv_dict.append(grainery.hrv_dict_r(iPO, grainery.n_hrv, l_wrc, uid_hrv, size))
 
                         #Final establshment of object
                         all_hrv[grainery.n_hrv-1].harvest = hrvobj_hrv
@@ -181,9 +181,10 @@ if __name__ == "__main__":
                         for item in  grainery.all_hrv_dict.__iter__():
                             print(item)
                             if item['name'] == iPO:
-                                uid_hrv = item['uri']
+                                uid_hrv = item['uri']               ## TODO size and l_wrc list to all_hrv list
                                 item['l_wrc'].append(filename)
-
+                                old_siz = item['size']
+                                item['size']= old_siz + size
 
                         #Setting from harvest and to harvest rec
                         print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
@@ -207,6 +208,18 @@ if __name__ == "__main__":
                 else:
                     print("Bad reading, code : ", error)
 
+## Final procedures
+
+# Completing harvest: size, list of warcs
+
+i = 0
+print(i)
+for item in all_hrv:
+    item.harvest['size'] = grainery.all_hrv_dict[i]['size']
+    #item.harvestUTI.filename = grainery.all_hrv_dict[i]['l_wrc'] # TODO filenames somewhere, or uris
+    item.harvest['warcsNumber'] = len(grainery.all_hrv_dict[i]['l_wrc'])
+    i += 1
+    print(item.harvest['harvestName'], ' :: size :: ', item.harvest['size'], ' :: :: ',item.harvest['warcsNumber'] , ' :: uri :: ', item.harvest['harvestId'])
 
 ## Serialization and injection of harvests to MongoDB
 
