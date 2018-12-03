@@ -23,6 +23,10 @@ version = 3.5   # Version of Extarc itself
 all_hrv = []    # All harvest dictionary
 hrv_ind = dict  # Helping index of harvests dictionary
 
+# IPO dict
+
+ipo_dict = dict # Going from One
+
 # Tools settings
 #sys.stdout.reconfigure(encoding='utf-8')
 
@@ -135,8 +139,11 @@ if __name__ == "__main__":
                         grainery.n_hrv+=1
                         grainery.n_wrc+=1
                         print("\n ======== N E W : : : ", iPO ," : : : : H A R V E S T ======== \n")
+                        ipo_dict.update({grainery.n_hrv : iPO })
+
                         grainery.d_hrv.update({iPO : 1})
                         grainery.d_hrv_help.update({grainery.n_hrv : iPO})  # Help dict, indices of main hrvobj_hrv list
+
                         all_hrv.append(grainery.Hrv(timenow)) #vytvor nove sklizne do pola sklizni
                         hrvobj_hrv = grainery.Harvest()       #harvest obj
                         hrvobj_crw = grainery.HarvestCrawl()
@@ -164,8 +171,17 @@ if __name__ == "__main__":
                         grainery.d_hrv[iPO] +=1
                         pp.pprint(grainery.all_hrv_dict)
 
+                        print(ipo_dict)
+                        for item in  grainery.all_hrv_dict.__iter__():
+                            print(item)
+                            if item['name'] == iPO:
+                                uid_hrv = item['uri']
+                                item['l_wrc'].append(filename)
+
+
                         #Setting from harvest and to harvest rec
                         print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
+                        print("IPPPO rec:", grainery.all_hrv_dict[0])
                         #hrvobj_hrv.upd_size(size) where name is iPO, incrmentovat velkost, presunut definiciu
                     ###for key, value in grainery.d_hrv_help:
                        # if iPO in
@@ -173,7 +189,7 @@ if __name__ == "__main__":
                     #Init warc rec object
                     objcon  = grainery.Container.app_rec(objcon,warcrec, size)
                     objtyp  = grainery.Type.app_rec(objtyp, warcrec)
-                    objpaths = grainery.Paths.app_rec(objpaths, dirname)
+                    objpaths = grainery.Paths.app_rec(objpaths, dirname, uid_hrv)
                     objrev = grainery.Revision.app_rec(objrev,True,timenow_raw,hsh)
                     obj.container = objcon
                     obj.type = objtyp
@@ -186,6 +202,9 @@ if __name__ == "__main__":
                 else:
                     print("Bad reading, code : ", error)
 
+print("Hrv ind ", hrv_ind)
+print("All hrv dict : ", grainery.all_hrv_dict)
+print("Not sure:", grainery.d_hrv)
 print("Harvests count : ", len(grainery.d_hrv_help))
 print("Harvest and number of their containers: ")
 for key, value in grainery.d_hrv.items():

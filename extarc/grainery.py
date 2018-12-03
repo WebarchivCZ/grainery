@@ -225,9 +225,10 @@ class Paths(dict):
         self['LTP'] = DEFAULT
         self['harvestID'] = DEFAULT
         self['cdxID'] = DEFAULT
-    def app_rec(self, path):
+    def app_rec(self, path, uri):
         strp = str(path) #TODO split when system mount, add mount
         self['pathToHarvest'] = strp
+        self['harvestID'] = uri
         return self
 
 # Revision subclass
