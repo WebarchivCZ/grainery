@@ -26,7 +26,7 @@ def harvest(id):
 def containers(harvestID, page):
     containers = paginationQuery(mongo.db.container,
                                  int(page)-1,
-                                 cond={'container.harvestID': harvestID}
+                                 cond={'paths.harvestID': harvestID}
                                  )
 
     return render_template('containers.html',
@@ -39,7 +39,7 @@ def containers(harvestID, page):
 
 @hmod.route('/container/<id>')
 def container(id):
-    container = mongo.db.container.find_one({'container.recordID': id})
+    container = mongo.db.container.find_one({'container.filename': id})
     return render_template('container.html', container=container)
 
 

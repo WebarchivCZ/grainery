@@ -86,3 +86,6 @@ Grainery má defaultně nastavenou produkční konfiguraci, v případě potřeb
 ## Více
 
 Více najdete v dokumentaci: https://github.com/WebarchivCZ/grainery/wiki
+
+
+_Realizováno v rámci institucionálního výzkumu Národní knihovny České republiky financovaného Ministerstvem kultury ČR v rámci Dlouhodobého koncepčního rozvoje výzkumné organizace._

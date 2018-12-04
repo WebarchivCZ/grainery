@@ -12,31 +12,17 @@
     <table class="table table-bordered table-sm">
         <tbody>
             {% for a, b in harv.items() %}
+                {% if b is not mapping %}
+                    <tr><td>{{ a }}</td><td colspan="3" class="table-active">{{ b }}</td></tr>
+                {% endif %}
+            {% endfor %}
+
+            {% for a, b in harv.items() %}
                 {% if b is mapping %}
                     <tr><td colspan="4"><b>{{a}}</b></td><tr>
                     {% for c, d in b.items() %}
-                        {% if d is mapping %}
-                            {% for e, f in d.items() %}
-                                {% if f is mapping %}
-                                    {% for g, h in f.items() %}
-                                        {% if h is mapping %}
-                                            {% for i, j in h.items() %}
-                                                <tr><td><b>{{e}}</b></td><td>{{g}}<td>{{ i }}</td><td class="table-active">{{ j }}</td></tr>
-                                            {% endfor %}
-                                        {% else %}
-                                            <tr><td><b>{{e}}</b><td>{{ g }}</td><td colspan="2" class="table-active">{{ h }}</td></tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% else %}
-                                    <tr><td><b>{{c}}</b></td><td>{{ e }}</td><td colspan="2" class="table-active">{{ f }}</td></tr>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
                             <tr><td>{{ c }}</td><td colspan="3" class="table-active">{{ d }}</td></tr>
-                        {% endif %}
-                     {% endfor %}
-                {% else %}
-                    <tr><td>{{ a }}</td><td colspan="3" class="table-active">{{ b }}</td></tr>
+                     {% endfor %}                         
                 {% endif %}
              {% endfor %}
         </tbody>

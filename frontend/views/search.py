@@ -18,7 +18,7 @@ def search():
         {
             'harvest.harvestID': True,
             'harvest.harvestName': True,
-            'harvest.dateOfValidation': True,
+            'harvest.date': True,
             'harvest.operator': True
         }
     )
