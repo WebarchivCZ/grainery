@@ -29,22 +29,32 @@
                         <tbody>
                             <tr>
                                 <td scope="row"> import date </td>
-                                <td> {{last.date}} </td>
+                                <td> {{last.date|nicedate}} </td>
                             </tr>
                             <tr>
                                 <td scope="row"> standard </td>
                                 <td> {{last.standard}}</td>
                             </tr>
                             <tr>
-                                <td scope="row"> harvestID </td>
-                                <td><a href="{{ url_for('harvests.harvest', id=last.paths.harvestID) }}"> {{last.paths.harvestID}}</a></td>
+                                <td scope="row"> is part of </td>
+                                <td><a href="{{ url_for('harvests.harvest', id=last.paths.harvestID) }}">{{last.container.isPartOf}}</a></td>
                             </tr>
-                            {% for x in last.container %}
                             <tr>
-                                <td scope="row">{{x}}</td>
-                                <td> {{last.container[x]}}</td>
+                                <td scope="row"> harvestID </td>
+                                <td> {{last.paths.harvestID}}</td>
                             </tr>
-                            {% endfor %}
+                            <tr>
+                                <td scope="row"> date of origin</td>
+                                <td> {{last.container.dateOfOrigin|nicedate}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> filename </td>
+                                <td> {{last.container.filename}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row"> size </td>
+                                <td> {{last.container.size|nicesize}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

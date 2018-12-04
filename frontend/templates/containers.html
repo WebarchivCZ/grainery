@@ -22,7 +22,7 @@
             {% for x in containers %}
                 <tr>
                     <td><a href="{{ url_for('harvests.container', id=x.container.filename) }}">{{ x.container.filename }}</td>
-                    <td>{{x.container.dateOfOrigin}}</td>
+                    <td>{{x.container.dateOfOrigin|nicedate}}</td>
                 </tr>
             {% endfor %}
         </tbody>
