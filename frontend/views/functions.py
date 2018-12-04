@@ -22,7 +22,7 @@ def lastImport(collection, type='harvest'):
     if type == 'harvest':
         query = {'date': True,
                  'standard': True,
-                 'harvest.harvestID': True,
+                 'paths.harvestID': True,
                  'harvest.harvestName': True,
                  'harvest.status': True,
                  'harvest.date': True,

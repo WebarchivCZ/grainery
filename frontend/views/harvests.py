@@ -18,7 +18,7 @@ def harvests(page):
 
 @hmod.route('/harvest/<id>')
 def harvest(id):
-    harv = mongo.db.harvest.find_one({'harvest.harvestID': id})
+    harv = mongo.db.harvest.find_one({'paths.harvestID': id})
     return render_template('harvest.html', harv=harv)
 
 
