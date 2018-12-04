@@ -218,12 +218,11 @@ print("\n \n \n ======== S U M M A R Y : : : : ", time_of_run ," : : : : R U N =
 print("\n ======== : : : : H A R V E S T S : : : :  ======== \n")
 i = 0
 for item in all_hrv:
-    item.harvest['size'] = grainery.all_hrv_dict[i]['size']
-    item.harvest['warcsNumber'] = len(grainery.all_hrv_dict[i]['l_wrc'])
-    item.upd_rec_hrv(grainery.all_hrv_dict[i]['w_uri'], grainery.all_hrv_dict[i]['l_wrc'])
+    #item.harvest['size'] = grainery.all_hrv_dict[i]['size']   neda sa vyuzit vyssie?
+    item.upd_rec_hrv(grainery.all_hrv_dict[i]['size'], len(grainery.all_hrv_dict[i]['l_wrc']), grainery.all_hrv_dict[i]['uri'], grainery.all_hrv_dict[i]['w_uri'], grainery.all_hrv_dict[i]['l_wrc'])
     i += 1
     pp.pprint(item.__dict__)
-    print(item.harvest['harvestName'], ' :: size :: ', item.harvest['size'], ' :: :: ',item.harvest['warcsNumber'] , ' :: uri :: ', item.harvest['harvestId'])
+    print(item.harvest['harvestName'], ' :: size :: ', item.harvest['size'], ' :: :: ',item.harvest['warcsNumber'] , ' :: uri :: ', item.harvest['harvestID'])
 
 # Serialization and injection of harvests to MongoDB
 

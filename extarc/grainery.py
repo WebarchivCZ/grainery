@@ -58,7 +58,7 @@ depr_cont = ['http-header-user-agent','description', 'http-header-from']
 depr_hrv = ['dateOfOrigin', 'status', 'date', 'harvestId']
 
 # ToSet
-toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestId', 'date', 'warcsNumber']
+toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestID', 'date', 'warcsNumber']
 
 # Case mapping to Grainary for warc export
 
@@ -104,9 +104,12 @@ class Hrv(object):
         self.commentaries = dict()
         self.paths = dict()
         self.revision = dict()
-    def upd_rec_hrv(self, w_uri, uri_l):
+    def upd_rec_hrv(self, size, wrc_n, uri, w_uri, uri_l):
+        self.harvest['size'] = size
+        self.harvest['warcsNumber'] = wrc_n
         self.paths['warcID'] = w_uri
         self.paths['warcFilenames'] = uri_l
+        self.paths['harvestID'] = uri
         return self
 
 
@@ -183,7 +186,7 @@ class Harvest(dict):
         self.update({'harvestName': hrv_name})
         self.update({'size': size})
         self.update({'harvestDuration': DEFAULT})
-        self.update({'harvestId' : uuid})
+        self.update({'harvestID' : uuid})
         self.update({'date':rec['dateOfOrigin']})
         try:
             a = re.compile("[0-9]{4}").split(hrv_name)
