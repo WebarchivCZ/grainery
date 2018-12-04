@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td scope="row"> harvestID </td>
-                                <td> {{last.paths.harvestID}}</td>
+                                <td><a href="{{ url_for('harvests.harvest', id=last.paths.harvestID) }}"> {{last.paths.harvestID}}</a></td>
                             </tr>
                             {% for x in last.container %}
                             <tr>
