@@ -17,7 +17,7 @@ def harvestPerYear(x, y):
                )
 
     # define ticks scale sorted list of years, range between max a min value
-    p.xaxis.ticker = sorted(list(x))
+    p.xaxis.ticker = sorted(x)
     p.yaxis.ticker = list(range(y.min()+1, y.max()+1, 1))
 
     # add a line renderers
@@ -97,20 +97,19 @@ def typesPie(types):
 
 def containerCount(df):
     """ vytvoření bodového grafu pro počet kontejnerů na sklizeň"""
-    df['id'] = df['_id'].astype('str').str.slice(0, 8)
     source = ColumnDataSource(df)
 
     p = figure(title="Number of containers per harvest",
-               x_range=df['id'],
+               x_range=df['_id'],
                plot_width=700,
                plot_height=450,
                x_axis_label='Harvests (ordered by date)',
                y_axis_label='Containers count',
-               tooltips=[("Harvest ID", "@_id"),
+               tooltips=[("Harvest name", "@_id"),
                          ('Conteiner count', '@count')]
                )
 
-    p.vbar(x='id', top='count', source=source, width=0.5)
+    p.vbar(x='_id', top='count', source=source, width=0.5)
 
     p.xaxis.major_label_orientation = 1
     p.y_range.start = 0
