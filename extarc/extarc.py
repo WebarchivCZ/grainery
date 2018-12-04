@@ -7,6 +7,7 @@ import re
 #import json
 #from bson import json_util
 import pytz
+import time
 import datetime
 import pprint
 import shlex
@@ -21,14 +22,12 @@ import grainery
 
 # Extarc specific variables
 
-#### TODO harvestType vyroba
 version = 3.5   # Version of Extarc itself
 all_hrv = []    # All harvest dictionary
-hrv_ind = dict  # Helping index of harvests dictionary
+ipo_dict = dict #  IPO dict Going from One
 
-# IPO dict
-
-ipo_dict = dict # Going from One
+time_of_run =  grainery.timnow(datetime.datetime.now())
+time_of_run_s = time.time()
 
 # Tools settings
 #sys.stdout.reconfigure(encoding='utf-8')
@@ -103,7 +102,7 @@ if __name__ == "__main__":
     print("======== I n i t i a l i z i n g  E X T A R C ", version ,"  ========")
     print("\n  ++ Standard: ", grainery.g_standard, " ++\n  ++ Module version: ", grainery.version, " ++\n")
     for (dirname, dirs, files) in os.walk(grainery.root):
-        print("\n ======== W A L K I N G : : : ", dirname, " : : : :  ======== \n")
+        print("\n ======== W A L K I N G : : : : ", dirname, " : : : :  ======== \n")
         for filename in files:
             # os.listdir(directory):
             record = ""
@@ -141,10 +140,9 @@ if __name__ == "__main__":
                     iPO= warcrec["isPartOf"]
                     iPO= str(iPO)
                     if iPO not in grainery.d_hrv:
-                        hrv_ind.update({iPO: grainery.n_hrv}) #going from zero ind
                         grainery.n_hrv+=1
                         grainery.n_wrc+=1
-                        print("\n ======== N E W : : : ", iPO ," : : : : H A R V E S T ======== \n")
+                        print("\n ======== N E W : : : : ", iPO ," : : : : H A R V E S T ======== \n")
                         ipo_dict.update({grainery.n_hrv : iPO })
 
                         grainery.d_hrv.update({iPO : 1})
@@ -187,8 +185,8 @@ if __name__ == "__main__":
                                 item['size']= old_siz + size
 
                         #Setting from harvest and to harvest rec
-                        print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
-                        print("IPPPO rec:", grainery.all_hrv_dict[0])
+                        #print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
+                        #print("IPPPO rec:", grainery.all_hrv_dict[0])
 
 
                     #Init warc rec object
@@ -211,9 +209,9 @@ if __name__ == "__main__":
 ## Final procedures
 
 # Completing harvest: size, list of warcs
-
+print("\n \n \n ======== S U M M A R Y : : : : ", time_of_run ," : : : : R U N ======== \n")
+print("\n ======== : : : : H A R V E S T S : : : :  ======== \n")
 i = 0
-print(i)
 for item in all_hrv:
     item.harvest['size'] = grainery.all_hrv_dict[i]['size']
     #item.harvestUTI.filename = grainery.all_hrv_dict[i]['l_wrc'] # TODO filenames somewhere, or uris
@@ -221,19 +219,18 @@ for item in all_hrv:
     i += 1
     print(item.harvest['harvestName'], ' :: size :: ', item.harvest['size'], ' :: :: ',item.harvest['warcsNumber'] , ' :: uri :: ', item.harvest['harvestId'])
 
-## Serialization and injection of harvests to MongoDB
+# Serialization and injection of harvests to MongoDB
 
 for harvest in all_hrv:
     collection_harvest.insert_one(harvest.__dict__)
 
-print("Hrv ind ", hrv_ind)
+# Printing harvest final summaries
 print("All hrv dict : ", grainery.all_hrv_dict)
-print("Not sure:", grainery.d_hrv)
-print("Harvests count : ", len(grainery.d_hrv_help))
-print("Harvest and number of their containers: ")
-for key, value in grainery.d_hrv.items():
-    print(key, " number of warcs: ", value)
+#print("Not sure:", grainery.d_hrv)  = if iPO not in grainery.d_hrv: # TODO deprecate old helping variables
+print("Total harvests count : ", len(all_hrv))
+
+print("\n ======== : : : : W A R C S : : : :  ======== \n")
 print("Absolute number of warc objects consulted: ", grainery.n_wrc_abs)
 print("Number of warc objects created: ", grainery.n_wrc)
 #TODO pridat zoznamy vsetkych warcov, vs konzultovanych, diff aka errors a hlasky
-print("FINISHED")
+print("\n \n \n ======== : : : : FINISHED in "," : : : %.1f seconds." % (time.time() - time_of_run_s)," : : : : ======== ")
