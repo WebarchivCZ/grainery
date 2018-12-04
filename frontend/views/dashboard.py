@@ -15,12 +15,7 @@ def index():
     df = dataframeFromColumn(cursor, column='harvest')
 
     # create new column only for year
-    df['year'] = df['date'].str.slice(0, 4)
-    roky = []
-    for x in df['year']:
-        roky.append(int(x))
-
-    df['year'] = roky
+    df['year'] = df['date'].str.slice(0, 4).astype(int)
 
     # 1st plot
     #
