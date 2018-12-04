@@ -16,7 +16,7 @@ def search():
             '$text': {'$search': query}
         },
         {
-            'harvest.harvestID': True,
+            'paths.harvestID': True,
             'harvest.harvestName': True,
             'harvest.date': True,
             'harvest.operator': True

@@ -52,7 +52,6 @@ def index():
 @dmod.route('/dashboard-containers')
 def cdash():
     # 1st
-    # TODO nahradit harvestID za ispartof?
     agg_containers = [{"$group": {"_id": "$container.isPartOf",
                                   "count": {"$sum": 1}
                                   }},
