@@ -22,8 +22,8 @@
             {% for x in harvs %}
                 <tr>
                     <td><a href="{{ url_for('harvests.harvest', id=x.paths.harvestID) }}">{{ x.harvest.harvestName }}</td>
-                    <td>{{ x.harvest.date }}</td>
-                    <td>{{ x.harvest.size }}</td>
+                    <td>{{ x.harvest.date|nicedate('short') }}</td>
+                    <td>{{ x.harvest.size|nicesize }}</td>
                 </tr>
             {% endfor %}
         </tbody>

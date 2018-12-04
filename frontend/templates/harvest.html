@@ -13,16 +13,31 @@
         <tbody>
             {% for a, b in harv.items() %}
                 {% if b is not mapping %}
-                    <tr><td>{{ a }}</td><td colspan="3" class="table-active">{{ b }}</td></tr>
+                    {# grainery header, catching date #}
+                    {% if a == "date" %}
+                        <tr><td>{{ a }}</td><td colspan="3" class="table-active">{{ b|nicedate }}</td></tr>
+                    {% else %}
+                        <tr><td>{{ a }}</td><td colspan="3" class="table-active">{{ b }}</td></tr>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
             {% for a, b in harv.items() %}
                 {% if b is mapping %}
                     <tr><td colspan="4"><b>{{a}}</b></td><tr>
+
                     {% for c, d in b.items() %}
+
+                        {% if c == "date" or c == "dateOfValidation" or c == "nextLastDateOfValidation" %}
+                            <tr><td>{{ c }}</td><td colspan="3" class="table-active">{{ d|nicedate }}</td></tr>
+                        {% elif c == "size" %}
+                            <tr><td>{{ c }}</td><td colspan="3" class="table-active">{{ d|nicesize }}</td></tr>
+                        {% else %}
                             <tr><td>{{ c }}</td><td colspan="3" class="table-active">{{ d }}</td></tr>
+                        {% endif %}
+
                      {% endfor %}
+
                 {% endif %}
              {% endfor %}
         </tbody>
