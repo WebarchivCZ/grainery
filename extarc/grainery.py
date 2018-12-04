@@ -34,11 +34,12 @@ all_hrv_dict = []
 
 # To all_hrv
 class hrv_dict_r(dict):
-    def __init__(self, iPO, n_wrc, l_wrc, uri, size): #TODO priprav na duplicitne cesty
+    def __init__(self, iPO, n_wrc, l_wrc, uri, size, w_uri): #TODO priprav na duplicitne cesty
         self['name'] = iPO
         self['n_wrc'] = n_wrc
         self['l_wrc'] = l_wrc
         self['uri'] = uri
+        self['w_uri'] = w_uri
         self['size'] = size
 
 
@@ -103,6 +104,10 @@ class Hrv(object):
         self.commentaries = dict()
         self.paths = dict()
         self.revision = dict()
+    def upd_rec_hrv(self, w_uri, uri_l):
+        self.paths['warcID'] = w_uri
+        self.paths['warcFilenames'] = uri_l
+        return self
 
 
 # Type Container
@@ -142,9 +147,12 @@ class Container(dict):
             if key not in depr_cont:
                 self[key] = rec[key]
         self.update({'size': size})
-        a = re.sub("<|>","",self['warcID'])
-        self.update({'warcID':a})
+        uri_clean = re.sub("<|>","",self['warcID'])
+        self.update({'warcID':uri_clean})
         return self
+    def give_uri(self, uri_raw):    #Just new method ## TODO apply methods from core to all objects
+        uri_clean = re.sub("<|>", "", uri_raw)
+        return uri_clean
 
 # Harvest matrix
 
@@ -153,7 +161,7 @@ class Harvest(dict):
         #self['harvestName'] = DEFAULT   #def down
         self['status'] = "NonValidated"
         self['date'] = DEFAULT
-        self['harvestId'] = DEFAULT
+        self['harvestID'] = DEFAULT
         self['description'] = DEFAULT
         self['operator'] = DEFAULT
         self['operator'] = DEFAULT
@@ -246,9 +254,10 @@ class Paths(dict):
         self['cdxID'] = DEFAULT
     def app_rec(self, path, uri):
         strp = str(path) #TODO split when system mount, add mount
-        self['pathToHarvest'] = strp
+        self['pathToHarvest'] = strp ##TODO tree
         self['harvestID'] = uri
         return self
+    # for warcID, warcFilen see completation in Hrv class
 
 # Revision subclass
 

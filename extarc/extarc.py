@@ -37,9 +37,9 @@ pp = pprint.PrettyPrinter(indent=4)
 ts = datetime.datetime.now().timestamp()
 print(ts)
 
+# Mongo Setup
 mongo = MongoClient()
-
-db = mongo.mydb #prod grainery
+db = mongo.grainery # prod grainery
 collection_harvest = db.harvest
 collection_container = db.container
 
@@ -120,6 +120,7 @@ if __name__ == "__main__":
                 arg = "md5sum " + thefile
                 (error_h, hsh) = create_hash(arg)
 
+                ## Creation of harvest rec, or simply adding new data to existing one
                 if error == 0:
 
                     # Outside measures
@@ -134,11 +135,12 @@ if __name__ == "__main__":
                     objtyp = grainery.Type()
                     objpaths = grainery.Paths()
                     objrev = grainery.Revision()
-                    print(warcrec)
+                    pp.pprint(warcrec)
 
                     # Check harvest dict
                     iPO= warcrec["isPartOf"]
                     iPO= str(iPO)
+                    uri_clean = objcon.give_uri(warcrec["warcID"])
                     if iPO not in grainery.d_hrv:
                         grainery.n_hrv+=1
                         grainery.n_wrc+=1
@@ -159,8 +161,10 @@ if __name__ == "__main__":
 
                         #List filenames of Warcs a helping dict
                         l_wrc = []
+                        w_uri = []
                         l_wrc.insert(1,filename)
-                        grainery.all_hrv_dict.append(grainery.hrv_dict_r(iPO, grainery.n_hrv, l_wrc, uid_hrv, size))
+                        w_uri.insert(1, uri_clean)
+                        grainery.all_hrv_dict.append(grainery.hrv_dict_r(iPO, grainery.n_hrv, l_wrc, uid_hrv, size, w_uri))
 
                         #Final establshment of object
                         all_hrv[grainery.n_hrv-1].harvest = hrvobj_hrv
@@ -179,10 +183,11 @@ if __name__ == "__main__":
                         for item in  grainery.all_hrv_dict.__iter__():
                             print(item)
                             if item['name'] == iPO:
-                                uid_hrv = item['uri']               ## TODO size and l_wrc list to all_hrv list
+                                uid_hrv = item['uri']               ## setting hrv also for warcs #TODO WARCS UIDS
                                 item['l_wrc'].append(filename)
                                 old_siz = item['size']
-                                item['size']= old_siz + size
+                                item['size'] = old_siz + size
+                                item['w_uri'].append(uri_clean)
 
                         #Setting from harvest and to harvest rec
                         #print("IPPPPPPPPPPPPPPPPPPPO ", grainery.d_hrv_help)
@@ -192,7 +197,7 @@ if __name__ == "__main__":
                     #Init warc rec object
                     objcon  = grainery.Container.app_rec(objcon,warcrec, size)
                     objtyp  = grainery.Type.app_rec(objtyp, warcrec)
-                    objpaths = grainery.Paths.app_rec(objpaths, dirname, uid_hrv)
+                    objpaths = grainery.Paths.app_rec(objpaths, dirname, uid_hrv) #uid warcs
                     objrev = grainery.Revision.app_rec(objrev,True,timenow_raw,hsh)
                     obj.container = objcon
                     obj.type = objtyp
@@ -214,9 +219,10 @@ print("\n ======== : : : : H A R V E S T S : : : :  ======== \n")
 i = 0
 for item in all_hrv:
     item.harvest['size'] = grainery.all_hrv_dict[i]['size']
-    #item.harvestUTI.filename = grainery.all_hrv_dict[i]['l_wrc'] # TODO filenames somewhere, or uris
     item.harvest['warcsNumber'] = len(grainery.all_hrv_dict[i]['l_wrc'])
+    item.upd_rec_hrv(grainery.all_hrv_dict[i]['w_uri'], grainery.all_hrv_dict[i]['l_wrc'])
     i += 1
+    pp.pprint(item.__dict__)
     print(item.harvest['harvestName'], ' :: size :: ', item.harvest['size'], ' :: :: ',item.harvest['warcsNumber'] , ' :: uri :: ', item.harvest['harvestId'])
 
 # Serialization and injection of harvests to MongoDB
