@@ -15,7 +15,12 @@ def index():
     df = dataframeFromColumn(cursor, column='harvest')
 
     # create new column only for year
-    df['year'] = df['date'].dt.year
+    df['year'] = df['date'].str.slice(0, 4)
+    roky = []
+    for x in df['year']:
+        roky.append(int(x))
+
+    df['year'] = roky
 
     # 1st plot
     #
@@ -37,15 +42,15 @@ def index():
     script3, div3 = sizeGrowth(wa_yearsize.index, size)
 
     # 4th
-    harvest_types = df['harvestType'].value_counts()
-    script4, div4 = typesPie(harvest_types)
+#    harvest_types = df['harvestType'].value_counts()
+#    script4, div4 = typesPie(harvest_types)
 
     return render_template('index.html',
                            last=lastImport(mongo.db.harvest),
                            script=script, div=div,
                            script2=script2, div2=div2,
                            script3=script3, div3=div3,
-                           script4=script4, div4=div4,
+                           #   script4=script4, div4=div4,
                            )
 
 
@@ -53,7 +58,7 @@ def index():
 def cdash():
     # 1st
     # TODO nahradit harvestID za ispartof?
-    agg_containers = [{"$group": {"_id": "$container.harvestID",
+    agg_containers = [{"$group": {"_id": "$container.isPartOf",
                                   "count": {"$sum": 1}
                                   }},
                       {'$sort': {'container.dateOfOrigin': 1}
