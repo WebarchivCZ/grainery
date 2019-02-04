@@ -60,9 +60,9 @@ V MongoDB potřebuje databázi _grainery_ a v ní tři kolekce: _harvest_, _cont
 Dalším krokem je vytvoření indexu pro full textové vyhledávání v kolekci harvest. Vytvoření indexu v Mongo shellu
 
 ```
-set db grainery
+use grainery
 
-db.harvest.createIndex( { "harvest.name": "text", "harvest.harvestID": "text" } )
+db.harvest.createIndex( { "harvest.harvestName": "text", "harvest.description": "text", "paths.harvestID": "text" } )
 ```
 Připojení aplikace k MongoDB se nastavuje v config souboru frontend/config/config.py (při první instalaci přepište config_default.py na config.py)
 
