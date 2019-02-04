@@ -1,7 +1,7 @@
 from os import path
 from flask import Flask, send_from_directory
 import config.config as cfg
-from views.functions import niceDate, niceSize
+from functions import niceDate, niceSize
 from views.harvests import hmod
 from views.search import smod
 from views.dashboard import dmod
