@@ -3,8 +3,8 @@
 {% block header %}{{harv.harvest.harvestName}}{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harv.paths.harvestID, page=0) }}">Get list of containers</a>
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Back</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.containers', harvestID=harv.paths.harvestID, page=0) }}">Get list of containers</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=0) }}">Back</a>
     </div>
 {% endblock %}
 {% block content %}

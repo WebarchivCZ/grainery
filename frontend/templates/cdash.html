@@ -9,7 +9,7 @@
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=0) }}">Browse</a>
     </div>
 {% endblock %}
 {% block content %}
@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td scope="row"> is part of </td>
-                                <td><a href="{{ url_for('harvests.harvest', id=last.paths.harvestID) }}">{{last.container.isPartOf}}</a></td>
+                                <td><a href="{{ url_for('browse.harvest', id=last.paths.harvestID) }}">{{last.container.isPartOf}}</a></td>
                             </tr>
                             <tr>
                                 <td scope="row"> harvestID </td>

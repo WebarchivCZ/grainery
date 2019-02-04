@@ -22,7 +22,7 @@
         <tbody>
             {% for x in results %}
                 <tr>
-                    <td><a href="{{ url_for('harvests.harvest', id=x.harvest.harvestID) }}">{{ x.harvest.harvestName }}</td>
+                    <td><a href="{{ url_for('browse.harvest', id=x.paths.harvestID) }}">{{ x.harvest.harvestName }}</td>
                     <td>{{ x.harvest.dateOfValidation }}</td>
                     <td>{{ x.harvest.operator }}</td>
                 </tr>
