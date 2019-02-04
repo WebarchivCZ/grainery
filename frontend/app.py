@@ -1,7 +1,8 @@
 from os import path
 from flask import Flask, send_from_directory
 import config.config as cfg
-from views.harvests import hmod
+from functions import niceDate, niceSize
+from views.browse import bmod
 from views.search import smod
 from views.dashboard import dmod
 
@@ -18,8 +19,11 @@ app.config.from_object(Configuration)
 # initialize mongodb object for queries
 cfg.mongo.init_app(app)
 
+app.jinja_env.filters['nicedate'] = niceDate
+app.jinja_env.filters['nicesize'] = niceSize
+
 # blueprints register
-app.register_blueprint(hmod)
+app.register_blueprint(bmod)
 app.register_blueprint(smod)
 app.register_blueprint(dmod)
 

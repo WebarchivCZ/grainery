@@ -1,60 +1,63 @@
 from flask import Blueprint, render_template
-from views.functions import paginationQuery
-from config.config import Config, mongo
+from views.data import Data
+from config.config import mongo
 
-hmod = Blueprint('harvests', __name__)
+bmod = Blueprint('browse', __name__)
 
 
-@hmod.route('/harvests/<page>')
+@bmod.route('/harvests/<page>')
 def harvests(page):
-    harvs = paginationQuery(mongo.db.harvest, int(page)-1)
+    data = Data(mongo.db.harvest)
+    harvs = data.paginationQuery(int(page) - 1)
 
     return render_template('harvests.html',
                            harvs=harvs[0],
-                           limit=Config.ROW_LIMIT,
+                           limit=data.limit,
                            page=int(page),
                            max=harvs[1])
 
 
-@hmod.route('/harvest/<id>')
+@bmod.route('/harvest/<id>')
 def harvest(id):
-    harv = mongo.db.harvest.find_one({'harvest.harvestID': id})
+    data = Data(mongo.db.harvest)
+    harv = data.collection.find_one({'paths.harvestID': id})
     return render_template('harvest.html', harv=harv)
 
 
-@hmod.route('/containers/<harvestID>/<page>')
+@bmod.route('/containers/<harvestID>/<page>')
 def containers(harvestID, page):
-    containers = paginationQuery(mongo.db.container,
-                                 int(page)-1,
-                                 cond={'container.harvestID': harvestID}
-                                 )
+    data = Data(mongo.db.container)
+    containers = data.paginationQuery(int(page) - 1,
+                                      cond={'paths.harvestID': harvestID}
+                                      )
 
     return render_template('containers.html',
                            harvestID=harvestID,
                            containers=containers[0],
-                           limit=Config.ROW_LIMIT,
+                           limit=data.limit,
                            page=int(page),
                            max=containers[1])
 
 
-@hmod.route('/container/<id>')
+@bmod.route('/container/<id>')
 def container(id):
-    container = mongo.db.container.find_one({'container.recordID': id})
+    container = mongo.db.container.find_one({'container.filename': id})
     return render_template('container.html', container=container)
 
 
-@hmod.route('/cdxs/<page>')
+@bmod.route('/cdxs/<page>')
 def cdxs(page):
-    indexes = paginationQuery(mongo.db.cdx, int(page)-1)
+    data = Data(mongo.db.cdx)
+    indexes = data.paginationQuery(int(page)-1)
 
     return render_template('cdxs.html',
                            cdxs=indexes[0],
-                           limit=Config.ROW_LIMIT,
+                           limit=data.limit,
                            page=int(page),
                            max=indexes[1])
 
 
-@hmod.route('/cdx/<id>')
+@bmod.route('/cdx/<id>')
 def cdx(id):
     indx = mongo.db.harvest.find_one({'cdx.md5': id})
     return render_template('cdx.html', indx=indx)

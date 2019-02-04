@@ -6,15 +6,18 @@ import re
 
 ## Variables
 
+version = 3.1                                       # Version of module itself
+
+
 # Definition of specific variables
-operator = "Zdenko Vozár"
-g_standard = "Grainery 0.35"
+operator = "Zdenko Vozár"                           # Operator of script
+g_standard = "Grainery 0.36"                        # Version of standard used here
+root = "/home/lindon/GIT/wa-dev/grainery/extarc"    # Root for your os walk your warcs, possible to change
 
 # Definition of general variables
 DEFAULT = "NA"
 T = "b" == "b"
 F = "a" == "b"
-root = "/home/lindon/Documents/NKCR/Webarchiv/WARCis"
 
 # Counters and dictionaries of objects
 n_wrc = 0
@@ -31,11 +34,13 @@ all_hrv_dict = []
 
 # To all_hrv
 class hrv_dict_r(dict):
-    def __init__(self, iPO, n_wrc, l_wrc, uri): #TODO priprav na duplicitne cesty
+    def __init__(self, iPO, n_wrc, l_wrc, uri, size, w_uri): #TODO priprav na duplicitne cesty
         self['name'] = iPO
         self['n_wrc'] = n_wrc
         self['l_wrc'] = l_wrc
         self['uri'] = uri
+        self['w_uri'] = w_uri
+        self['size'] = size
 
 
 ## Other functions
@@ -53,7 +58,7 @@ depr_cont = ['http-header-user-agent','description', 'http-header-from']
 depr_hrv = ['dateOfOrigin', 'status', 'date', 'harvestId']
 
 # ToSet
-toset_hrv = ['harvestName','size', 'harvestDuration', 'harvestId', 'date']
+toset_hrv = ['harvestName', 'harvestType','harvestSubtype', 'size', 'harvestDuration', 'harvestID', 'date', 'warcsNumber']
 
 # Case mapping to Grainary for warc export
 
@@ -87,7 +92,7 @@ def switch_wrc(warcdict):
 
 # Type Harvest
 
-class hrv(object):
+class Hrv(object):
     def __init__(self, datetime):
         self.recType = "harvest"
         self.author = operator
@@ -99,11 +104,18 @@ class hrv(object):
         self.commentaries = dict()
         self.paths = dict()
         self.revision = dict()
+    def upd_rec_hrv(self, size, wrc_n, uri, w_uri, uri_l):
+        self.harvest['size'] = size
+        self.harvest['warcsNumber'] = wrc_n
+        self.paths['warcID'] = w_uri
+        self.paths['warcFilenames'] = uri_l
+        self.paths['harvestID'] = uri
+        return self
 
 
 # Type Container
 
-class wrc(object):
+class Wrc(object):
     def __init__(self, datetime):
         self.recType = "container"
         self.author = operator
@@ -118,7 +130,7 @@ class wrc(object):
 
 # WARC container
 
-class container(dict):
+class Container(dict):
     def __init__(self):
         self['filename'] = DEFAULT
         self['warcID'] = DEFAULT
@@ -138,18 +150,21 @@ class container(dict):
             if key not in depr_cont:
                 self[key] = rec[key]
         self.update({'size': size})
-        a = re.sub("<|>","",self['warcID'])
-        self.update({'warcID':a})
+        uri_clean = re.sub("<|>","",self['warcID'])
+        self.update({'warcID':uri_clean})
         return self
+    def give_uri(self, uri_raw):    #Just new method ## TODO apply methods from core to all objects
+        uri_clean = re.sub("<|>", "", uri_raw)
+        return uri_clean
 
 # Harvest matrix
 
-class harvest(dict):
+class Harvest(dict):
     def __init__(self):   #TODO elements non validated, only through revision of all warc records, step CONSOLIDATION, verify folder, verify childrens, verify logs
         #self['harvestName'] = DEFAULT   #def down
         self['status'] = "NonValidated"
         self['date'] = DEFAULT
-        self['harvestId'] = DEFAULT
+        self['harvestID'] = DEFAULT
         self['description'] = DEFAULT
         self['operator'] = DEFAULT
         self['operator'] = DEFAULT
@@ -158,9 +173,11 @@ class harvest(dict):
         self['robots'] = DEFAULT
         self['http-header-user-agent'] = DEFAULT
         self['http-header-from'] = DEFAULT
-        #self['harvestType'] = DEFAULT #TODO regex, staci type
+        self['harvestType'] = DEFAULT
+        self['harvestSubtype'] = {}
         #self['harvestDuration'] = DEFAULT
-        #self['size'] = DEFAULT  #def down
+        self['size'] = DEFAULT
+        self['warcsNumber'] = DEFAULT
     def app_rec(self, hrv_name, rec, size, uuid):
         notregard = toset_hrv + depr_hrv
         for key, value in self.items():
@@ -169,8 +186,24 @@ class harvest(dict):
         self.update({'harvestName': hrv_name})
         self.update({'size': size})
         self.update({'harvestDuration': DEFAULT})
-        self.update({'harvestId' : uuid})
+        self.update({'harvestID' : uuid})
         self.update({'date':rec['dateOfOrigin']})
+        try:
+            a = re.compile("[0-9]{4}").split(hrv_name)
+            b = re.compile("[0-9]{2}").split(a[1])
+            type_coll = a[0].strip()
+            self.update({'harvestType' : type_coll})
+            subtype_coll = []
+            sbt_coll = b[1].split("_")
+            for sbt in sbt_coll:
+                subtype_coll.append(sbt.strip("-"))
+            self.update({'harvestSubtype': subtype_coll})
+
+        except:
+            self.update({'harvestType': traceback.print_exc(file=sys.stdout)})
+            self.update({'harvestSubtype': traceback.print_exc(file=sys.stdout)})
+            pass
+    #(1[A-Z])\w+
         return self
     def upd_size(self, size):
         self['size']+=size
@@ -178,7 +211,7 @@ class harvest(dict):
 
 # More info about logs crawl folder
 
-class harvestCrawl(dict):
+class HarvestCrawl(dict):
     def __init__(self):   #TODO, unzip, parse
         self['logs'] = DEFAULT
         self['path'] = "NonValidated"
@@ -201,7 +234,7 @@ class harvestCrawl(dict):
 
 # Type subclass
 
-class type(dict):
+class Type(dict):
     def __init__(self):
         self['format'] = DEFAULT
         self['conformsTo'] = DEFAULT
@@ -214,7 +247,7 @@ class type(dict):
 
 # Paths subclass
 
-class paths(dict):
+class Paths(dict):
     def __init__(self):
         self['storage'] = DEFAULT
         self['mount'] = DEFAULT
@@ -222,14 +255,16 @@ class paths(dict):
         self['LTP'] = DEFAULT
         self['harvestID'] = DEFAULT
         self['cdxID'] = DEFAULT
-    def app_rec(self, path):
+    def app_rec(self, path, uri):
         strp = str(path) #TODO split when system mount, add mount
-        self['pathToHarvest'] = strp
+        self['pathToHarvest'] = strp ##TODO tree
+        self['harvestID'] = uri
         return self
+    # for warcID, warcFilen see completation in Hrv class
 
 # Revision subclass
 
-class revision(dict):
+class Revision(dict):
     def __init__(self):
         self['dateOfValidation'] = DEFAULT
         self['statusOfValidation'] = DEFAULT #FIRST, FIRST-FAILED, VALIDATED, TOBEVALIDATED, FAILED
@@ -265,7 +300,7 @@ class revision(dict):
 
 # Commentaries subclass
 
-class commentaries(dict):
+class Commentaries(dict):
     def __init__(self):
         self['exists'] = F
         self['text'] = DEFAULT

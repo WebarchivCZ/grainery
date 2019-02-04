@@ -3,7 +3,7 @@
 {% block header %}List of containers{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvest', id=harvestID) }}">Back</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvest', id=harvestID) }}">Back</a>
     </div>
 {% endblock %}
 
@@ -15,16 +15,14 @@
                 <tr>
                   <th>Name</th>
                   <th>Date</th>
-                  <th>Record ID</th>
                 </tr>
               </thead>
         </thead>
         <tbody>
             {% for x in containers %}
                 <tr>
-                    <td><a href="{{ url_for('harvests.container', id=x.container.recordID) }}">{{ x.container.filename }}</td>
-                    <td>{{x.container.dateOfOrigin}}</td>
-                    <td>{{x.container.recordID}}</td>
+                    <td><a href="{{ url_for('browse.container', id=x.container.filename) }}">{{ x.container.filename }}</td>
+                    <td>{{x.container.dateOfOrigin|nicedate}}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -32,13 +30,13 @@
     <br />
     {% if (page)*limit >= limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harvestID, page=page-1) }}"> previous </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.containers', harvestID=harvestID, page=page-1) }}"> previous </a>
         </div>
     {% endif %}
 
     {% if (page-1)*limit < (max - limit) and max > limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.containers', harvestID=harvestID, page=page+1) }}"> next </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.containers', harvestID=harvestID, page=page+1) }}"> next </a>
         </div>
     {% endif %}
 </div>

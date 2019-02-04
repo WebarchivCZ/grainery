@@ -9,8 +9,8 @@
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse harvests</a>
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', page=0) }}">Browse indexes</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=0) }}">Browse harvests</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.cdxs', page=0) }}">Browse indexes</a>
     </div>
 {% endblock %}
 {% block content %}
@@ -25,23 +25,41 @@
         </ul><br>
         <div class="row">
             <div class="col-6 col-md-4">
-                <table class="table">
+                <table class="table table-responsive">
                     <h3>Last added harvest</h3>
                     <tbody>
                         <tr>
+                            <td scope="row"> harvest </td>
+                            <td><a href="{{ url_for('browse.harvest', id=last.paths.harvestID) }}"> {{last.harvest.harvestName}}</a></td>
+                        </tr>
+                        <tr>
                             <td scope="row"> import date </td>
-                            <td> {{last.date}} </td>
+                            <td> {{last.date|nicedate}} </td>
                         </tr>
                         <tr>
                             <td scope="row"> standard </td>
                             <td> {{last.standard}}</td>
                         </tr>
-                        {% for x in last.harvest %}
                         <tr>
-                            <td scope="row">{{x}}</td>
-                            <td> {{last.harvest[x]}}</td>
+                            <td scope="row"> harvestID </td>
+                            <td>{{last.paths.harvestID}}</td>
                         </tr>
-                        {% endfor %}
+                        <tr>
+                            <td scope="row"> status </td>
+                            <td> {{last.harvest.status}}</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> harvest date </td>
+                            <td> {{last.harvest.date|nicedate}}</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> size </td>
+                            <td> {{last.harvest.size|nicesize}}</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"> description </td>
+                            <td> {{last.harvest.description}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -68,13 +86,13 @@
             </div>
             </div>
 
-        <div class="row">
+    <!---    <div class="row">
             <div class="col-6">
                 <h3>Harvest types</h3>
                 {{ script4|safe }}
                 {{ div4|safe }}
             </div>
             <div class="col-6"><h3></h3></div>
-        </div>
+        </div> -->
     </div>
 {% endblock %}

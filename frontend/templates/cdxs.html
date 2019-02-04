@@ -29,13 +29,13 @@
     <br />
     {% if (page)*limit >= limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', harvestID=harvestID, page=page-1) }}"> previous </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.cdxs', harvestID=harvestID, page=page-1) }}"> previous </a>
         </div>
     {% endif %}
 
     {% if (page-1)*limit < (max - limit) and max > limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', harvestID=harvestID, page=page+1) }}"> next </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.cdxs', harvestID=harvestID, page=page+1) }}"> next </a>
         </div>
     {% endif %}
 </div>
