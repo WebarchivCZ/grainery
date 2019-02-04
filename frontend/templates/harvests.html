@@ -21,7 +21,7 @@
         <tbody>
             {% for x in harvs %}
                 <tr>
-                    <td><a href="{{ url_for('harvests.harvest', id=x.paths.harvestID) }}">{{ x.harvest.harvestName }}</td>
+                    <td><a href="{{ url_for('browse.harvest', id=x.paths.harvestID) }}">{{ x.harvest.harvestName }}</td>
                     <td>{{ x.harvest.date|nicedate('short') }}</td>
                     <td>{{ x.harvest.size|nicesize }}</td>
                 </tr>
@@ -31,13 +31,13 @@
     <br />
     {% if (page)*limit >= limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=page-1) }}"> previous </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=page-1) }}"> previous </a>
         </div>
     {% endif %}
 
     {% if (page-1)*limit < (max - limit) and max > limit %}
         <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=page+1) }}"> next </a>
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=page+1) }}"> next </a>
         </div>
     {% endif %}
 </div>

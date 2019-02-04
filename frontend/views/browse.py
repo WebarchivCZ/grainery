@@ -2,10 +2,10 @@ from flask import Blueprint, render_template
 from views.data import Data
 from config.config import mongo
 
-hmod = Blueprint('harvests', __name__)
+bmod = Blueprint('browse', __name__)
 
 
-@hmod.route('/harvests/<page>')
+@bmod.route('/harvests/<page>')
 def harvests(page):
     data = Data(mongo.db.harvest)
     harvs = data.paginationQuery(int(page) - 1)
@@ -17,14 +17,14 @@ def harvests(page):
                            max=harvs[1])
 
 
-@hmod.route('/harvest/<id>')
+@bmod.route('/harvest/<id>')
 def harvest(id):
     data = Data(mongo.db.harvest)
     harv = data.collection.find_one({'paths.harvestID': id})
     return render_template('harvest.html', harv=harv)
 
 
-@hmod.route('/containers/<harvestID>/<page>')
+@bmod.route('/containers/<harvestID>/<page>')
 def containers(harvestID, page):
     data = Data(mongo.db.container)
     containers = data.paginationQuery(int(page) - 1,
@@ -39,13 +39,13 @@ def containers(harvestID, page):
                            max=containers[1])
 
 
-@hmod.route('/container/<id>')
+@bmod.route('/container/<id>')
 def container(id):
     container = mongo.db.container.find_one({'container.filename': id})
     return render_template('container.html', container=container)
 
 
-@hmod.route('/cdxs/<page>')
+@bmod.route('/cdxs/<page>')
 def cdxs(page):
     data = Data(mongo.db.cdx)
     indexes = data.paginationQuery(int(page)-1)
@@ -57,7 +57,7 @@ def cdxs(page):
                            max=indexes[1])
 
 
-@hmod.route('/cdx/<id>')
+@bmod.route('/cdx/<id>')
 def cdx(id):
     indx = mongo.db.harvest.find_one({'cdx.md5': id})
     return render_template('cdx.html', indx=indx)

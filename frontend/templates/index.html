@@ -9,8 +9,8 @@
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
     <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.harvests', page=0) }}">Browse harvests</a>
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('harvests.cdxs', page=0) }}">Browse indexes</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.harvests', page=0) }}">Browse harvests</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('browse.cdxs', page=0) }}">Browse indexes</a>
     </div>
 {% endblock %}
 {% block content %}
@@ -30,7 +30,7 @@
                     <tbody>
                         <tr>
                             <td scope="row"> harvest </td>
-                            <td><a href="{{ url_for('harvests.harvest', id=last.paths.harvestID) }}"> {{last.harvest.harvestName}}</a></td>
+                            <td><a href="{{ url_for('browse.harvest', id=last.paths.harvestID) }}"> {{last.harvest.harvestName}}</a></td>
                         </tr>
                         <tr>
                             <td scope="row"> import date </td>
