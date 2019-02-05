@@ -6,7 +6,7 @@ import re
 
 ## Variables
 
-version = 3.1                                       # Version of module itself
+version = 3.3                                       # Version of module itself
 
 
 # Definition of specific variables
@@ -16,6 +16,7 @@ root = "/home/lindon/GIT/wa-dev/grainery/extarc"    # Root for your os walk your
 
 # Definition of general variables
 DEFAULT = "NA"
+DEFAULT_b = False
 T = "b" == "b"
 F = "a" == "b"
 
@@ -23,6 +24,7 @@ F = "a" == "b"
 n_wrc = 0
 n_wrc_abs = 0 #absolute number of objects
 n_cdx = 0
+n_cdx_abs = 0 #abslotue number of cdx
 n_hrv = 0
 d_wrc = {}
 d_hrv = defaultdict(int)
@@ -52,6 +54,19 @@ def timnow(time):
 
 
 ## Grainary 0.3
+
+# Format shell commands
+
+def shell_comm(filename, what):
+    if what == "head_cdx":
+        arg = "head -n 2 " + filename
+    else:
+        if what == "md5sum":
+            arg = "md5sum " + filename
+        else:
+            if what == "wc -l":
+                arg = "wc -l " + filename
+    return arg
 
 # Deprecated
 depr_cont = ['http-header-user-agent','description', 'http-header-from']
@@ -87,6 +102,23 @@ def switch_wrc(warcdict):
     #vallue = dic.get(liner[0], "Unmapped element of Grainery 0.28") #Definition with lambda
     return dict((dictwarcswitch[key], value) for (key, value) in warcdict.items())
 
+def switch_cdx(cdxdict):
+    dictwarcswitch = {
+        #after_spec in https://iipc.github.io/warc-specifications/specifications/cdx-format/cdx-2015/
+        "N": "massaged_url",
+        "b": "date",
+        "a": "original_url",
+        "m": "mime_type_original_document",
+        "s": "response_code",
+        "k": "new_style_checksum",
+        "r": "redirect",
+        "M": "meta_tags_AIF",
+        "S": "compressed_record_size",
+        "V": "compressed_arc_file_offset",
+        "g": "file_name",
+        "format_len": "columns",            # depr. settings crawlu
+    }
+    return dict((dictwarcswitch[key], value) for (key, value) in cdxdict.items())
 
 ## Defining leading objects types
 
@@ -126,7 +158,49 @@ class Wrc(object):
         self.paths = dict()
         self.revision = dict()
 
+# Type Container
+
+class Cdx(object):
+    def __init__(self, datetime):
+        self.recType = "cdx"
+        self.author = operator
+        self.date = datetime
+        self.standard = g_standard
+        self.cdx = dict()
+        self.paths = dict()
+        self.revision = dict()
+    def upd_rec_cdx(self, uri_l):
+        #self.cdx['exists'] = True
+        #self.cdx['columns'] = wrc_n
+        #self.cdx['lines'] = w_uri
+        self.paths['warcFilenames'] = uri_l
+        return self
+
 ## Defining unique objects sublasses and their methods
+
+# CDX record
+
+class Cdx_r(dict):
+    def __init__(self):
+        self['fileName'] = DEFAULT
+        self['warcName'] = DEFAULT
+        self['exists'] = DEFAULT_b
+        self['path'] = DEFAULT
+        self['md5'] = DEFAULT #TODO tobe deprecated, see Paths
+        self['size'] = DEFAULT
+        self['columns'] = DEFAULT
+        self['lines'] = DEFAULT
+        # self['version'] = DEFAULT # Depr
+    def upd_rec_cdx_m(self, filN, warcN, size, md5, cols, lines):
+        self['fileName'] = filN
+        self['warcName'] = warcN
+        self['exists'] = True
+        self['size'] = size
+        self['columns'] = cols
+        self['lines'] = lines
+        self['md5'] = md5
+        #TODO count?
+        return self
 
 # WARC container
 

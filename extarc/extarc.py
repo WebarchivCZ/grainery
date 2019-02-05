@@ -42,6 +42,7 @@ mongo = MongoClient()
 db = mongo.grainery # prod grainery
 collection_harvest = db.harvest
 collection_container = db.container
+collection_cdx = db.cdx
 
 
 
@@ -49,6 +50,16 @@ collection_container = db.container
 
 def jsonDefault(OrderedDict):
     return OrderedDict.__dict__
+
+def easy_shell(arg):
+    print(arg)
+    r = subprocess.Popen(arg, stdout=subprocess.PIPE, shell=True)
+    output, err = r.communicate()
+    output1 = output.split()[0].decode('utf-8')
+    print(output1, " , ", err)
+    return (err, output1)
+
+
 
 def read_warctop(arg): #update also for unfinished warcs
     warcrex = dict()
@@ -82,6 +93,49 @@ def read_warctop(arg): #update also for unfinished warcs
         #pp.pprint(warcrex2)
     return (rc, warcrex2)
 
+def read_cdxtop(arg): #TODO join with read_warctop
+    warcrex = dict()
+    r = subprocess.Popen(arg, stdout=subprocess.PIPE, shell=True)  # be aware tu run LOCALLY!!
+    line = 0
+    i = 0
+    while True:
+        output = r.stdout.readline().decode('utf-8')
+        if output == '' and r.poll() is not None:
+            break
+        if output:
+            output = output.strip()# Empty str
+            # Reading lines
+            if len(output) > 1 and line == 0:
+                liner = output.split(" ")  # NoMaxsplit
+                print(liner)
+                i=0
+                if "CDX" in liner[0]:  # Checking splitting  CDXform
+                    warcrex.update({"format_len": len(liner) - 1})  # cdx rec head
+            else:
+                if len(output) > 1 and line == 1:
+                    liner2 = output.split(" ")  # NoMaxsplit
+                    print(liner2)
+                    i = 0
+                    while i < len(liner2):
+                        warcrex.update({liner[i+1]:liner2[i]})
+                        i +=1
+        line += 1
+    pp.pprint(warcrex)
+    rc = r.poll()
+    if not bool(warcrex):
+        rc = 999
+        warcrex2 = {}
+    else:
+        try:
+            warcrex2 = grainery.switch_cdx(warcrex)  # Updating semantics via dict switch
+        except:
+            print("Exception in user code:")
+            print('-' * 30)
+            traceback.print_exc(file=sys.stdout)
+            print('-' * 30)
+        pp.pprint(warcrex2)
+    return (rc, warcrex2)
+
 def create_hash(arg): #update also for unfinished warcs
     argsl = shlex.split(arg)
     r = subprocess.Popen(argsl, stdout=subprocess.PIPE)  # be aware tu run LOCALLY!!
@@ -106,7 +160,7 @@ if __name__ == "__main__":
         for filename in files:
             # os.listdir(directory):
             record = ""
-            if filename.endswith(".warc.gz"):  ##TODO acc. also to unfinished warcs
+            if filename.endswith(".warc.gz"):  ##TODO acc. also to unfinished warcs, create switch
                 thefile = os.path.join(dirname, filename) #prefering absolute paths, cause od diff python pointers
                 grainery.n_wrc_abs+=1
                 warc_name=filename
@@ -205,11 +259,41 @@ if __name__ == "__main__":
                     obj.revision = objrev
 
                     #Serialization and injection of containers to Mongo DB
-                    # pp.pprint(obj.__dict__)
-                    #print(json.dumps(jsonDefault(obj), indent=4))
                     collection_container.insert_one(obj.__dict__)
                 else:
                     print("Bad reading, code : ", error)
+            if filename.endswith(".cdx"):  ##TODO up create switch function
+                thefile = os.path.join(dirname, filename)  # prefering absolute paths, cause od diff python pointers
+                grainery.n_cdx_abs += 1
+                cdx_name = filename
+                print("CDDDDDDDDDDDDX++++++++++    ", filename)
+
+                ## Generation of datas using shell commands
+                print(thefile)
+                print(filename)
+                (error, warcrec) = read_cdxtop(grainery.shell_comm(thefile, "head_cdx"))
+                (error_h, hsh) = create_hash(grainery.shell_comm(thefile, "md5sum"))
+                size = os.path.getsize(thefile)
+                count = 0
+                (error_wc, lines) = easy_shell(grainery.shell_comm(thefile, "wc -l"))  # vs depr. xreadlines
+
+                ## Creation of cdx rec, or simply adding new data to existing one
+                if error == 0:
+                    timenow = grainery.timnow(datetime.datetime.now())
+                    obj = grainery.Cdx(timenow)
+                    objcdx_r = grainery.Cdx_r()
+                    objpaths = grainery.Paths()
+                    objrev = grainery.Revision()
+                    objcdx_r.upd_rec_cdx_m(filename,warcrec['file_name'],size, hsh, warcrec['columns'], lines) #count, dodat?
+
+
+                    obj.cdx = objcdx_r
+                    obj.paths = objpaths
+                    obj.revision = objrev
+                    pp.pprint(obj.__dict__)
+
+                    #Serialization and injection of containers to Mongo DB
+                    collection_cdx.insert_one(obj.__dict__)
 
 ## Final procedures
 
