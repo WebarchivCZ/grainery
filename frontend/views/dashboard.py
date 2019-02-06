@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template
-import pandas as pd
 from config.config import mongo
 from views.data import DataHarvest, DataContainer
-from views.figures import Figures
+from views.figures import ContainerFigures, HarvestFigures
 
 dmod = Blueprint('dashboard', __name__)
 
@@ -10,26 +9,11 @@ dmod = Blueprint('dashboard', __name__)
 @dmod.route('/')
 def index():
     dh = DataHarvest(mongo.db.harvest)
+    gf = HarvestFigures(dh)
 
-    df = dh.dataframeFromColumn(column='harvest')
-    gf = Figures()
-
-    # create new column only for year
-    df['year'] = df['date'].str.slice(0, 4).astype(int)
-
-    # 1st plot
-    # data for first plot
-    harvest_counts = dh.harvestCounts(df['year'])
-
-    # Embed plot into HTML via Flask Render
-    script, div = gf.harvestPerYear(harvest_counts.index,
-                                    harvest_counts.values)
-    # 2nd
-    wa_yearsize = dh.yearSize(df)
-    script2, div2 = gf.sizePerYear(wa_yearsize.index, wa_yearsize.values)
-
-    # 3rd
-    script3, div3 = gf.sizeGrowth(wa_yearsize.index, dh.growth(wa_yearsize))
+    script, div = gf.harvestPerYear()
+    script2, div2 = gf.sizePerYear()
+    script3, div3 = gf.sizeGrowth()
 
     # 4th
 #    harvest_types = df['harvestType'].value_counts()
@@ -47,11 +31,9 @@ def index():
 @dmod.route('/dashboard-containers')
 def cdash():
     dc = DataContainer(mongo.db.container)
-    gf = Figures()
-    # 1st
-    df_containers = pd.DataFrame(list(r for r in dc.cursor))
+    gf = ContainerFigures(dc)
 
-    script, div = gf.containerCount(df_containers)
+    script, div = gf.containerCount()
 
     return render_template('cdash.html',
                            last=dc.lastImport(),

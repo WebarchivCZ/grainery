@@ -1,5 +1,6 @@
 from flask_pymongo import pymongo
 from config.config import Config
+from bitmath import Byte
 import pandas as pd
 
 
@@ -22,6 +23,17 @@ class Data():
 
         return (rows, rows.count())
 
+    def dataframeFromColumn(self, column):
+        """ Vytvoří vlastní dataframe ze sloupce, který obsahuje
+            dictionary  """
+        df = pd.DataFrame(list(self.cursor))
+        x = []
+
+        for row in df[column]:
+            x.append(row)
+
+        return pd.DataFrame(x)
+
 
 class DataHarvest(Data):
     """ specific data handlig for harvest """
@@ -29,17 +41,10 @@ class DataHarvest(Data):
     def __init__(self, collection, limit=Config.ROW_LIMIT):
         super().__init__(collection, limit)
         self.cursor = self.collection.find({}, {'harvest': True})
+        self.df = super().dataframeFromColumn('harvest')
 
-    def dataframeFromColumn(self, column):
-        """ Vytvoří vlastní dataframe ze sloupce, který obsahuje pouze
-            dictionary  """
-        df = pd.DataFrame(list(self.cursor))
-        listOfHarvests = []
-
-        for row in df[column]:
-            listOfHarvests.append(row)
-
-        return pd.DataFrame(listOfHarvests)
+        # create new column only for year
+        self.df['year'] = self.df['date'].str.slice(0, 4).astype(int)
 
     def lastImport(self):
         """Vrátí poslední vytvořený záznam v kolekci"""
@@ -59,11 +64,27 @@ class DataHarvest(Data):
 
     def harvestCounts(self, column):
         "vrátí počet sklizní za každý rok"
-        return column.value_counts().sort_index(ascending=True)
+        return self.df[column].value_counts().sort_index(ascending=True)
 
-    def yearSize(self, df):
-        "vrátí velikost sklizní za každý rok"
-        return df.groupby('year')['size'].sum()
+    def yearSize(self, unit='TB'):
+        """vrátí velikost sklizní za každý rok v jednotkách lidsky čitelných
+         a zároveň popis osy y"""
+
+        # musí se převést na float kvůli převodu jednotek níže
+        s = self.df.groupby('year')['size'].sum().astype('float')
+        y_axis_label = "Size in " + unit
+
+        # převádí jednotky z bytů na GB pomocí knihovny bitmath.
+        # Pokud je jiná vstupní musí se vyměnit funkce Byte() za adekvátní
+        # v případě jiné výstupní jednotky se mění atribut (TB, MB, atd.)
+        if unit == 'TB':
+            for i, v in s.items():
+                s[i] = float(Byte(s[i]).TB)
+        else:
+            for i, v in s.items():
+                s[i] = float(Byte(s[i]).GB)
+
+        return s, y_axis_label
 
     def growth(self, yearsize):
         "vrátí růst velikostí archivu po letech"
@@ -83,11 +104,12 @@ class DataContainer(Data):
         self.cursor = \
             self.collection.aggregate([{"$group":
                                         {"_id": "$container.isPartOf",
-                                         "count": {"$sum": 1}
-                                         }},
-                                       {'$sort':
-                                        {'container.dateOfOrigin': 1}
-                                        }])
+                                         "count": {"$sum": 1}}
+                                        },
+                                       {'$sort': {'container.dateOfOrigin': 1}
+                                        }
+                                       ])
+        self.df = pd.DataFrame(list(r for r in self.cursor))
 
     def lastImport(self):
         """Vrátí poslední vytvořený záznam v kolekci"""
