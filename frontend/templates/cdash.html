@@ -16,10 +16,10 @@
     <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="{{ url_for('dashboard.index') }}" role="tab" aria-controls="home" aria-selected="true">Harvests</a>
+                    <a class="nav-link" href="{{ url_for('dashboard.index') }}">Harvests</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="{{ url_for('dashboard.cdash') }}" role="tab" aria-controls="profile" aria-selected="false">Containers</a>
+                    <a class="nav-link active" href="{{ url_for('dashboard.cdash') }}">Containers</a>
                 </li>
             </ul><br>
             <div class="row">
