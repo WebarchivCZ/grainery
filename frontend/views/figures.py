@@ -5,11 +5,17 @@ from bokeh.palettes import Category20c
 from bokeh.transform import cumsum
 
 
-class Figures():
+class HarvestFigures():
     """ generate graphs with bokeh library"""
 
-    def harvestPerYear(self, x, y):
+    def __init__(self, data):
+        self.data = data
+
+    def harvestPerYear(self):
         """ vytvoření širšího lineárního plot grafu pro počet sklizní za rok"""
+        harvest_counts = self.data.harvestCounts('year')
+        x, y = harvest_counts.index, harvest_counts.values
+
         # create a new plot with a title, size and axis labels
         p = figure(title="Number of harvests per year",
                    plot_width=700,
@@ -30,15 +36,20 @@ class Figures():
 
         return components(p)
 
-    def sizePerYear(self, x, y):
+    def sizePerYear(self):
         """ vytvoření lineárního plot grafu pro velikost sklizní za rok"""
-        # TODO převést jednotky velikosti na TB nebo GB
+
+        # year size lze volat s TB nebo GB
+        yearsize, y_axis_label = self.data.yearSize('GB')
+
+        x, y = yearsize.index, yearsize.values
+
         # create a new plot with a title, size and axis labels
         p = figure(title="Size of archive per year",
                    plot_width=500,
                    plot_height=450,
                    x_axis_label='Year',
-                   y_axis_label='Size',
+                   y_axis_label=y_axis_label,
                    tooltips=[('year', '@x'), ('size', '@top')]
                    )
 
@@ -53,14 +64,18 @@ class Figures():
 
         return components(p)
 
-    def sizeGrowth(self, x, y):
+    def sizeGrowth(self):
         """ vytvoření grafu s nárůstem velikost"""
+        yearsize, y_axis_label = self.data.yearSize('GB')
+        x = yearsize.index
+        y = self.data.growth(yearsize)
+
         # create a new plot with a title, size and axis labels
         p = figure(title="Archive Growth",
                    plot_width=500,
                    plot_height=450,
                    x_axis_label='Year',
-                   y_axis_label='Size',
+                   y_axis_label=y_axis_label,
                    tooltips=[('size', '@y')]
                    )
 
@@ -97,12 +112,17 @@ class Figures():
 
         return components(p)
 
-    def containerCount(self, df):
+
+class ContainerFigures():
+    def __init__(self, data):
+        self.data = data
+
+    def containerCount(self):
         """ vytvoření bodového grafu pro počet kontejnerů na sklizeň"""
-        source = ColumnDataSource(df)
+        source = ColumnDataSource(self.data.df)
 
         p = figure(title="Number of containers per harvest",
-                   x_range=df['_id'],
+                   x_range=self.data.df['_id'],
                    plot_width=700,
                    plot_height=450,
                    x_axis_label='Harvests (ordered by date)',
@@ -115,6 +135,9 @@ class Figures():
 
         p.xaxis.major_label_orientation = 1
         p.y_range.start = 0
+        p.yaxis.ticker = list(range(self.data.df['count'].min(),
+                                    self.data.df['count'].max()+1,
+                                    1))
         p.toolbar.autohide = True
 
         return components(p)

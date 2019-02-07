@@ -1,42 +1,42 @@
-# fill and rename file to config.py
 from flask_pymongo import PyMongo
 mongo = PyMongo()
 
 
 class Config(object):
-    # basic security settings
-    DEBUG = False
+    # database settings
 
-    # app settings
-    ROW_LIMIT = 50
-
-    # mongodb connection settings
-    DBNAME = ''
-    HOST = ''
+    # mongo connection settings
+    DBNAME = 'grainery'
     PORT = '27017'
+    HOST = ''
 
-
-class ProductionConfig(Config):
-    # mongodb user credentials for production run
+    # mongodb user credentials
     USERNAME = ''
     PASSWORD = ''
-    MONGO_URI = ('mongodb://'
-                 + USERNAME
-                 + ':'
-                 + PASSWORD
-                 + '@'
-                 + Config.HOST
-                 + ':'
-                 + Config.PORT
-                 + '/'
-                 + Config.DBNAME)
 
+    # app parameters settings
+    # debug mode, for production run should be false
+    DEBUG = False
 
-class DevelopmentConfig(Config):
-    DEBUG = True
-    MONGO_URI = ('mongodb://'
-                 + Config.HOST
-                 + ':'
-                 + Config.PORT
-                 + '/'
-                 + Config.DBNAME)
+    # number of rows in tables
+    ROW_LIMIT = 50
+
+    # creating mongo URI
+    if USERNAME != '' and PASSWORD != '':
+        MONGO_URI = ('mongodb://'
+                     + USERNAME
+                     + ':'
+                     + PASSWORD
+                     + '@'
+                     + HOST
+                     + ':'
+                     + PORT
+                     + '/'
+                     + DBNAME)
+    else:
+        MONGO_URI = ('mongodb://'
+                     + HOST
+                     + ':'
+                     + PORT
+                     + '/'
+                     + DBNAME)
