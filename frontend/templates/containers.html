@@ -13,8 +13,10 @@
         <thead>
              <thead>
                 <tr>
+                {% if max != 0 %}
                   <th>Name</th>
                   <th>Date</th>
+                {% else %}There is no containers.{%endif %}
                 </tr>
               </thead>
         </thead>
