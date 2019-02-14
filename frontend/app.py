@@ -24,7 +24,7 @@ if not configuration.DEBUG:
             mkdir('logs')
         except Exception:
             print("Missing directory /logs and creation failed."
-                  " For more information see"
+                  "Logging is off. For more information see"
                   "https://github.com/WebarchivCZ/grainery/wiki/")
     else:
         file_handler.setLevel(WARNING)
