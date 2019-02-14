@@ -12,9 +12,11 @@
         <thead>
              <thead>
                 <tr>
+                {% if max != 0 %}
                   <th>Name</th>
                   <th>Date</th>
                   <th>Size</th>
+                {% else %}There is no harvests yet.{%endif %}
                 </tr>
               </thead>
         </thead>

@@ -1,10 +1,12 @@
 {% extends "layouts/main.html" %}
 {% block title %}Webarchiv.cz - grainery{% endblock %}
 {% block custom_links %}
-<link href="http://cdn.pydata.org/bokeh/release/bokeh-1.0.1.min.css" rel="stylesheet" type="text/css">
-<link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.1.min.css" rel="stylesheet" type="text/css">
-<script src="http://cdn.pydata.org/bokeh/release/bokeh-1.0.1.min.js"></script>
-<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.1.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bokeh-1.0.4.min.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bokeh-widgets-1.0.4.min.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bokeh-tables-1.0.4.min.css') }}" />
+<script src="{{ url_for('static', filename='js/bokeh-1.0.4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bokeh-widgets-1.0.4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bokeh-tables-1.0.4.min.js') }}"></script>
 {% endblock %}
 {% block header %}Dashboard{% endblock %}
 {% block buttons %}
