@@ -11,6 +11,10 @@ class Data():
         self.limit = limit
         self.collection = collection
 
+    def fullQuery(self, cond):
+        """vrátí všechny záznamy v kolekci"""
+        return self.collection.find({}, {'_id': 0})
+
     def paginationQuery(self, page, cond={}):
         """Vrátí stanovený počet řádků (limit) a přeskočí jich o offset
         (pouze pokud je offset vyšší než nula) a celkový počet řádků """
@@ -33,6 +37,11 @@ class Data():
             x.append(row)
 
         return pd.DataFrame(x)
+
+    def oneQuery(self, id):
+        """Vrátí jeden záznam z kolekce na základě id.
+        ID je ve formě celé podmínky(dictionary) """
+        return self.collection.find_one(id)
 
 
 class DataHarvest(Data):
@@ -95,6 +104,23 @@ class DataHarvest(Data):
 
         return size
 
+    def listQuery(self, cond={}):
+        """vrátí seznam všech záznamů v kolekci ve zkrácené formě"""
+
+        # TODO vybrat zobrazená pole dle dat z produkce
+        return self.collection.find(cond, {
+            '_id': 0,
+            'paths.harvestID': True,
+            'harvest.harvestName': True,
+            'harvest.date': True,
+        })
+
+    def oneQuery(self, id):
+        """Vrátí jeden záznam z kolekce na základě id.
+        ID je ve formě celé podmínky(dictionary) - bez _id"""
+        return self.collection.find_one({'paths.harvestID': id},
+                                        {'_id': 0})
+
 
 class DataContainer(Data):
     """ specific data handlig for container """
@@ -127,6 +153,22 @@ class DataContainer(Data):
         return self.collection.find_one({}, query,
                                         sort=[('_id', pymongo.DESCENDING)]
                                         )
+
+    def listQuery(self, harvestID):
+        """vrátí seznam všech záznamů v kolekci patřící k určitě sklizni
+        ve zkrácené formě"""
+
+        # TODO vybrat zobrazená pole dle dat z produkce
+        return self.collection.find({'paths.harvestID': harvestID},
+                                    {'_id': 0,
+                                     'container.filename': True,
+                                     })
+
+    def oneQuery(self, id):
+        """Vrátí jeden záznam z kolekce na základě id.
+        ID je ve formě celé podmínky(dictionary) - bez _id"""
+        return self.collection.find_one({'container.filename': id},
+                                        {'_id': 0})
 
 
 class dataCdx(Data):

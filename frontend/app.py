@@ -1,8 +1,10 @@
 from os import path, mkdir
 from flask import Flask, send_from_directory
+from flask_restful import Api
 from logging import FileHandler, WARNING
 from functions import niceDate, niceSize
 from config.config import Config, mongo
+from views.api import Harvests, Harvest, Containers, Container
 from views.browse import bmod
 from views.search import smod
 from views.dashboard import dmod
@@ -45,6 +47,13 @@ app.register_blueprint(bmod)
 app.register_blueprint(smod)
 app.register_blueprint(dmod)
 
+# api definition
+api = Api(app)
+api.add_resource(Harvests, '/api/harvests')
+api.add_resource(Harvest, '/api/harvest/<string:id>')
+api.add_resource(Containers, '/api/containers/<string:harvestID>')
+api.add_resource(Container, '/api/container/<string:id>')
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -53,6 +62,17 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon'
                                )
 
+
+'''@app.route('/api/harv')
+def apijson():
+    h = DataHarvest(mongo.db.harvest)
+    json_docs = []
+
+    for doc in h.fullQuery():
+        json_doc = json.dumps(doc, default=json_util.default)
+        json_docs.append(json_doc)
+
+    return jsonify(json_docs)'''
 
 if __name__ == '__main__':
     app.run()
