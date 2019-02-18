@@ -21,6 +21,9 @@ class Config(object):
     # number of rows in tables
     ROW_LIMIT = 50
 
+    # nastavení kodování pro json výstup v UTF8
+    JSON_AS_ASCII = False
+
     # creating mongo URI
     if USERNAME != '' and PASSWORD != '':
         MONGO_URI = ('mongodb://'
