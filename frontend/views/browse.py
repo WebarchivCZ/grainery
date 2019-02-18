@@ -20,8 +20,8 @@ def harvests(page):
 @bmod.route('/harvest/<id>')
 def harvest(id):
     data = Data(mongo.db.harvest)
-    harv = data.collection.find_one({'paths.harvestID': id})
-    return render_template('harvest.html', harv=harv)
+    return render_template('harvest.html',
+                           harv=data.oneQuery({'paths.harvestID': id}))
 
 
 @bmod.route('/containers/<harvestID>/<page>')
@@ -41,8 +41,9 @@ def containers(harvestID, page):
 
 @bmod.route('/container/<id>')
 def container(id):
-    container = mongo.db.container.find_one({'container.filename': id})
-    return render_template('container.html', container=container)
+    d = Data(mongo.db.container)
+    return render_template('container.html',
+                           container=d.oneQuery({'container.filename': id}))
 
 
 @bmod.route('/cdxs/<page>')
