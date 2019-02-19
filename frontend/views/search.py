@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from datetime import datetime
-from config.config import mongo
+from config.config import mongo, Config
+from flask_pymongo import pymongo
 
 smod = Blueprint('search', __name__)
 
@@ -13,14 +14,15 @@ def logSearch(query):
     stejně jako u ostatních logů. Grainery se jí pokusí vytvořit již
     při startu aplikace, tak to nemusí zkoušet zde."""
     try:
-        f = open('logs/searchlog.txt', 'a+')
+        f = open(Config.LOG_PATH + '/searchlog.txt', 'a+')
+        print(Config.LOG_PATH + 'searchlog.txt')
     except FileNotFoundError:
         print("Missing directory /logs "
-              "Search logging is off. For more information see"
+              "Search logging is off. For more information see "
               "https://github.com/WebarchivCZ/grainery/wiki/")
         return
     except PermissionError as e:
-        print(str(e) + " Search logging is off. For more information see"
+        print(str(e) + " Search logging is off. For more information see "
               "https://github.com/WebarchivCZ/grainery/wiki/")
         return
 
@@ -38,22 +40,29 @@ def search():
     # db.harvest.createIndex( { "harvest.harvestName": "text",
     #                           "harvest.description": "text",
     #                           "paths.harvestID": "text" } )
-    if request.method == 'POST':
-        query = request.form['query']
-        logSearch(query)
 
-        results = mongo.db.harvest.find(
-            {
-                '$text': {'$search': query}
-            },
-            {
-                'paths.harvestID': True,
-                'harvest.harvestName': True,
-                'harvest.date': True,
-                'harvest.operator': True
-            }
-        )
+    query = request.form['query']
+    logSearch(query)
 
-        return render_template('search.html', results=results, query=query)
-    else:
-        return render_template('index.html')
+    results = mongo.db.harvest.find(
+        {
+            '$text': {'$search': query}
+        },
+        {
+            'paths.harvestID': True,
+            'harvest.harvestName': True,
+            'harvest.date': True,
+            'harvest.operator': True
+        }
+    )
+
+    try:
+        return render_template('search.html', results=results,
+                               query=query, length=results.count())
+    # odchycení chyby, když je při instalaci zapomenuto na vytvoření indexu
+    except pymongo.errors.OperationFailure:
+        error = ("No fulltext index is set."
+                 "See https://github.com/WebarchivCZ/grainery/wiki/")
+
+        return render_template('search.html', results={},
+                               query=query, error=error)

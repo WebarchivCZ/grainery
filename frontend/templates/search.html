@@ -13,9 +13,15 @@
         <thead>
              <thead>
                 <tr>
+                {% if error is defined %}
+                <th>{{error}}</th>
+                {% elif length == 0 %}
+                <th>No results for {{query}}</th>
+                {% else %}
                   <th>Name</th>
                   <th>Date</th>
                   <th>Operator</th>
+                 {% endif %}
                 </tr>
               </thead>
         </thead>
@@ -23,7 +29,7 @@
             {% for x in results %}
                 <tr>
                     <td><a href="{{ url_for('browse.harvest', id=x.paths.harvestID) }}">{{ x.harvest.harvestName }}</td>
-                    <td>{{ x.harvest.dateOfValidation }}</td>
+                    <td>{{ x.harvest.date|nicedate }}</td>
                     <td>{{ x.harvest.operator }}</td>
                 </tr>
             {% endfor %}
