@@ -3,8 +3,24 @@ mongo = PyMongo()
 
 
 class Config(object):
-    # database settings
+    """class where is stored essential setting for application """
+    # app parameters settings:
+    # debug mode, for production run should be false
+    DEBUG = False
 
+    # number of rows in tables
+    ROW_LIMIT = 50
+
+    # path to logs directory depends where the application is running
+    # if is running directly from frontend directory,
+    # the path should be just /logs
+    # if it's running from grainery/frontend it should be frontend/logs, etc.
+    LOG_PATH = 'frontend/logs'
+
+    # JSON output in UTF8 (mandatory for czech language)
+    JSON_AS_ASCII = False
+
+    # database settings:
     # mongo connection settings
     DBNAME = 'grainery'
     PORT = '27017'
@@ -13,16 +29,6 @@ class Config(object):
     # mongodb user credentials
     USERNAME = ''
     PASSWORD = ''
-
-    # app parameters settings
-    # debug mode, for production run should be false
-    DEBUG = False
-
-    # number of rows in tables
-    ROW_LIMIT = 50
-
-    # nastavení kodování pro json výstup v UTF8
-    JSON_AS_ASCII = False
 
     # creating mongo URI
     if USERNAME != '' and PASSWORD != '':
