@@ -14,8 +14,9 @@ def logSearch(query):
     stejně jako u ostatních logů. Grainery se jí pokusí vytvořit již
     při startu aplikace, tak to nemusí zkoušet zde."""
     try:
-        f = open(Config.LOG_PATH + '/searchlog.txt', 'a+')
-        print(Config.LOG_PATH + 'searchlog.txt')
+        with open(Config.LOG_PATH + '/searchlog.txt', 'a') as f:
+            date = datetime.now().strftime('%d.%m.%Y %H:%M:%S')
+            f.write(f'"{query}";"{date}"\n')
     except FileNotFoundError:
         print("Missing directory /logs "
               "Search logging is off. For more information see "
@@ -25,10 +26,6 @@ def logSearch(query):
         print(str(e) + " Search logging is off. For more information see "
               "https://github.com/WebarchivCZ/grainery/wiki/")
         return
-
-    date = datetime.now().strftime('%d.%m.%Y %H:%M:%S')
-    f.write(f'"{query}";"{date}"\n')
-    f.close()
 
 
 @smod.route('/search', methods=['POST'])
