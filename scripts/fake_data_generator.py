@@ -84,7 +84,7 @@ for i in range(randint(10, 20)):
                 "path": harvest_path,
                 "filename": harvest_file
             },
-            "path": {
+            "paths": {
                 "mount": "NA",
                 "harvestID": harvest_ID,
                 "pathToHarvest": "NA",
@@ -181,7 +181,7 @@ for i in range(randint(10, 20)):
                     "software": container_software,
                     "size": container_size
                 },
-                "path": {
+                "paths": {
                     "mount": "NA",
                     "harvestID": container_harvestID,
                     "pathToHarvest": "NA",
