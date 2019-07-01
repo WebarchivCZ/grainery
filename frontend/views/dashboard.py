@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
+
 from config.config import mongo
-from views.data import DataHarvest, DataContainer
+from views.data import DataContainer, DataHarvest
 from views.figures import ContainerFigures, HarvestFigures
 
 dmod = Blueprint('dashboard', __name__)

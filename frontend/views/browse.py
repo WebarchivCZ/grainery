@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
-from views.data import Data
+
 from config.config import mongo
+from views.data import Data
 
 bmod = Blueprint('browse', __name__)
 

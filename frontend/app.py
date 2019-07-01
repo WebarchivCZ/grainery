@@ -1,13 +1,15 @@
-from os import path, mkdir
-from flask import Flask, send_from_directory, render_template
-from flask_restful import Api
-from logging import FileHandler, WARNING
-from functions import niceDate, niceSize
+from logging import WARNING, FileHandler
+from os import mkdir, path
+
+from flask import Flask, render_template, send_from_directory
+
 from config.config import Config, mongo
-from views.api import Harvests, Harvest, Containers, Container
+from flask_restful import Api
+from functions import niceDate, niceSize
+from views.api import Container, Containers, Harvest, Harvests
 from views.browse import bmod
-from views.search import smod
 from views.dashboard import dmod
+from views.search import smod
 
 # create object with configuration
 configuration = Config()

@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request
 from datetime import datetime
-from config.config import mongo, Config
+
+from flask import Blueprint, render_template, request
+
+from config.config import Config, mongo
 from flask_pymongo import pymongo
 
 smod = Blueprint('search', __name__)

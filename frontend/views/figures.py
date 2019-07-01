@@ -1,7 +1,8 @@
 from math import pi
+
 from bokeh.embed import components
-from bokeh.plotting import figure, ColumnDataSource
 from bokeh.palettes import Category20c
+from bokeh.plotting import ColumnDataSource, figure
 from bokeh.transform import cumsum
 
 

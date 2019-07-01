@@ -1,7 +1,8 @@
-from flask_restful import Resource
 from flask import jsonify
-from views.data import DataHarvest, DataContainer
+
 from config.config import mongo
+from flask_restful import Resource
+from views.data import DataContainer, DataHarvest
 
 
 class Harvests(Resource):
