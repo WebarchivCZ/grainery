@@ -1,7 +1,7 @@
-from flask_pymongo import pymongo
-from config.config import Config
-from bitmath import Byte
 import pandas as pd
+from bitmath import Byte
+from config.config import Config
+from flask_pymongo import pymongo
 
 
 class Data():
@@ -53,7 +53,7 @@ class DataHarvest(Data):
         self.df = super().dataframeFromColumn('harvest')
 
         # create new column only for year
-        self.df['year'] = self.df['date'].str.slice(0, 4).astype(int)
+        self.df['year'] = self.df['date'].dt.year.astype(int)
 
     def lastImport(self):
         """Vrátí poslední vytvořený záznam v kolekci"""

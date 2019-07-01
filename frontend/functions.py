@@ -1,5 +1,6 @@
 from datetime import datetime
-from bitmath import Byte, Bit, SI
+
+from bitmath import SI, Bit, Byte
 
 # funkce pro hezčí zobrazování parametrů, každá funkce musí být deklarována
 # v souboru app.py, tak aby na ni šlo dosáhnout i z templatů (jinja2)
@@ -14,15 +15,16 @@ def niceDate(string, form='long'):
     if string == 'NA':
         return 'NA'
 
-    if string[-1] == 'Z':
-        date = datetime.fromisoformat(string[:-1])
-    else:
-        date = datetime.fromisoformat(string)
+    if type(string) is str:
+        if string[-1] == 'Z':
+            string = datetime.fromisoformat(string[:-1])
+        else:
+            string = datetime.fromisoformat(string)
 
     if form == 'long':
-        return date.strftime("%d.%m.%Y %H:%M:%S")
+        return string.strftime("%d.%m.%Y %H:%M:%S")
     elif form == 'short':
-        return date.strftime("%d.%m.%Y")
+        return string.strftime("%d.%m.%Y")
 
 
 def niceSize(size, unit='Byte'):
