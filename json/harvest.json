@@ -7,7 +7,7 @@
   "harvest": {
     "harvestNameFull": "Serials-2019-02-1M_2M_CUNI_OneShot_ArchiveIT1834q_",
     "harvestType": "Serials",
-    "harvestSuffix": "1M, 2M, ArchiveIt, OneShot, T-Cuni",
+    "harvestSuffix": ["1M", "2M", "ArchiveIt", "OneShot", "T-Cuni"],
     "harvestID": "b7d01599-a751-4ce7-bc25-28cf1ced59ae",
     "date": "2017-09-09T19:50:00.000Z",
     "size": 9486722,
