@@ -1,31 +1,38 @@
-{   "author": "Zdenko Vozár",
-    "container": {   "contentLength": "1562",
-                     "dateOfOrigin": "2018-03-07T20:36:56Z",
-                     "filename": "Serials-2018-03-1M_2M_CUNI-crawler00_-20180307203656265-00743-28769~crawler00.webarchiv.cz~7778.warc.gz",
-                     "hostname": "crawler00.webarchiv.cz",
-                     "ip": "10.10.0.202",
-                     "isPartOf": "Serials 2018-03-1M_2M_CUNI",
-                     "operator": "Zdenko Vozár",
-                     "robots": "ignore",
-                     "size": 574,
-                     "software": "Heritrix/3.2.0 http://crawler.archive.org",
-                     "warcID": "urn:uuid:1ee94bfa-9591-4e1f-bddd-fba317dac15f"},
-    "date": "2018-11-29T21:28:19Z",
-    "paths": {   "LTP": "NA",
-                 "cdxID": "NA",
-                 "harvestID": "NA",
-                 "mount": "NA",
-                 "pathToHarvest": "/home/lindon/Documents/NKCR/Webarchiv/WARCis/inyFold",
-                 "storage": "NA"},
-    "recType": "container",
-    "revision": {   "dateOfValidation": "2018-11-29T21:28:19Z",
-                    "hashLast": "NA",
-                    "hashOrig": "47d9b5ec17037f6696520ea2393dc1d7",
-                    "nextLastDateOfValidation": "2020-11-28T21:28:19Z",
-                    "statusOfValidation": "FIRST"},
-    "standard": "Grainery 0.35",
-    "type": {   "conformsTo": "http://bibnum.bnf.fr/WARC/WARC_ISO_28500_version1_latestdraft.pdf",
-                "format": "WARC File Format 1.0",
-                "mimetypeXML": "application/warc-fields",
-                "warcType": "warcinfo"}
+{
+  "_id": "5dc998d9c4522b7856397abc",
+  "recType": "container",
+  "author": "NKCR",
+  "date": "2019-11-11T18:22:33.634Z",
+  "standard": "Grainery 0.35",
+  "container": {
+    "filename": "V1M_2017-09-09-crawler00.webarchiv.cz-warc.gz",
+    "warcID": "692c5cfe-d424-42b6-a729-cd5d61d1e50d",
+    "isPartOf": "V1M_2017-09-09",
+    "hostname": "crawler00.webarchiv.cz",
+    "ip": "10.3.0.23",
+    "contentLength": 1018,
+    "operator": "Zdenko Vozar",
+    "publisher": "Narodni knihovna CR",
+    "audience": "Narodni knihovna CR users",
+    "robots": "ignore",
+    "dateOfOrigin": "2017-09-09T15:37:43.000Z",
+    "software": "Heritrix/3.2.0 http://crawler.archive.org",
+    "size": 1118
+  },
+  "path": {
+    "harvestID": "b7d01599-a751-4ce7-bc25-28cf1ced59ae"
+  },
+  "type": {
+    "format": "WARC File Format 1.0",
+    "warcType": "warcinfo",
+    "conformsTo": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/",
+    "mimeTypeXML": "application/warc"
+  },
+  "revision": {
+    "dateOfValidation": "2019-11-18T18:22:33.634Z",
+    "statusOfValidation": true,
+    "nextLastDateValidation": "2021-11-17T18:22:33.634Z",
+    "hashOrigin": "dd642ee10304fe2652fb4c199e33fb86",
+    "hastLast": "NA"
+  }
 }

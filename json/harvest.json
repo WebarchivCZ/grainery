@@ -1,33 +1,33 @@
-{   "author": "Zdenko Vozár",
-    "commentaries": {"exists": "False", "text": "NA"},
-    "date": "2018-11-29T21:28:19Z",
-    "harvest": {   "audience": "Webarchiv.cz Users",
-                   "date": "2018-03-07T20:36:56Z",
-                   "description": "Výberová sklize? webov",
-                   "harvestDuration": "NA",
-                   "harvestId": "ca9d469a-f26d-536b-a67b-d25a31dbad0f",
-                   "harvestName": "Serials 2018-03-1M_2M_CUNI",
-                   "http-header-from": "webarchiv@nkp.cz",
-                   "http-header-user-agent": "Mozilla/5.0 (compatible; "
-                                             "heritrix/3.2.0 "
-                                             "+http://webarchiv.cz/kontakty/)",
-                   "operator": "Zdenko Vozár",
-                   "publisher": "National Library of the Czech Republic - "
-                                "Webarchiv.cz",
-                   "robots": "ignore",
-                   "size": 574,
-                   "status": "NonValidated"},
-    "harvestCrawl": {"filename": "NA", "logs": "NA", "path": "NonValidated"},
-    "paths": {   "LTP": "NA",
-                 "cdxID": "NA",
-                 "harvestID": "NA",
-                 "mount": "NA",
-                 "pathToHarvest": "NA",
-                 "storage": "NA"},
-    "recType": "harvest",
-    "revision": {   "dateOfValidation": "NA",
-                    "hashLast": "NA",
-                    "hashOrig": "NA",
-                    "nextLastDateOfValidation": "NA",
-                    "statusOfValidation": "NA"},
-    "standard": "Grainery 0.35"}
+{
+  "_id": "5dc998d9c4522b7856397abb",
+  "recType": "harvest",
+  "author": "NKCR",
+  "date": "2019-11-11T18:22:33.631Z",
+  "standard": "Grainery 0.35",
+  "harvest": {
+    "harvestNameFull": "Serials-2019-02-1M_2M_CUNI_OneShot_ArchiveIT1834q_",
+    "harvestType": "Serials",
+    "harvestSuffix": "1M, 2M, ArchiveIt, OneShot, T-Cuni",
+    "harvestID": "b7d01599-a751-4ce7-bc25-28cf1ced59ae",
+    "date": "2017-09-09T19:50:00.000Z",
+    "size": 9486722,
+    "operator": "Zdenko Vozar",
+    "publisher": "National Library of the Czech Republic - Webarchiv.cz",
+    "robots": "ignore",
+    "http-header-from": "Mozilla/5.0 (compatible; heritrix/3.2.0 http://webarchiv.cz/kontakty/...",
+    "status": "NonValidated"
+  },
+  "harvestCrawl": {
+    "logs": true,
+    "path": "logs/crawl",
+    "filename": ["crawler00.tar.gz", "crawler01.tar.gz", "crawler03.tar.gz"]
+  },
+  "revision": {
+    "dateOfValidation": "2019-11-22T18:22:33.631Z",
+    "nextLastDateOfValidation": "2021-11-21T18:22:33.631Z",
+    "hashLast": "NA",
+    "hashOrig": "NA",
+    "statusOfValidation": "NA"
+  },
+  "commentaries": { "exists": false, "text": "NA" }
+}

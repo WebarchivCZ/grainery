@@ -1,0 +1,23 @@
+{
+  "_id": "5dc998d9c4522b7856397abd",
+  "recType": "container",
+  "author": "NKCR",
+  "date": "2019-11-11T18:22:33.634Z",
+  "standard": "Grainery 0.35",
+  "cdx": {
+    "exists": true,
+    "path": "./logs/index/V1M_2017-09-09-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
+    "md5": "64fbb7f912b6e8b05429b81c75d05109",
+    "size": 168,
+    "columns": 9,
+    "lines": 379220,
+    "version": "openwayback 1.2"
+  },
+  "revision": {
+    "dateOfValidation": "2019-11-18T18:22:33.634Z",
+    "statusOfValidation": true,
+    "nextLastDateValidation": "2021-11-17T18:22:33.634Z",
+    "hashOrigin": "dd642ee10304fe2652fb4c199e33fb86",
+    "hastLast": "NA"
+  }
+}
