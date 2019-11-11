@@ -19,4 +19,4 @@ pytz==2018.9
 PyYAML==4.2b1
 six==1.12.0
 tornado==5.1.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
