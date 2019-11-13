@@ -9,6 +9,7 @@ mongo = MongoClient()
 db = mongo.grainery
 collection_harvest = db.harvest
 collection_container = db.container
+collection_cdx = db.cdx
 
 # Vygenerování sklizně
 for i in range(randint(10, 20)):
@@ -66,31 +67,32 @@ for i in range(randint(10, 20)):
             "standard": grainery_standard,
             "harvest": {
                 # "harvestType": harvest_type,
-                "audience": harvest_audience,
-                "status": harvest_status,
-                "http-header-from": harvest_from,
+                "harvestNameFull": harvest_name,
+                "harvestType": harvest_type,
+                "harvestSuffix": harvest_name.split('_'),
+                "date": harvest_date,
+                "size": harvest_size,
+                # "audience": harvest_audience,
                 "publisher": harvest_publisher,
                 "robots": harvest_robots,
-                "date": harvest_date,
-                "harvestName": harvest_name,
-                "harvestDuration": "NA",
+                # "harvestDuration": "NA",
                 "operator": harvest_operator,
-                "size": harvest_size,
-                "http-header-user-agent": harvest_agent,
-                "description": harvest_description
+                "http-header-from": harvest_agent,
+                # "description": harvest_description,
+                "status": harvest_status
             },
             "harvestCrawl": {
                 "logs": harvest_logs,
                 "path": harvest_path,
                 "filename": harvest_file
             },
-            "path": {
-                "mount": "NA",
+            "paths": {
+                # "mount": "NA",
                 "harvestID": harvest_ID,
-                "pathToHarvest": "NA",
-                "LTP": "NA",
-                "storage": "NA",
-                "cdxID": "NA"
+                # "pathToHarvest": "NA",
+                # "LTP": "NA",
+                # storage": "NA",
+                # "cdxID": "NA"
             },
             "revision": {
                 "dateOfValidation": harvest_dateOfValidation,
@@ -107,7 +109,7 @@ for i in range(randint(10, 20)):
     )
 
     # Vygenerování kontejneru
-    for i in range(randint(1000, 3000)):
+    for i in range(randint(100, 300)):
 
         hour = randint(1, 23)
         minute = randint(1, 59)
@@ -135,14 +137,14 @@ for i in range(randint(10, 20)):
         container_software = 'Heritrix/3.2.0 http://crawler.archive.org'
 
         # cdx
-        # container_cdx_exists = True
-        # container_cdx_path = './logs/index/' + container_filename \
-        #    + "-crawler00.webarchiv.cz-warc.gz.cdx"
-        # container_cdx_md5 = md5(
-        #                  container_filename.encode('utf-8')).hexdigest()
-        # container_cdx_size = round(container_size*0.15)
-        # container_cdx_columns = randint(9, 11)
-        # container_cdx_lines = randint(100000, 999999)
+        container_cdx_exists = True
+        container_cdx_path = f"./logs/index/{container_filename}-crawler00.webarchiv.cz-warc.gz.cdx"
+        container_cdx_md5 = md5(
+            container_filename.encode('utf-8')).hexdigest()
+        container_cdx_size = round(container_size*0.15)
+        container_cdx_columns = randint(9, 11)
+        container_cdx_lines = randint(100000, 999999)
+        container_cdx_version = "openwayback 1.2"
 
         # paths
         container_harvestID = harvest_ID
@@ -169,40 +171,53 @@ for i in range(randint(10, 20)):
                 "date": grainery_container_date,
                 "standard": grainery_container_standard,
                 "container": {
-                    "isPartOf": container_isPartOf,
-                    "ip": container_ip,
-                    "hostname": container_hostname,
-                    "dateOfOrigin": container_dateOfOrigin,
-                    "operator": container_operator,
                     "filename": container_filename,
                     "warcID": container_recordID,
+                    "isPartOf": container_isPartOf,
+                    "hostname": container_hostname,
+                    "ip": container_ip,
                     "contentLength": container_contentLength,
-                    "robot": container_robot,
+                    "operator": container_operator,
+                    "publisher": "Narodni knihovna CR",
+                    "audience": "Narodni knihovna CR users",
+                    "robots": container_robot,
+                    "dateOfOrigin": container_dateOfOrigin,
                     "software": container_software,
                     "size": container_size
                 },
-                "path": {
-                    "mount": "NA",
-                    "harvestID": container_harvestID,
-                    "pathToHarvest": "NA",
-                    "LTP": "NA",
-                    "storage": "NA",
-                    "cdxID": "NA"
+                "paths": {
+                    "harvestID": container_harvestID
                 },
-                #
-                # "cdx": {
-                #    "exists": container_cdx_exists,
-                #    "path": container_cdx_path,
-                #    "md5": container_cdx_md5,
-                #    "size": container_cdx_size,
-                #    "columns": container_cdx_columns,
-                #    "lines": container_cdx_lines
-                # },
                 "type": {
                     "format": container_format,
                     "warcType": container_warcType,
                     "conformsTo": container_conformsTo,
                     "mimeType": container_mimetype
+                },
+                "revision": {
+                    "dateOfValidation": container_dateOfValidation,
+                    "statusOfValidation": container_statusOfValidation,
+                    "nextLastDateValidation": container_nextValidation,
+                    "hashOrigin": container_hash,
+                    "hastLast": "NA"
+                }
+            }
+        )
+
+        collection_cdx.insert_one(
+            {
+                "recType": grainery_container_type,
+                "author": grainery_container_author,
+                "date": grainery_container_date,
+                "standard": grainery_container_standard,
+                "cdx": {
+                    "exists": container_cdx_exists,
+                    "path": container_cdx_path,
+                    "md5": container_cdx_md5,
+                    "size": container_cdx_size,
+                    "columns": container_cdx_columns,
+                    "lines": container_cdx_lines,
+                    "version": container_cdx_version
                 },
                 "revision": {
                     "dateOfValidation": container_dateOfValidation,
