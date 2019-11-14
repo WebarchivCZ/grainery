@@ -45,14 +45,19 @@ for i in range(randint(10, 20)):
     harvest_description = 'Výběrová sklizeň webů'
     harvest_agent = 'Mozilla/5.0 (compatible; heritrix/3.2.0 \
         +http://webarchiv.cz/kontakty/...'
+    harvest_warcNumber = randint(1000, 20000)
+    harvest_ID = str(uuid4())
+    harvest_warcsURI = ['list']
 
     # harvestCrawl
     harvest_logs = True
     harvest_path = 'logs/crawl'
-    harvest_file = ['crawler00.tar.gz', 'crawler01.tar.gz', 'crawler03.tar.gz']
+    harvest_file = ['Serials-2013-07-1M_ArchiveIt-crawler00.tar.gz',
+                    'Serials-2013-07-1M_ArchiveIt-crawler01.tar.gz',
+                    'Serials-2013-07-1M_ArchiveIt-crawler02.tar.gz']
 
-    # path
-    harvest_ID = str(uuid4())
+    # paths
+    harvest_file = ['crawler00.tar.gz', 'crawler01.tar.gz', 'crawler03.tar.gz']
 
     # commentaries
     harvest_exists = False
@@ -66,20 +71,22 @@ for i in range(randint(10, 20)):
             "date": grainery_date,
             "standard": grainery_standard,
             "harvest": {
-                # "harvestType": harvest_type,
                 "harvestNameFull": harvest_name,
                 "harvestType": harvest_type,
                 "harvestSuffix": harvest_name.split('_'),
                 "date": harvest_date,
+                "harvestID": harvest_ID,
                 "size": harvest_size,
+                "warcsNumber": harvest_warcNumber,
+                "warcsURI": harvest_warcsURI
                 # "audience": harvest_audience,
-                "publisher": harvest_publisher,
-                "robots": harvest_robots,
+                # "publisher": harvest_publisher,
+                # "robots": harvest_robots,
                 # "harvestDuration": "NA",
-                "operator": harvest_operator,
-                "http-header-from": harvest_agent,
+                # "operator": harvest_operator,
+                # "http-header-from": harvest_agent,
                 # "description": harvest_description,
-                "status": harvest_status
+                # "status": harvest_status
             },
             "harvestCrawl": {
                 "logs": harvest_logs,
@@ -88,7 +95,7 @@ for i in range(randint(10, 20)):
             },
             "paths": {
                 # "mount": "NA",
-                "harvestID": harvest_ID,
+                "warcsFilenames": harvest_ID,
                 # "pathToHarvest": "NA",
                 # "LTP": "NA",
                 # storage": "NA",
@@ -144,7 +151,8 @@ for i in range(randint(10, 20)):
         container_cdx_size = round(container_size*0.15)
         container_cdx_columns = randint(9, 11)
         container_cdx_lines = randint(100000, 999999)
-        container_cdx_version = "openwayback 1.2"
+        container_cdx_fileName = container_filename + ".cdx"
+        container_cdx_warcName = container_filename
 
         # paths
         container_harvestID = harvest_ID
@@ -182,7 +190,6 @@ for i in range(randint(10, 20)):
                     "audience": "Narodni knihovna CR users",
                     "robots": container_robot,
                     "dateOfOrigin": container_dateOfOrigin,
-                    "software": container_software,
                     "size": container_size
                 },
                 "paths": {
@@ -192,7 +199,7 @@ for i in range(randint(10, 20)):
                     "format": container_format,
                     "warcType": container_warcType,
                     "conformsTo": container_conformsTo,
-                    "mimeType": container_mimetype
+                    "mimeTypeXML": container_mimetype
                 },
                 "revision": {
                     "dateOfValidation": container_dateOfValidation,
@@ -211,13 +218,14 @@ for i in range(randint(10, 20)):
                 "date": grainery_container_date,
                 "standard": grainery_container_standard,
                 "cdx": {
+                    "fileName": container_cdx_fileName,
+                    "warcName": container_cdx_warcName,
                     "exists": container_cdx_exists,
                     "path": container_cdx_path,
                     "md5": container_cdx_md5,
                     "size": container_cdx_size,
                     "columns": container_cdx_columns,
                     "lines": container_cdx_lines,
-                    "version": container_cdx_version
                 },
                 "revision": {
                     "dateOfValidation": container_dateOfValidation,
