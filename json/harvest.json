@@ -1,30 +1,28 @@
 {
-  "_id": "5dc998d9c4522b7856397abb",
+  "_id": "5dcd98a695bcf5a1a194f0be",
   "recType": "harvest",
   "author": "NKCR",
-  "date": "2019-11-11T18:22:33.631Z",
+  "date": "2019-11-14T19:10:46.983Z",
   "standard": "Grainery 0.35",
   "harvest": {
-    "harvestNameFull": "Serials-2019-02-1M_2M_CUNI_OneShot_ArchiveIT1834q_",
-    "harvestType": "Serials",
-    "harvestSuffix": ["1M", "2M", "ArchiveIt", "OneShot", "T-Cuni"],
-    "harvestID": "b7d01599-a751-4ce7-bc25-28cf1ced59ae",
-    "date": "2017-09-09T19:50:00.000Z",
-    "size": 9486722,
-    "operator": "Zdenko Vozar",
-    "publisher": "National Library of the Czech Republic - Webarchiv.cz",
-    "robots": "ignore",
-    "http-header-from": "Mozilla/5.0 (compatible; heritrix/3.2.0 http://webarchiv.cz/kontakty/...",
-    "status": "NonValidated"
+    "harvestNameFull": "V6M_2017-10-05",
+    "harvestType": "V6M",
+    "harvestSuffix": ["V6M", "2017-10-05"],
+    "date": "2017-10-05T11:26:00.000Z",
+    "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
+    "size": 618029,
+    "warcsNumber": 12092,
+    "warcsURI": ["list"]
   },
   "harvestCrawl": {
     "logs": true,
     "path": "logs/crawl",
     "filename": ["crawler00.tar.gz", "crawler01.tar.gz", "crawler03.tar.gz"]
   },
+  "paths": { "warcsFilenames": "105f23c9-b037-4c1d-901c-dcf272877d9f" },
   "revision": {
-    "dateOfValidation": "2019-11-22T18:22:33.631Z",
-    "nextLastDateOfValidation": "2021-11-21T18:22:33.631Z",
+    "dateOfValidation": "2019-12-04T19:10:46.983Z",
+    "nextLastDateOfValidation": "2021-12-03T19:10:46.983Z",
     "hashLast": "NA",
     "hashOrig": "NA",
     "statusOfValidation": "NA"

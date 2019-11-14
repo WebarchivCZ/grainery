@@ -1,23 +1,24 @@
 {
-  "_id": "5dc998d9c4522b7856397abd",
+  "_id": "5dcd98a695bcf5a1a194f0c0",
   "recType": "container",
   "author": "NKCR",
-  "date": "2019-11-11T18:22:33.634Z",
+  "date": "2019-11-14T19:10:46.991Z",
   "standard": "Grainery 0.35",
   "cdx": {
+    "fileName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz.cdx",
+    "warcName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
     "exists": true,
-    "path": "./logs/index/V1M_2017-09-09-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
-    "md5": "64fbb7f912b6e8b05429b81c75d05109",
-    "size": 168,
+    "path": "./logs/index/V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
+    "md5": "5fbac1ce4ecbec86102e44aedf9f0f7e",
+    "size": 158,
     "columns": 9,
-    "lines": 379220,
-    "version": "openwayback 1.2"
+    "lines": 967062
   },
   "revision": {
-    "dateOfValidation": "2019-11-18T18:22:33.634Z",
+    "dateOfValidation": "2019-12-04T19:10:46.991Z",
     "statusOfValidation": true,
-    "nextLastDateValidation": "2021-11-17T18:22:33.634Z",
-    "hashOrigin": "dd642ee10304fe2652fb4c199e33fb86",
+    "nextLastDateValidation": "2021-12-03T19:10:46.991Z",
+    "hashOrigin": "12079a7def9ab255815f54b67147a62d",
     "hastLast": "NA"
   }
 }

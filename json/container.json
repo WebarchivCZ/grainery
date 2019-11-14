@@ -1,27 +1,24 @@
 {
-  "_id": "5dc998d9c4522b7856397abc",
+  "_id": "5dcd98a695bcf5a1a194f0bf",
   "recType": "container",
   "author": "NKCR",
-  "date": "2019-11-11T18:22:33.634Z",
+  "date": "2019-11-14T19:10:46.991Z",
   "standard": "Grainery 0.35",
   "container": {
-    "filename": "V1M_2017-09-09-crawler00.webarchiv.cz-warc.gz",
-    "warcID": "692c5cfe-d424-42b6-a729-cd5d61d1e50d",
-    "isPartOf": "V1M_2017-09-09",
+    "filename": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
+    "warcID": "9237121d-e513-4352-8591-62637f3ed896",
+    "isPartOf": "V6M_2017-10-05",
     "hostname": "crawler00.webarchiv.cz",
     "ip": "10.3.0.23",
-    "contentLength": 1018,
+    "contentLength": 955,
     "operator": "Zdenko Vozar",
     "publisher": "Narodni knihovna CR",
     "audience": "Narodni knihovna CR users",
     "robots": "ignore",
-    "dateOfOrigin": "2017-09-09T15:37:43.000Z",
-    "software": "Heritrix/3.2.0 http://crawler.archive.org",
-    "size": 1118
+    "dateOfOrigin": "2017-10-05T22:31:23.000Z",
+    "size": 1055
   },
-  "path": {
-    "harvestID": "b7d01599-a751-4ce7-bc25-28cf1ced59ae"
-  },
+  "paths": { "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f" },
   "type": {
     "format": "WARC File Format 1.0",
     "warcType": "warcinfo",
@@ -29,10 +26,10 @@
     "mimeTypeXML": "application/warc"
   },
   "revision": {
-    "dateOfValidation": "2019-11-18T18:22:33.634Z",
+    "dateOfValidation": "2019-12-04T19:10:46.991Z",
     "statusOfValidation": true,
-    "nextLastDateValidation": "2021-11-17T18:22:33.634Z",
-    "hashOrigin": "dd642ee10304fe2652fb4c199e33fb86",
+    "nextLastDateValidation": "2021-12-03T19:10:46.991Z",
+    "hashOrigin": "12079a7def9ab255815f54b67147a62d",
     "hastLast": "NA"
   }
 }
