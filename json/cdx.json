@@ -1,24 +1,34 @@
 {
   "_id": "5dcd98a695bcf5a1a194f0c0",
-  "recType": "container",
+  "recType": "cdx",
   "author": "NKCR",
   "date": "2019-11-14T19:10:46.991Z",
-  "standard": "Grainery 0.35",
+  "standard": "Grainery 0.4",
   "cdx": {
     "fileName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz.cdx",
     "warcName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
     "exists": true,
     "path": "./logs/index/V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
+    "cdxID" : "105f23c9-b037-4c1d-901c-dcf272874d9f",
     "md5": "5fbac1ce4ecbec86102e44aedf9f0f7e",
     "size": 158,
     "columns": 9,
     "lines": 967062
   },
+  "paths": {
+    "basic":{
+      "absolute": "/mnt/archive/17/topics/V6M_2017-10-05",
+      "parentDir": "V6M_2017-10-05"
+    },
+    "warcID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
+    "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f"
+   },
   "revision": {
     "dateOfValidation": "2019-12-04T19:10:46.991Z",
     "statusOfValidation": true,
     "nextLastDateValidation": "2021-12-03T19:10:46.991Z",
     "hashOrigin": "12079a7def9ab255815f54b67147a62d",
-    "hastLast": "NA"
+    "hastLast": "NA",
+    "commentaries": { "exists": false, "text": "NA" }
   }
 }

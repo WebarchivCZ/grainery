@@ -3,7 +3,7 @@
   "recType": "container",
   "author": "NKCR",
   "date": "2019-11-14T19:10:46.991Z",
-  "standard": "Grainery 0.35",
+  "standard": "Grainery 0.4",
   "container": {
     "filename": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
     "warcID": "9237121d-e513-4352-8591-62637f3ed896",
@@ -18,7 +18,14 @@
     "dateOfOrigin": "2017-10-05T22:31:23.000Z",
     "size": 1055
   },
-  "paths": { "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f" },
+  "paths": {
+    "basic":{
+      "absolute": "/mnt/archive/17/topics/V6M_2017-10-05",
+      "parentDir": "V6M_2017-10-05"
+    },
+    "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
+    "cdxID" : "105f23c9-b037-4c1d-901c-dcf272874d9f"
+   },
   "type": {
     "format": "WARC File Format 1.0",
     "warcType": "warcinfo",
@@ -30,6 +37,7 @@
     "statusOfValidation": true,
     "nextLastDateValidation": "2021-12-03T19:10:46.991Z",
     "hashOrigin": "12079a7def9ab255815f54b67147a62d",
-    "hastLast": "NA"
+    "hastLast": "NA",
+    "commentaries": { "exists": false, "text": "NA" }
   }
 }
