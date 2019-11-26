@@ -5,8 +5,8 @@
   "date": "2019-11-14T19:10:46.983Z",
   "standard": "Grainery 0.4",
   "harvest": {
-    "harvestName:": {
-      "harvestNameFull": "V6M_2017-10-05",
+    "harvestPrefix:": {
+      "harvestNameStand": "V6M_2017-10-05",
       "harvestFromWarcinfo": "V6M_2017-10-05",
       "harvestNameFNtrunc": "V6M_2017-10-05",
       "harvestDirsName": "V6M_2017-10-05",
@@ -16,13 +16,12 @@
     "date": "2017-10-05T11:26:00.000Z",
     "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
     "size": 618029,
-    "warcsNumber": 12092,
-    "warcsURI": ["list"]
+    "warcsNumber": 12092
   },
   "harvestCrawl": {
     "logs": true,
     "path": "logs/crawl",
-    "filename": ["crawler00.tar.gz", "crawler01.tar.gz", "crawler03.tar.gz"]
+    "fileName": ["crawler00.tar.gz", "crawler01.tar.gz", "crawler03.tar.gz"]
   },
   "paths": {
     "warcsFilenames": ["V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz"],
@@ -31,10 +30,10 @@
   },
   "revision": {
     "dateOfValidation": "2019-12-04T19:10:46.983Z",
-    "nextLastDateOfValidation": "2021-12-03T19:10:46.983Z",
-    "hashLast": "NA",
-    "hashOrig": "NA",
     "statusOfValidation": "NA",
+    "nextLastDateOfValidation": "2021-12-03T19:10:46.983Z",
+    "hashOrig": "NA",
+    "hashLast": "NA",
     "commentaries": { "exists": false, "text": "NA" }
   }
 }
