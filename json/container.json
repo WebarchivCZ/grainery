@@ -5,10 +5,10 @@
   "date": "2019-11-14T19:10:46.991Z",
   "standard": "Grainery 0.4",
   "container": {
-    "filename": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
+    "fileName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
     "warcID": "9237121d-e513-4352-8591-62637f3ed896",
     "isPartOf": "V6M_2017-10-05",
-    "hostname": "crawler00.webarchiv.cz",
+    "hostName": "crawler00.webarchiv.cz",
     "ip": "10.3.0.23",
     "contentLength": 955,
     "operator": "Zdenko Vozar",
