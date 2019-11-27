@@ -18,6 +18,12 @@
     "dateOfOrigin": "2017-10-05T22:31:23.000Z",
     "size": 1055
   },
+  "type": {
+    "format": "WARC File Format 1.0",
+    "conformsTo": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/",
+    "warcType": "warcinfo",
+    "mimeTypeXML": "application/warc"
+  },
   "paths": {
     "basic":{
       "absolute": "/mnt/archive/17/topics/V6M_2017-10-05",
@@ -26,12 +32,6 @@
     "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
     "cdxID" : "105f23c9-b037-4c1d-901c-dcf272874d9f"
    },
-  "type": {
-    "format": "WARC File Format 1.0",
-    "warcType": "warcinfo",
-    "conformsTo": "https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/",
-    "mimeTypeXML": "application/warc"
-  },
   "revision": {
     "dateOfValidation": "2019-12-04T19:10:46.991Z",
     "statusOfValidation": true,

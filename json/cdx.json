@@ -8,17 +8,15 @@
     "fileName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz.cdx",
     "warcName": "V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz",
     "exists": true,
-    "path": "./logs/index/V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz-crawler00.webarchiv.cz-warc.gz.cdx",
     "cdxID" : "105f23c9-b037-4c1d-901c-dcf272874d9f",
-    "md5": "5fbac1ce4ecbec86102e44aedf9f0f7e",
     "size": 158,
     "columns": 9,
     "lines": 967062
   },
   "paths": {
     "basic":{
-      "absolute": "/mnt/archive/17/topics/V6M_2017-10-05",
-      "parentDir": "V6M_2017-10-05"
+      "absolute": "/mnt/archive/17/topics/V6M_2017-10-05/logs/index",
+      "parentDir": "index"
     },
     "warcID": "105f23c9-b037-4c1d-901c-dcf272877d9f",
     "harvestID": "105f23c9-b037-4c1d-901c-dcf272877d9f"

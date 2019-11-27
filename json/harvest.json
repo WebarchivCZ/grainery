@@ -24,9 +24,9 @@
     "fileName": ["crawler00.tar.gz", "crawler01.tar.gz", "crawler03.tar.gz"]
   },
   "paths": {
-    "warcsFilenames": ["V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz"],
+    "cdxsID": ["105f23c9-b037-4c1d-901c-dcf272874d9f"],
     "warcsID": ["105f23c9-b037-4c1d-901c-dcf272877d9f"],
-    "cdxsID": ["105f23c9-b037-4c1d-901c-dcf272874d9f"]
+    "warcsFilenames": ["V6M_2017-10-05-crawler00.webarchiv.cz-warc.gz"]
   },
   "revision": {
     "dateOfValidation": "2019-12-04T19:10:46.983Z",
